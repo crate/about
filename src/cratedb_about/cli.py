@@ -1,4 +1,3 @@
-import sys
 import typing as t
 
 import click
@@ -16,21 +15,28 @@ def cli(ctx: click.Context) -> None:
 
 @cli.command()
 @click.argument("question", type=str, required=False)
-@click.option("--backend", type=str, default="openai")
+@click.option("--backend", type=click.Choice(["openai", "claude"]), default="openai")
 def ask(question: str, backend: t.Literal["claude", "openai"]):
     """
     Ask questions about CrateDB.
+
+    Requires:
+      - OpenAI backend: Set OPENAI_API_KEY environment variable
+      - Claude backend: Set ANTHROPIC_API_KEY environment variable
     """
     wizard = CrateDBConversation(
         backend=backend,
         use_knowledge=True,
     )
     if not question:
-        question = Example.questions[4]
-
-    sys.stdout.write(f"Question: {question}\nAnswer:\n")
-    sys.stdout.write(wizard.ask(question))
-    sys.stdout.write("\n")
+        # Use the AUTOINCREMENT question or fall back to the first question if not found
+        default_question = next(
+            (q for q in Example.questions if "AUTOINCREMENT" in q),
+            Example.questions[0] if Example.questions else "What is CrateDB?",
+        )
+        question = default_question
+    click.echo(f"Question: {question}\nAnswer:\n")
+    click.echo(wizard.ask(question))
 
 
 @cli.command()
@@ -38,5 +44,4 @@ def list_questions():
     """
     List a few example questions about CrateDB.
     """
-    sys.stdout.write("\n".join(Example.questions))
-    sys.stdout.write("\n")
+    click.echo("\n".join(Example.questions))

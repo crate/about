@@ -1,3 +1,4 @@
+import os
 import sys
 
 import requests
@@ -26,7 +27,15 @@ class Settings:
     Configure the language model to support conversations about CrateDB.
     """
 
-    llms_txt_url = "https://raw.githubusercontent.com/crate/about/6876fedee57f59b693f37996e04f53c6446f2ad6/build/llm/llms-ctx.txt"
+    default_context = (
+        "CrateDB is a distributed SQL database that makes it simple to"
+        "store and analyze massive amounts of data in real-time."
+    )
+
+    llms_txt_url = os.getenv(
+        "CRATEDB_CONTEXT_URL",
+        "https://raw.githubusercontent.com/crate/about/6876fedee57f59b693f37996e04f53c6446f2ad6/build/llm/llms-ctx.txt",
+    )
     instructions = "You are a helpful and concise assistant."
     llms_txt = None
     prompt = None
@@ -41,4 +50,8 @@ class Settings:
                 )
             except requests.RequestException as e:
                 print(f"Error fetching context: {e}", file=sys.stderr)  # noqa: T201
+                # Provide minimal fallback context.
+                cls.llms_txt = cls.default_context
+                cls.prompt = cls.llms_txt + "\n\nThe above is minimal context for the conversation."
+
         return cls.prompt
