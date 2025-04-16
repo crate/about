@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Chore: Removed `sponge` command in `poe build`
+- Content: Added two pieces of content from blog articles, converted to Markdown format
 
 ## v0.0.1 - 2025-04-17
 - Established project layout
