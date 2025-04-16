@@ -1,0 +1,163 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+  "setuptools>=42", # At least v42 of setuptools required.
+  "versioningit",
+]
+
+[project]
+name = "cratedb-about"
+description = "Information about CrateDB, for humans and machines."
+readme = "README.md"
+keywords = [
+  "cratedb",
+  "knowledge base",
+]
+license = "Apache-2.0"
+authors = [
+  { name = "CrateDB Engineering" },
+]
+requires-python = ">=3.9"
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Environment :: Console",
+  "Intended Audience :: Customer Service",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: End Users/Desktop",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: Manufacturing",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: System Administrators",
+  "Intended Audience :: Telecommunications Industry",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: Unix",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Adaptive Technologies",
+  "Topic :: Communications",
+  "Topic :: Database",
+  "Topic :: Documentation",
+  "Topic :: Education",
+  "Topic :: Internet",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Office/Business",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Pre-processors",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: System :: Archiving",
+  "Topic :: System :: Clustering",
+  "Topic :: System :: Distributed Computing",
+  "Topic :: System :: Logging",
+  "Topic :: System :: Monitoring",
+  "Topic :: System :: Networking",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Text Processing",
+  "Topic :: Utilities",
+]
+dynamic = [
+  "version",
+]
+dependencies = [
+  "click<9",
+  "llms-txt==0.0.4",
+  "poethepoet<1",
+]
+optional-dependencies.develop = [
+  "mypy<1.16",
+  "pyproject-fmt<3",
+  "ruff<0.12",
+  "validate-pyproject<1",
+]
+urls.Changelog = "https://github.com/crate/about/blob/main/CHANGES.md"
+urls.Issues = "https://github.com/crate/about/issues"
+urls.Repository = "https://github.com/crate/about"
+
+[tool.ruff]
+line-length = 100
+
+extend-exclude = [
+]
+
+lint.select = [
+  # Builtins
+  "A",
+  # Bugbear
+  "B",
+  # comprehensions
+  "C4",
+  # Pycodestyle
+  "E",
+  # eradicate
+  "ERA",
+  # Pyflakes
+  "F",
+  # isort
+  "I",
+  # pandas-vet
+  "PD",
+  # return
+  "RET",
+  # Bandit
+  "S",
+  # print
+  "T20",
+  "W",
+  # flake8-2020
+  "YTT",
+]
+
+[tool.mypy]
+exclude = [  ]
+check_untyped_defs = true
+ignore_missing_imports = true
+implicit_optional = true
+install_types = true
+non_interactive = true
+
+[tool.versioningit.vcs]
+method = "git-archive"
+default-tag = "0.0.0"
+describe-subst = "$Format:%(describe:match=v*)$"
+
+# ===================
+# Tasks configuration
+# ===================
+
+[tool.poe.tasks]
+
+check = [
+  "lint",
+  # "test",
+]
+
+format = [
+  { cmd = "ruff format ." },
+  # Configure Ruff not to auto-fix (remove!):
+  # unused imports (F401), unused variables (F841), `print` statements (T201), and commented-out code (ERA001).
+  { cmd = "ruff check --fix --ignore=ERA --ignore=F401 --ignore=F841 --ignore=T20 --ignore=ERA001 ." },
+  { cmd = "pyproject-fmt --keep-full-version pyproject.toml" },
+]
+
+lint = [
+  { cmd = "ruff format --check ." },
+  { cmd = "ruff check ." },
+  { cmd = "validate-pyproject pyproject.toml" },
+  { cmd = "mypy" },
+]
+
+build = [
+  { shell = "cp src/index/cratedb-overview.md build/llm/llms.txt" },
+  { shell = "llms_txt2ctx --optional=false src/index/cratedb-overview.md | sponge build/llm/llms-ctx.txt" },
+  { shell = "llms_txt2ctx --optional=true src/index/cratedb-overview.md | sponge build/llm/llms-ctx-full.txt" },
+]
