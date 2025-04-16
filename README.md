@@ -17,6 +17,17 @@ to relevant resources in the spirit of a curated knowledge backbone.
   [cratedb-overview.md]. They can be used to provide better context
   for conversations about CrateDB.
 
+## Usage
+
+To rebuild the `llms.txt` files, acquire the sources of the repository,
+and invoke the build command.
+
+```shell
+git clone https://github.com/crate/about cratedb-about
+cd cratedb-about
+uv run poe build
+```
+
 
 [build/llm]: ./build/llm
 [CrateDB]: https://cratedb.com/database
