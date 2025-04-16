@@ -1,15 +1,7 @@
-<project title="CrateDB" summary="CrateDB is a distributed and scalable SQL database for storing and">> analyzing massive amounts of data in near real-time, even with
-> complex queries. It is based on Lucene, inherits technologies from
-> Elasticsearch, and is compatible with PostgreSQL.
->
-> CrateDB also provides an HTTP interface, is written in Java, and brings
-> together fundamental components to manage big data after the Hadoop and
-> Spark batch-processing era, more like Teradata, BigQuery and Snowflake
-> are doing it.
+<project title="CrateDB" summary="CrateDB is a distributed and scalable SQL database for storing and analyzing massive amounts of data in near real-time, even with complex queries. It is based on Lucene, inherits technologies from Elasticsearch, and is compatible with PostgreSQL.">Things to remember when working with CrateDB are:
 
-Things to remember when working with CrateDB are:
-
-- CrateDB is a distributed database, where individual nodes form a database cluster, using a shared-nothing architecture.
+- CrateDB is a distributed database written in Java, where individual nodes form a database cluster, using a shared-nothing architecture.
+- CrateDB brings together fundamental components to manage big data after the Hadoop and Spark batch-processing era, more like Teradata, BigQuery and Snowflake are doing it.
 - Clients can connect to CrateDB using HTTP or the PostgreSQL wire protocol.
 - The default TCP ports of CrateDB are 4200 for the HTTP interface and 5432 for the PostgreSQL interface.
 - The language of choice after connecting to CrateDB is to use SQL, mostly compatible with PostgreSQL's SQL dialect.
