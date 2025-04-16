@@ -10,15 +10,15 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## What's inside
 
-- The [cratedb.md] file includes hints about what CrateDB is and what
-  you can do with it.
+- The [cratedb-overview.md] file includes hints about what CrateDB is
+  and what you can do with it.
 
-- The [llm] folder includes a few [llms.txt] files generated from
-  [cratedb.md], which can be used to provide better context to LLM
-  conversations about CrateDB.
+- The [build/llm] folder includes a few [llms.txt] files generated from
+  [cratedb-overview.md]. They can be used to provide better context
+  for conversations about CrateDB.
 
 
+[build/llm]: ./build/llm
 [CrateDB]: https://cratedb.com/database
-[cratedb.md]: ./cratedb.md
-[llm]: ./llm
+[cratedb-overview.md]: ./src/index/cratedb-overview.md
 [llms.txt]: https://llmstxt.org/
