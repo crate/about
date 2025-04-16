@@ -26,7 +26,7 @@ Things to remember when working with CrateDB are:
 
 - [CrateDB database](https://cratedb.com/docs/guide/_sources/home/index.md.txt): Benefits of CrateDB at a glance.
 - [CrateDB features](https://cratedb.com/docs/guide/_sources/feature/index.md.txt): All features of CrateDB at a glance.
-- [CrateDB reference documentation](https://cratedb.com/docs/reference/en/latest/_sources/index.rst.txt): The reference documentation of CrateDB.
+- [CrateDB reference documentation](https://cratedb.com/docs/crate/reference/en/latest/_sources/index.rst.txt): The reference documentation of CrateDB.
 - [CrateDB Cloud](https://cratedb.com/docs/cloud/en/latest/_sources/index.md.txt): The full documentation for CrateDB Cloud.
 - [Guide: CrateDB sharding](https://cratedb.com/docs/guide/_sources/performance/sharding.rst.txt): A best practice guide about sharding with CrateDB.
 - [Guide: CrateDB query optimization](https://cratedb.com/docs/guide/_sources/performance/optimization.rst.txt): Essential principles for optimizing queries in CrateDB while avoiding the most common pitfalls.
@@ -35,11 +35,11 @@ Things to remember when working with CrateDB are:
 
 ## API
 
-- [CrateDB SQL syntax](https://cratedb.com/docs/reference/en/latest/_sources/sql/index.rst.txt): You can use Structured Query Language (SQL) to query your data.
-- [CrateDB SQL functions](https://cratedb.com/docs/reference/en/latest/_sources/general/builtins/scalar-functions.rst.txt): The reference documentation about all SQL functions CrateDB provides.
+- [CrateDB SQL syntax](https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/index.rst.txt): You can use Structured Query Language (SQL) to query your data.
+- [CrateDB SQL functions](https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/scalar-functions.rst.txt): The reference documentation about all SQL functions CrateDB provides.
 - [CrateDB drivers](https://cratedb.com/docs/crate/clients-tools/en/latest/_sources/connect/index.md.txt): How to connect to a CrateDB cluster using traditional database drivers. 
-- [CrateDB cluster-wide settings](https://cratedb.com/docs/reference/en/latest/_sources/config/cluster.rst.txt): Cluster-wide settings can be read by querying the `sys.cluster.settings` column. Most cluster settings can be changed at runtime. 
-- [CrateDB node-specific settings](https://cratedb.com/docs/reference/en/latest/_sources/config/node.rst.txt): Node-specific settings of CrateDB. 
+- [CrateDB cluster-wide settings](https://cratedb.com/docs/crate/reference/en/latest/_sources/config/cluster.rst.txt): Cluster-wide settings can be read by querying the `sys.cluster.settings` column. Most cluster settings can be changed at runtime.
+- [CrateDB node-specific settings](https://cratedb.com/docs/crate/reference/en/latest/_sources/config/node.rst.txt): Node-specific settings of CrateDB.
 
 ## Examples
 
@@ -52,10 +52,10 @@ Things to remember when working with CrateDB are:
 
 ## Optional
 
-- [Concept: Clustering](https://cratedb.com/docs/reference/en/latest/_sources/concepts/clustering.rst.txt): How the distributed SQL database CrateDB uses a shared nothing architecture to form high-availability, resilient database clusters with minimal effort of configuration.
-- [Concept: Distributed joins](https://cratedb.com/docs/reference/en/latest/_sources/concepts/joins.rst.txt): Make joins work on large volumes of data, stored distributed.
-- [Concept: Storage and consistency](https://cratedb.com/docs/reference/en/latest/_sources/concepts/storage-consistency.rst.txt): How CrateDB stores and distributes state across the cluster and what consistency and durability guarantees are provided.
-- [Concept: Resiliency](https://cratedb.com/docs/reference/en/latest/_sources/concepts/resiliency.rst.txt): How CrateDB copes with network-, disk-, or machine-failures.
+- [Concept: Clustering](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/clustering.rst.txt): How the distributed SQL database CrateDB uses a shared nothing architecture to form high-availability, resilient database clusters with minimal effort of configuration.
+- [Concept: Distributed joins](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/joins.rst.txt): Make joins work on large volumes of data, stored distributed.
+- [Concept: Storage and consistency](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/storage-consistency.rst.txt): How CrateDB stores and distributes state across the cluster and what consistency and durability guarantees are provided.
+- [Concept: Resiliency](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/resiliency.rst.txt): How CrateDB copes with network-, disk-, or machine-failures.
 - [CrateDB Cloud: Services](https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt): Services specifications and variants of CrateDB Cloud.
 - [CrateDB Cloud: Billing](https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt): How billing works in CrateDB Cloud.
 - [CrateDB Cloud: API](https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt): CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
@@ -63,9 +63,9 @@ Things to remember when working with CrateDB are:
 - [CrateDB Cloud: Export data](https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt): How to conveniently export data from CrateDB Cloud.
 - [CrateDB Cloud: Automatic backups](https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt): How automatic backups work in CrateDB Cloud.
 - [CrateDB Cloud: MongoDB CDC integration](https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt): CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC), providing seamless, real-time synchronization of your data.
-- [Feature: User-defined functions](https://cratedb.com/docs/reference/en/latest/_sources/general/user-defined-functions.rst.txt): CrateDB supports user-defined functions.
+- [Feature: User-defined functions](https://cratedb.com/docs/crate/reference/en/latest/_sources/general/user-defined-functions.rst.txt): CrateDB supports user-defined functions.
 - [Integration Tutorials I](https://cratedb.com/docs/guide/_sources/integrate/index.md.txt): Integrating 3rd party software with CrateDB.
-- [Integration Tutorials II](https://community.cratedb.com/raw/1015): Overview of CrateDB integration tutorials.
+- [Integration Tutorials II](https://community.cratedb.com/raw/1015/1): Overview of CrateDB integration tutorials.
 - [Time Series with CrateDB](https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/timeseries/README.md): Examples, tutorials and runnable code on how to use CrateDB for time-series use cases. Exploratory data analysis, time-series decomposition, anomaly detection, forecasting.
 - [Timeseries QA Assistant with CrateDB, LLMs, and Machine Manuals](https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/chatbot/table-augmented-generation/README.md): A full interactive pipeline for simulating telemetry data from industrial motors, storing that data in CrateDB, and enabling natural-language querying powered by OpenAI — including RAG-style guidance from machine manuals.
 - [LangChain and CrateDB](https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/machine-learning/llm-langchain/README.md): Get started with LangChain and CrateDB.
