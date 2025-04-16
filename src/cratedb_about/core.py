@@ -1,21 +1,76 @@
 # Derived from: https://llmstxt.org/domains.html
 import dataclasses
 import os
+import sys
 import typing as t
 
 from cratedb_about.model import Settings
+
+# Import backends conditionally to avoid errors if dependencies are missing
+CLAUDE_AVAILABLE = False
+OPENAI_AVAILABLE = False
+
+try:
+    from claudette import Chat, contents, models
+
+    CLAUDE_AVAILABLE = True
+except ImportError:
+    pass
+
+try:
+    from openai import OpenAI
+    from openai.types.responses import ResponseInputTextParam
+    from openai.types.responses.response_input_param import Message
+    from openai.types.shared_params import Reasoning
+
+    OPENAI_AVAILABLE = True
+except ImportError:
+    pass
 
 
 @dataclasses.dataclass
 class CrateDBConversation:
     """
     Manage conversations about CrateDB.
+
+    Requires:
+    - OPENAI_API_KEY environment variable when using "openai" backend
+    - ANTHROPIC_API_KEY environment variable when using "claude" backend
     """
 
     backend: t.Literal["claude", "openai"] = "openai"
     use_knowledge: bool = True
 
+    def __post_init__(self):
+        """Validate configuration."""
+        if self.backend == "openai" and not OPENAI_AVAILABLE:
+            raise ImportError("The 'openai' package is required when using the OpenAI backend")
+        if self.backend == "claude" and not CLAUDE_AVAILABLE:
+            raise ImportError("The 'claudette' package is required when using the Claude backend")
+        if self.backend == "openai" and not os.environ.get("OPENAI_API_KEY"):
+            raise ValueError(
+                "OPENAI_API_KEY environment variable is required when using 'openai' backend"
+            )
+        if self.backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
+            raise ValueError(
+                "ANTHROPIC_API_KEY environment variable is required when using 'claude' backend"
+            )
+
     def ask(self, question: str) -> str:
+        """
+        Ask a question about CrateDB using the configured LLM backend.
+
+        Args:
+            question: The question to ask about CrateDB
+
+        Returns:
+            str: The response from the LLM
+
+        Raises:
+            NotImplementedError: If an unsupported backend is specified
+            ValueError: If required environment variables are missing
+            RuntimeError: If there's an error communicating with the LLM API
+        """
         if self.backend == "openai":
             return self.ask_gpt(question)
         if self.backend == "claude":
@@ -23,13 +78,19 @@ class CrateDBConversation:
         raise NotImplementedError("Please select an available LLM backend")
 
     def ask_claude(self, question: str) -> str:
-        from claudette import Chat, contents, models
-
+        # FIXME: API does not provide lookup by name.
         model = models[1]  # Sonnet 3.5
         chat = Chat(model, sp=Settings.instructions)
-        chat(Settings.get_prompt())
-        result = chat(question)
-        return contents(result)
+        if self.use_knowledge:
+            try:
+                chat(Settings.get_prompt())
+            except Exception as e:
+                print(f"Warning: Failed to load knowledge context: {e}", file=sys.stderr)  # noqa: T201
+        try:
+            result = chat(question)
+            return contents(result)
+        except Exception as e:
+            raise RuntimeError(f"Claude API error: {e}") from e
 
     def ask_gpt(self, question: str) -> str:
         """
@@ -45,12 +106,33 @@ class CrateDBConversation:
         - https://community.openai.com/t/understanding-role-management-in-openais-api-two-methods-compared/253289
         - https://community.openai.com/t/how-is-developer-message-better-than-system-prompt/1062784
         """
-        from openai import OpenAI
-        from openai.types.responses import ResponseInputTextParam
-        from openai.types.shared_params import Reasoning
 
         client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-        from openai.types.responses.response_input_param import Message
+
+        input_messages: t.List[Message] = []
+        if self.use_knowledge:
+            try:
+                prompt = Settings.get_prompt()
+                if prompt:
+                    input_messages.append(
+                        Message(
+                            content=[ResponseInputTextParam(text=prompt, type="input_text")],
+                            role="developer",
+                            status="completed",
+                            type="message",
+                        )
+                    )
+            except Exception as e:
+                print(f"Warning: Failed to load knowledge context: {e}", file=sys.stderr)  # noqa: T201
+        # Always add the user question
+        input_messages.append(
+            Message(
+                content=[ResponseInputTextParam(text=question, type="input_text")],
+                role="user",
+                status="completed",
+                type="message",
+            )
+        )
 
         response = client.responses.create(
             # model="gpt-4o",  # noqa: ERA001
@@ -61,19 +143,6 @@ class CrateDBConversation:
                 # summary="detailed",  # noqa: ERA001
             ),
             instructions=Settings.instructions,
-            input=[
-                Message(
-                    content=[ResponseInputTextParam(text=Settings.get_prompt(), type="input_text")],
-                    role="developer",
-                    status="completed",
-                    type="message",
-                ),
-                Message(
-                    content=[ResponseInputTextParam(text=question, type="input_text")],
-                    role="user",
-                    status="completed",
-                    type="message",
-                ),
-            ],
+            input=input_messages,  # type: ignore[arg-type]
         )
         return response.output_text

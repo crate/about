@@ -61,4 +61,5 @@ jobs:
         run: |
           poe check
           poe build
+          cratedb-about --version
           cratedb-about list-questions
