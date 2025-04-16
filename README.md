@@ -19,13 +19,20 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## Usage
 
-To rebuild the `llms.txt` files, acquire the sources of the repository,
-and invoke the build command.
-
+Install `cratedb-about` package.
 ```shell
-git clone https://github.com/crate/about cratedb-about
-cd cratedb-about
-uv run poe build
+uv tool install --upgrade 'cratedb-about @ git+https://github.com/crate/about'
+```
+
+Ask questions about CrateDB.
+```shell
+export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
+cratedb-about ask "CrateDB does not seem to provide an AUTOINCREMENT feature?"
+```
+
+If you are running out of questions, get inspired by the standard library.
+```shell
+cratedb-about list-questions
 ```
 
 

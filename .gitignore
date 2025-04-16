@@ -2,3 +2,5 @@
 .venv*
 *.egg-info
 *.lock
+bdist.*
+__pycache__
