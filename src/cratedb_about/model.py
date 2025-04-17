@@ -34,7 +34,7 @@ class Settings:
 
     llms_txt_url = os.getenv(
         "CRATEDB_CONTEXT_URL",
-        "https://raw.githubusercontent.com/crate/about/v0.0.1/build/llm/llms-ctx.txt",
+        "https://raw.githubusercontent.com/crate/about/v0.0.1/build/llm/llms-ctx-full.txt",
     )
     instructions = "You are a helpful and concise assistant."
     llms_txt = None
