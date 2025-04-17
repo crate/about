@@ -1,6 +1,7 @@
 # Backlog
 
 ## Iteration +1
+- Let the user select the model, reasoning effort, and other parameters
 - JSON/YAML/Markdown output
 
 ## Iteration +2
