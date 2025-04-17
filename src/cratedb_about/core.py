@@ -138,7 +138,7 @@ class CrateDBConversation:
             # model="gpt-4o",  # noqa: ERA001
             model="o4-mini",
             reasoning=Reasoning(
-                effort="medium",
+                effort="high",
                 # Your organization must be verified to generate reasoning summaries
                 # summary="detailed",  # noqa: ERA001
             ),
