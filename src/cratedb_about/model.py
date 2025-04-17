@@ -19,6 +19,13 @@ class Example:
         "How much data can CrateDB store?",
         "Please tell me how CrateDB stores data.",
         "Does CrateDB support SQLAlchemy and pandas?",
+        "How to enumerate active jobs?",
+        "How to enumerate elapsed jobs?",
+        "How to inquire information about shards?",
+        "How to inquire information about partitions?",
+        "What about IoT?",
+        "What about advanced operations on timeseries data?",
+        "Can CrateDB store and retrieve vector data for ML workloads?",
     ]
 
 
