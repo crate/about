@@ -26,6 +26,8 @@ class Example:
         "What about IoT?",
         "What about advanced operations on timeseries data?",
         "Can CrateDB store and retrieve vector data for ML workloads?",
+        "What is the typical architecture of a CrateDB cluster?",
+        "How much is a cluster with 3 TB storage per month?",
     ]
 
 
