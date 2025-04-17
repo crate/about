@@ -49,6 +49,8 @@ Things to remember when working with CrateDB are:
 - [Concept: Distributed joins](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/joins.rst.txt): Make joins work on large volumes of data, stored distributed.
 - [Concept: Storage and consistency](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/storage-consistency.rst.txt): How CrateDB stores and distributes state across the cluster and what consistency and durability guarantees are provided.
 - [Concept: Resiliency](https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/resiliency.rst.txt): How CrateDB copes with network-, disk-, or machine-failures.
+- [Use case: Best database for big data analytics](https://github.com/crate/about/raw/refs/heads/main/src/content/blog/shared-nothing-architecture-multi-model-databases-scalable-real-time-analytics.md): Leveraging Shared Nothing Architecture and Multi-Model Databases for Scalable Real-Time Analytics on Large Data.
+- [Use case: Digital Twins](https://github.com/crate/about/raw/refs/heads/main/src/content/blog/digital-twins.md): Digital twins are virtual representations of physical objects, processes, or systems in the digital realm. The abundance of data to be processed in digital twin setups is no problem for CrateDB.
 - [CrateDB Cloud: Services](https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt): Services specifications and variants of CrateDB Cloud.
 - [CrateDB Cloud: Billing](https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt): How billing works in CrateDB Cloud.
 - [CrateDB Cloud: API](https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt): CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
