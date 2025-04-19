@@ -134,14 +134,20 @@ class CrateDBConversation:
             )
         )
 
-        response = client.responses.create(
-            # model="gpt-4o",  # noqa: ERA001
-            model="o4-mini",
-            reasoning=Reasoning(
+        # model = "gpt-4o"  # noqa: ERA001
+        model = "gpt-4.1"  # noqa: ERA001
+        # model = "o4-mini"  # noqa: ERA001
+        reasoning = None
+        if model == "o4-mini":
+            reasoning = Reasoning(
                 effort="high",
                 # Your organization must be verified to generate reasoning summaries
                 # summary="detailed",  # noqa: ERA001
-            ),
+            )
+
+        response = client.responses.create(
+            model=model,
+            reasoning=reasoning,
             instructions=Settings.instructions,
             input=input_messages,  # type: ignore[arg-type]
         )
