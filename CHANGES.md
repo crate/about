@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Chore: Removed `sponge` command in `poe build`
 
 ## v0.0.1 - 2025-04-17
 - Established project layout
