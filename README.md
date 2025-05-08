@@ -13,7 +13,7 @@ to relevant resources in the spirit of a curated knowledge backbone.
 - The [cratedb-overview.md] file includes hints about what CrateDB is
   and what you can do with it.
 
-- The [build/llm] folder includes a few [llms.txt] files generated from
+- The [about/v1] folder includes a few [llms.txt] files generated from
   [cratedb-overview.md]. They can be used to provide better context
   for conversations about CrateDB.
 
@@ -36,7 +36,7 @@ cratedb-about list-questions
 ```
 
 
-[build/llm]: ./build/llm
+[about/v1]: https://cdn.crate.io/about/v1/
 [CrateDB]: https://cratedb.com/database
 [cratedb-overview.md]: ./src/index/cratedb-overview.md
 [llms.txt]: https://llmstxt.org/

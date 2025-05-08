@@ -3,6 +3,8 @@
 ## Unreleased
 - Chore: Removed `sponge` command in `poe build`
 - Content: Added two pieces of content from blog articles, converted to Markdown format
+- Documentation: Started advertising to use the designated location
+  https://cdn.crate.io/about/ for consuming the generated resources
 
 ## v0.0.1 - 2025-04-17
 - Established project layout
