@@ -7,6 +7,7 @@
   https://cdn.crate.io/about/ for consuming the generated resources
 - Naming things: Adhered to the naming convention of [LLMs.txt Hub]
   by using `llms.txt` and `llms-full.txt`.
+- Content: Added the [CrateDB README]
 
 ## v0.0.1 - 2025-04-17
 - Established project layout
@@ -16,4 +17,5 @@
   for ad hoc conversations about CrateDB
 
 
+[CrateDB README]: https://github.com/crate/crate/blob/master/README.rst
 [LLMs.txt Hub]: https://llmtxt.dev/hub

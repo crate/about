@@ -17,6 +17,7 @@ Things to remember when working with CrateDB are:
 
 ## Docs
 
+- [The CrateDB README](https://raw.githubusercontent.com/crate/crate/refs/heads/master/README.rst): README about CrateDB.
 - [CrateDB database](https://cratedb.com/docs/guide/_sources/home/index.md.txt): Benefits of CrateDB at a glance.
 - [CrateDB features](https://cratedb.com/docs/guide/_sources/feature/index.md.txt): All features of CrateDB at a glance.
 - [CrateDB reference documentation](https://cratedb.com/docs/crate/reference/en/latest/_sources/index.rst.txt): The reference documentation of CrateDB.
