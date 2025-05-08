@@ -35,6 +35,9 @@ If you are running out of questions, get inspired by the standard library.
 cratedb-about list-questions
 ```
 
+To configure a different context file, use the `CRATEDB_CONTEXT_URL` environment
+variable.
+
 
 [about/v1]: https://cdn.crate.io/about/v1/
 [CrateDB]: https://cratedb.com/database
