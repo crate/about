@@ -165,7 +165,7 @@ lint = [
 ]
 
 build = [
-  { shell = "cp src/index/cratedb-overview.md build/llm/llms.txt" },
-  { shell = "llms_txt2ctx --optional=false src/index/cratedb-overview.md > build/llm/llms-ctx.txt" },
-  { shell = "llms_txt2ctx --optional=true src/index/cratedb-overview.md > build/llm/llms-ctx-full.txt" },
+  { shell = "cp src/index/cratedb-overview.md build/llm/" },
+  { shell = "llms_txt2ctx --optional=false src/index/cratedb-overview.md > build/llm/llms.txt" },
+  { shell = "llms_txt2ctx --optional=true src/index/cratedb-overview.md > build/llm/llms-full.txt" },
 ]

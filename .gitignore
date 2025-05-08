@@ -5,3 +5,4 @@
 __pycache__
 bdist.*
 build/llm/*.txt
+build/llm/cratedb-overview.md
