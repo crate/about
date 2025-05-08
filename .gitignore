@@ -2,5 +2,6 @@
 .venv*
 *.egg-info
 *.lock
-bdist.*
 __pycache__
+bdist.*
+build/llm/*.txt
