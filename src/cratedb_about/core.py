@@ -137,6 +137,7 @@ class CrateDBConversation:
         # model = "gpt-4o"  # noqa: ERA001
         model = "gpt-4.1"  # noqa: ERA001
         # model = "o4-mini"  # noqa: ERA001
+        # model = "o3"  # noqa: ERA001
         reasoning = None
         if model == "o4-mini":
             reasoning = Reasoning(
