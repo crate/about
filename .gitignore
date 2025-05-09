@@ -4,5 +4,4 @@
 *.lock
 __pycache__
 bdist.*
-build/llm/*.txt
-build/llm/cratedb-overview.md
+public_html
