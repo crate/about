@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.2 - 2025-05-09
 - Chore: Removed `sponge` command in `poe build`
 - Content: Added two pieces of content from blog articles, converted to Markdown format
 - Documentation: Started advertising to use the designated location
