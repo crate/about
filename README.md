@@ -23,7 +23,7 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 Install `cratedb-about` package.
 ```shell
-uv tool install --upgrade 'cratedb-about @ git+https://github.com/crate/about'
+uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/about'
 ```
 
 ## Usage
@@ -57,7 +57,17 @@ example_items = outline.get_items("Examples", as_dict=True)
 section_names = outline.section_names
 ```
 
-### Query with LLM
+### llms-txt
+
+#### Build
+
+Rebuild all `llms.txt` and auxiliary files.
+```shell
+export OUTDIR=./public_html
+cratedb-about build
+```
+
+#### Query
 
 Ask questions about CrateDB.
 ```shell

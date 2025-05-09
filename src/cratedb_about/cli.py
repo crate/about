@@ -1,24 +1,30 @@
+import logging
 import typing as t
+from pathlib import Path
 
 import click
+from pueblo.util.cli import boot_click
 
+from cratedb_about.build.llmstxt import LllmsTxtBuilder
 from cratedb_about.core import CrateDBConversation
 from cratedb_about.model import Example
 from cratedb_about.outline.model import CrateDbKnowledgeOutline
+
+logger = logging.getLogger(__name__)
 
 
 @click.group()
 @click.version_option()
 @click.pass_context
 def cli(ctx: click.Context) -> None:
-    pass
+    boot_click(ctx=ctx)
 
 
 @cli.command()
 @click.option(
     "--format", "-f", "format_", type=click.Choice(["markdown", "yaml", "json"]), default="markdown"
 )
-def outline(format_: t.Literal["markdown", "yaml", "json"] = "markdown"):
+def outline(format_: t.Literal["markdown", "yaml", "json"] = "markdown") -> None:
     """
     Display the outline of the CrateDB documentation.
 
@@ -36,9 +42,20 @@ def outline(format_: t.Literal["markdown", "yaml", "json"] = "markdown"):
 
 
 @cli.command()
+@click.option("--outdir", "-o", envvar="OUTDIR", type=Path, required=True)
+def build(outdir: Path) -> None:
+    """
+    Invoke the build. Now: Generate `llms.txt` files.
+    """
+    builder = LllmsTxtBuilder(outdir=outdir)
+    builder.run()
+    logger.info("Ready.")
+
+
+@cli.command()
 @click.argument("question", type=str, required=False)
 @click.option("--backend", type=click.Choice(["openai", "claude"]), default="openai")
-def ask(question: str, backend: t.Literal["claude", "openai"]):
+def ask(question: str, backend: t.Literal["claude", "openai"]) -> None:
     """
     Ask questions about CrateDB.
 
@@ -62,7 +79,7 @@ def ask(question: str, backend: t.Literal["claude", "openai"]):
 
 
 @cli.command()
-def list_questions():
+def list_questions() -> None:
     """
     List a few example questions about CrateDB.
     """

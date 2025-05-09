@@ -70,18 +70,25 @@ dynamic = [
 ]
 dependencies = [
   "cattrs<25",
-  "claudette",
   "click<9",
+  "colorlog<7",
   "llms-txt==0.0.4",
-  "openai",
-  "poethepoet<1",
+  "pueblo==0.0.11",
   "requests<3",
+]
+optional-dependencies.all = [
+  "cratedb-about[llm]",
 ]
 optional-dependencies.develop = [
   "mypy<1.16",
+  "poethepoet<1",
   "pyproject-fmt<3",
   "ruff<0.12",
   "validate-pyproject<1",
+]
+optional-dependencies.llm = [
+  "claudette<0.2",
+  "openai<2",
 ]
 optional-dependencies.release = [
   "build<2",
@@ -98,7 +105,10 @@ urls.Repository = "https://github.com/crate/about"
 scripts.cratedb-about = "cratedb_about.cli:cli"
 
 [tool.setuptools.package-data]
-cratedb_about = [ "*.yaml" ]
+cratedb_about = [
+  "*.md",
+  "*.yaml",
+]
 
 [tool.ruff]
 line-length = 100
@@ -194,17 +204,6 @@ describe-subst = "$Format:%(describe:match=v*)$"
 # ===================
 
 [tool.poe.tasks]
-
-build.env = { OUTDIR = "public_html" }
-build.sequence = [
-  { shell = "echo Generating content, target: ${OUTDIR}" },
-  { shell = "mkdir -p ${OUTDIR}" },
-  { shell = "cp src/content/about/llms-txt.md ${OUTDIR}/readme.md" },
-  { shell = "cp src/cratedb_about/outline/cratedb-outline.yaml ${OUTDIR}/outline.yaml" },
-  { shell = "cratedb-about outline --format markdown > ${OUTDIR}/outline.md" },
-  { shell = "llms_txt2ctx --optional=false ${OUTDIR}/outline.md > ${OUTDIR}/llms.txt" },
-  { shell = "llms_txt2ctx --optional=true ${OUTDIR}/outline.md > ${OUTDIR}/llms-full.txt" },
-]
 
 check = [
   "lint",
