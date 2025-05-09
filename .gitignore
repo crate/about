@@ -1,7 +1,10 @@
+.coverage
+coverage.xml
 .idea
 .venv*
 *.egg-info
 *.lock
 __pycache__
 bdist.*
+dist
 public_html

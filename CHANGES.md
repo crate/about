@@ -1,6 +1,11 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Data backend: Refactored the source of truth for the documentation outline
+  into the package itself, to `cratedb-outline.yaml`
+- CLI: Provided new subcommand `cratedb-about outline`
+- API: Provided `cratedb_about.CrateDbKnowledgeOutline` for retrieving
+  information from the knowledge base outline within Python programs
 
 ## v0.0.2 - 2025-05-09
 - Chore: Removed `sponge` command in `poe build`

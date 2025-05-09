@@ -4,6 +4,7 @@ import click
 
 from cratedb_about.core import CrateDBConversation
 from cratedb_about.model import Example
+from cratedb_about.outline.model import CrateDbKnowledgeOutline
 
 
 @click.group()
@@ -11,6 +12,27 @@ from cratedb_about.model import Example
 @click.pass_context
 def cli(ctx: click.Context) -> None:
     pass
+
+
+@cli.command()
+@click.option(
+    "--format", "-f", "format_", type=click.Choice(["markdown", "yaml", "json"]), default="markdown"
+)
+def outline(format_: t.Literal["markdown", "yaml", "json"] = "markdown"):
+    """
+    Display the outline of the CrateDB documentation.
+
+    Available output formats: Markdown, YAML, JSON.
+    """
+    cratedb_outline = CrateDbKnowledgeOutline.load()
+    if format_ == "json":
+        print(cratedb_outline.to_json())  # noqa: T201
+    elif format_ == "yaml":
+        print(cratedb_outline.to_yaml())  # noqa: T201
+    elif format_ == "markdown":
+        print(cratedb_outline.to_markdown())  # noqa: T201
+    else:
+        raise ValueError(f"Invalid output format: {format_}")
 
 
 @cli.command()
