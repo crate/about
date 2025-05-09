@@ -8,7 +8,8 @@ cd cratedb-about
 
 Rebuild all the `llms.txt` files.
 ```shell
-uv run poe build
+export OUTDIR=./public_html
+uvx --with-editable=. cratedb-about build
 ```
 
 Ask questions about CrateDB.

@@ -6,9 +6,10 @@
 - CLI: Provided new subcommand `cratedb-about outline`
 - API: Provided `cratedb_about.CrateDbKnowledgeOutline` for retrieving
   information from the knowledge base outline within Python programs
+- CLI: Zapped working tree building by establishing a new `cratedb-about build`
+  subcommand
 
 ## v0.0.2 - 2025-05-09
-- Chore: Removed `sponge` command in `poe build`
 - Content: Added two pieces of content from blog articles, converted to Markdown format
 - Documentation: Started advertising to use the designated location
   https://cdn.crate.io/about/ for consuming the generated resources
