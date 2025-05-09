@@ -165,7 +165,9 @@ lint = [
 ]
 
 build = [
+  { shell = "mkdir -p build/llm" },
   { shell = "cp src/index/cratedb-overview.md build/llm/" },
+  { shell = "cp src/content/about/llms-txt.md build/llm/readme.md" },
   { shell = "llms_txt2ctx --optional=false src/index/cratedb-overview.md > build/llm/llms.txt" },
   { shell = "llms_txt2ctx --optional=true src/index/cratedb-overview.md > build/llm/llms-full.txt" },
 ]
