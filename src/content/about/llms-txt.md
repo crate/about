@@ -13,7 +13,8 @@ helping LLMs understand how to interpret this information in context.
 
 ## What's Inside
 
-- `cratedb-overview.md`: The source file for generating `llms.txt`.
+- `cratedb-outline.yaml`: The YAML source file for generating a Markdown file
+  `cratedb-outline.md` and subsequently an `llms.txt`.
 - `llms.txt`: Standard `llms.txt` file.
 - `llms-full.txt`: Full `llms.txt` file, including the "Optional" subsection.
 
