@@ -44,21 +44,6 @@ def test_cli_list_questions():
     assert "Please tell me how CrateDB stores data." in result.output
 
 
-def test_cli_outline():
-    runner = CliRunner()
-
-    result = runner.invoke(
-        cli,
-        args=["outline", "--format", "markdown"],
-        catch_exceptions=False,
-    )
-    assert result.exit_code == 0, result.output
-
-    assert "# CrateDB" in result.output
-    assert "Things to remember when working with CrateDB" in result.output
-    assert "Concept: Clustering" in result.output
-
-
 def test_cli_build(caplog, tmp_path):
     runner = CliRunner()
 

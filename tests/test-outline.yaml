@@ -1,0 +1,28 @@
+# Knowledge outline for testing purposes
+---
+
+meta:
+  version: 0.1
+  type: outline
+
+data:
+
+  header:
+    title: Testing
+    link: https://example.org/
+    description: |
+      > Just for testing purposes.
+
+      Things to remember when working with Testing are:
+
+      - Do it right.
+      - Don't overengineer.
+
+  sections:
+
+  - name: Docs
+    items:
+
+    - title: "Testing README"
+      link: https://example.org/README.rst
+      description: README about Testing.
