@@ -4,7 +4,7 @@ import os
 import sys
 import typing as t
 
-from cratedb_about.model import Settings
+from cratedb_about.query.model import Settings
 
 # Import backends conditionally to avoid errors if dependencies are missing
 CLAUDE_AVAILABLE = False
@@ -29,7 +29,7 @@ except ImportError:
 
 
 @dataclasses.dataclass
-class CrateDBConversation:
+class CrateDbKnowledgeConversation:
     """
     Manage conversations about CrateDB.
 

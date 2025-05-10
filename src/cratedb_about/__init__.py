@@ -1,8 +1,10 @@
 from importlib.metadata import PackageNotFoundError, version
 
 from .outline import CrateDbKnowledgeOutline
+from .query import CrateDbKnowledgeConversation
 
 __all__ = [
+    "CrateDbKnowledgeConversation",
     "CrateDbKnowledgeOutline",
 ]
 

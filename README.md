@@ -85,7 +85,6 @@ outline.to_markdown()
 ### llms-txt
 
 #### Build
-
 The Markdown file `outline.md` serves as the source for generating the `llms.txt` file.
 ```shell
 llms_txt2ctx --optional=true outline.md > llms-full.txt
@@ -98,11 +97,19 @@ cratedb-about build
 ```
 
 #### Query
-
-Ask questions about CrateDB.
+Ask questions about CrateDB from the command line.
+#### CLI
 ```shell
 export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 cratedb-about ask "CrateDB does not seem to provide an AUTOINCREMENT feature?"
+```
+#### API
+Use the Python API to ask questions about CrateDB.
+```python
+from cratedb_about import CrateDbKnowledgeConversation
+
+knowledge = CrateDbKnowledgeConversation()
+knowledge.ask("CrateDB does not seem to provide an AUTOINCREMENT feature?")
 ```
 
 If you are running out of questions, get inspired by the standard library.

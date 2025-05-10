@@ -10,6 +10,7 @@
   subcommand
 - CI: Added GHA workflow for publishing package to PyPI
 - API: Improved data model and interface
+- API: Refactored LLM conversations code to `CrateDbKnowledgeConversation`
 
 ## v0.0.2 - 2025-05-09
 - Content: Added two pieces of content from blog articles, converted to Markdown format

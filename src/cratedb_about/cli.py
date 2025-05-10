@@ -6,9 +6,9 @@ import click
 from pueblo.util.cli import boot_click
 
 from cratedb_about.build.llmstxt import LllmsTxtBuilder
-from cratedb_about.core import CrateDBConversation
-from cratedb_about.model import Example
 from cratedb_about.outline.model import CrateDbKnowledgeOutline
+from cratedb_about.query.core import CrateDbKnowledgeConversation
+from cratedb_about.query.model import Example
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +63,7 @@ def ask(question: str, backend: t.Literal["claude", "openai"]) -> None:
       - OpenAI backend: Set OPENAI_API_KEY environment variable
       - Claude backend: Set ANTHROPIC_API_KEY environment variable
     """
-    wizard = CrateDBConversation(
+    wizard = CrateDbKnowledgeConversation(
         backend=backend,
         use_knowledge=True,
     )
