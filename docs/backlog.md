@@ -1,20 +1,25 @@
 # Backlog
 
 ## Iteration +1
-- `find_items`: Include or exclude multiple sections
-- `load`: Load from custom outline file
-- Refactor `llm_txt2ctx` shell-outs to API and `outline` subcommand
-- Let the user optionally select a local `llms.txt` file
-- Let the user select the model, reasoning effort, and other parameters
-- JSON/YAML/Markdown output
-- Revisit `notes` in `cratedb-outline.yaml`, for example about
-  pulling in `ctk docs functions` and `ctk docs settings`
+- Outline: Refactor `llm_txt2ctx` shell-outs to API, and add to `outline` subcommand
+- Outline: Refactor ingredients of `build` subcommand
+- Outline: Refactor quirky `as_dict` parameter to more fluent `.to_dict()` interface
+- Outline: Revisit `notes` in `cratedb-outline.yaml`, for example about
+  pulling in `ctk docs functions` and `ctk docs settings`, but also about
+  other resources that have not been expanded properly yet
 
 ## Iteration +2
-- Unlock Discourse, auto-select https://community.cratedb.com/raw/1015
-- Unlock HTML resources, auto-convert using the best standalone program.
+- Any: JSON/YAML/Markdown output
+- Query: Let the user optionally select a local or remote `llms.txt` file
+- Query: Let the user select the model, reasoning effort, and other parameters
+- Outline: `find_items`: Include and/or exclude multiple sections
+
+## Iteration +3
+- Outline: Unlock Discourse, auto-select https://community.cratedb.com/raw/1015
+- Outline: Unlock HTML resources, auto-convert using the best standalone program.
   => https://www.urltoany.com/url-to-markdown
-- Unlock GitHub projects: https://github.com/mattduck/gh2md
+- Outline: Unlock GitHub projects: https://github.com/mattduck/gh2md
 
 ## Done
-- Publish to PyPI
+- Package: Publish to PyPI
+- Outline: `load`: Load from custom outline file
