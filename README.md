@@ -55,10 +55,19 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 ### Outline
 
 #### CLI
-Convert knowledge outline from `cratedb-outline.yaml` into Markdown format.
+Convert knowledge outline from builtin `cratedb-outline.yaml` into Markdown format.
 ```shell
 cratedb-about outline --format=markdown > outline.md
 ```
+Address custom outline file, both on local and remote filesystems.
+```shell
+cratedb-about outline --url https://github.com/crate/about/raw/refs/heads/main/src/cratedb_about/outline/cratedb-outline.yaml
+```
+Alternatively to the `--url` option, you can use the `ABOUT_OUTLINE_URL`
+environment variable. When using it, you will need to minimally install
+the package including its `manyio` extra like `cratedb-about[manyio]`.
+Then, you can address resources on many filesystems through the excellent
+[filesystem-spec] package.
 
 #### API
 Use the Python API to retrieve individual sets of outline items, for example,
@@ -68,8 +77,11 @@ documentation server, for example, a subsystem of [cratedb-mcp].
 ```python
 from cratedb_about import CrateDbKnowledgeOutline
 
-# Load information from YAML file.
+# Load information from builtin YAML file.
 outline = CrateDbKnowledgeOutline.load()
+
+# Load information from remote YAML file.
+# outline = CrateDbKnowledgeOutline.load("http://example.org/outline.yaml")
 
 # List available section names.
 outline.get_section_names()
@@ -135,6 +147,7 @@ GitHub]. Contributions of any kind are very much appreciated.
 [CrateDB]: https://cratedb.com/database
 [cratedb-mcp]: https://github.com/crate/cratedb-mcp
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
+[filesystem-spec]: https://filesystem-spec.readthedocs.io/
 [llms.txt]: https://llmstxt.org/
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction
 
