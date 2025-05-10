@@ -24,7 +24,7 @@ class CrateDbKnowledgeOutline:
         outline = CrateDbKnowledgeOutline.load()
 
         # Get all section names
-        sections = outline.section_names
+        sections = outline.get_section_names()
         ```
     """
 
@@ -71,6 +71,9 @@ class OutlineData(DictTools):
     sections: t.List[OutlineSection] = Factory(list)
 
 
+ItemsOutputType = t.Union[t.List[OutlineItem], t.List[t.Dict[str, t.Any]]]
+
+
 @define
 class OutlineDocument(Dumpable):
     """
@@ -96,14 +99,23 @@ class OutlineDocument(Dumpable):
             buffer.write("\n")
         return buffer.getvalue().strip()
 
-    @property
-    def section_names(self) -> t.List[str]:
+    def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
+        """
+        Return all item titles across all sections.
+
+        By default, return item titles from all sections.
+        When `section_name` is provided, limit search to that section.
+        """
+        items_in = self.collect_items(section_name=section_name)
+        return [item.title for item in items_in]
+
+    def get_section_names(self) -> t.List[str]:
         """Return all section names."""
         return [section.name for section in self.data.sections]
 
     def get_section(self, name: str) -> t.Optional[OutlineSection]:
         """
-        Return an individual section by name.
+        Return an individual section element by its name, or `None` if not found.
 
         Args:
             name: The name of the section to retrieve
@@ -122,21 +134,59 @@ class OutlineDocument(Dumpable):
                 return section
         return None
 
-    def get_items(
-        self, section_name: t.Optional[str] = None, as_dict: bool = False
-    ) -> t.Union[t.List[t.Dict[str, t.Any]], t.List[OutlineItem]]:
-        """Return `OutlineItem` elements from an individual section, or return all items."""
-        buffer = OutlineSection(name="_")
+    def get_section_safe(self, name: str) -> OutlineSection:
+        """
+        Return an individual section element by its name, or raise an exception if not found.
+        """
+        section = self.get_section(name=name)
+        if not section:
+            raise ValueError(
+                f"Section '{name}' not found. Available sections: {self.get_section_names()}"
+            )
+        return section
+
+    def find_items(
+        self,
+        title: t.Optional[str] = None,
+        section_name: t.Optional[str] = None,
+        as_dict: bool = False,
+    ) -> ItemsOutputType:
+        """
+        Find `OutlineItem` elements by their titles, per lower-cased "contains" search.
+
+        By default, return all titles from all sections.
+        When `title` is provided, search for matching titles.
+        When `section_name` is provided, limit search to that section.
+        When no item can be found, return an empty list.
+        """
+        items_in = self.collect_items(section_name=section_name)
+        items_out = []
+        needle = None
+        if title:
+            needle = title.casefold()
+        for item in items_in:
+            if not needle or needle in item.title.casefold():
+                items_out.append(item)
+        return self.output_items(items=items_out, as_dict=as_dict)
+
+    def collect_items(self, section_name: t.Optional[str] = None) -> t.List[OutlineItem]:
+        """
+        Return the list of `OutlineItem` elements, optionally filtered by `section_name`.
+        """
+        items = []
         if section_name is None:
             for section in self.data.sections:
-                buffer.items += section.items
+                items += section.items
         else:
-            section_ = self.get_section(name=section_name)
-            if not section_:
-                raise ValueError(
-                    f"Section '{section_name}' not found. Available sections: {self.section_names}"
-                )
-            buffer.items += section_.items
+            section_ = self.get_section_safe(name=section_name)
+            items += section_.items
+        return items
+
+    @staticmethod
+    def output_items(items: t.List[OutlineItem], as_dict: bool = False) -> ItemsOutputType:
+        """
+        Return the list of `OutlineItem` elements either as objects or as dictionaries.
+        """
         if as_dict:
-            return buffer.to_dict()["items"]
-        return buffer.items
+            return [item.to_dict() for item in items]
+        return items
