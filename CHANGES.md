@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.3 - 2025-05-10
 - Data backend: Refactored the source of truth for the documentation outline
   into the package itself, to `cratedb-outline.yaml`
 - CLI: Provided new subcommand `cratedb-about outline`
