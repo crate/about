@@ -1,5 +1,25 @@
 # About CrateDB
 
+[![Bluesky][badge-bluesky]][project-bluesky]
+
+[![CI][badge-ci]][project-ci]
+[![Coverage][badge-coverage]][project-coverage]
+[![License][badge-license]][project-license]
+[![Release Notes][badge-release-notes]][project-release-notes]
+
+[![Status][badge-status]][project-pypi]
+[![PyPI Version][badge-package-version]][project-pypi]
+[![Python Versions][badge-python-versions]][project-pypi]
+[![Downloads per month][badge-downloads-per-month]][project-downloads]
+
+» [Documentation]
+| [Releases]
+| [Issues]
+| [Source code]
+| [License]
+| [CrateDB]
+| [Community Forum]
+
 A high-level description about [CrateDB], with cross-references
 to relevant resources in the spirit of a curated knowledge backbone.
 
@@ -93,6 +113,16 @@ cratedb-about list-questions
 To configure a different context file, use the `CRATEDB_CONTEXT_URL` environment
 variable. The default value is https://cdn.crate.io/about/v1/llms-full.txt.
 
+## Project Information
+
+### Acknowledgements
+Kudos to the authors of all the many software components and technologies
+this project is building upon.
+
+### Contributing
+The `cratedb-about` package is an open source project, and is [managed on
+GitHub]. Contributions of any kind are very much appreciated.
+
 
 [about/v1]: https://cdn.crate.io/about/v1/
 [CrateDB]: https://cratedb.com/database
@@ -100,3 +130,29 @@ variable. The default value is https://cdn.crate.io/about/v1/llms-full.txt.
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [llms.txt]: https://llmstxt.org/
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction
+
+[Community Forum]: https://community.cratedb.com/
+[Documentation]: https://github.com/crate/about
+[Issues]: https://github.com/crate/about/issues
+[License]: https://github.com/crate/about/blob/main/LICENSE
+[managed on GitHub]: https://github.com/crate/about
+[Source code]: https://github.com/crate/about
+[Releases]: https://github.com/crate/about/releases
+
+[badge-bluesky]: https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=Follow%20%40CrateDB
+[badge-ci]: https://github.com/crate/about/actions/workflows/main.yml/badge.svg
+[badge-coverage]: https://codecov.io/gh/crate/about/branch/main/graph/badge.svg
+[badge-downloads-per-month]: https://pepy.tech/badge/cratedb-about/month
+[badge-license]: https://img.shields.io/github/license/crate/about.svg
+[badge-package-version]: https://img.shields.io/pypi/v/cratedb-about.svg
+[badge-python-versions]: https://img.shields.io/pypi/pyversions/cratedb-about.svg
+[badge-release-notes]: https://img.shields.io/github/release/crate/about?label=Release+Notes
+[badge-status]: https://img.shields.io/pypi/status/cratedb-about.svg
+[project-bluesky]: https://bsky.app/search?q=cratedb
+[project-ci]: https://github.com/crate/about/actions/workflows/tests.yml
+[project-coverage]: https://app.codecov.io/gh/crate/about
+[project-downloads]: https://pepy.tech/project/cratedb-about/
+[project-github]: https://github.com/crate/about
+[project-license]: https://github.com/crate/about/blob/main/LICENSE
+[project-pypi]: https://pypi.org/project/cratedb-about
+[project-release-notes]: https://github.com/crate/about/releases
