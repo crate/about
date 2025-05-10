@@ -108,8 +108,8 @@ scripts.cratedb-about = "cratedb_about.cli:cli"
 
 [tool.setuptools.package-data]
 cratedb_about = [
-  "*.md",
-  "*.yaml",
+  "**/*.md",
+  "**/*.yaml",
 ]
 
 [tool.ruff]
