@@ -1,6 +1,9 @@
 # Backlog
 
 ## Iteration +1
+- `find_items`: Include or exclude multiple sections
+- `load`: Load from custom outline file
+- Refactor `llm_txt2ctx` shell-outs to API and `outline` subcommand
 - Let the user optionally select a local `llms.txt` file
 - Let the user select the model, reasoning effort, and other parameters
 - JSON/YAML/Markdown output

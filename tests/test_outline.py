@@ -1,7 +1,7 @@
 import pytest
 
 from cratedb_about import CrateDbKnowledgeOutline
-from cratedb_about.outline.model import OutlineDocument
+from cratedb_about.outline import OutlineDocument
 
 
 @pytest.fixture
