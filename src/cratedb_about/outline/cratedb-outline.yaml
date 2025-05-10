@@ -1,13 +1,17 @@
-# CrateDB Documentation Outline
+# CrateDB documentation and knowledge outline
+#
+# Source: https://github.com/crate/about
+# Target: https://cdn.crate.io/about/v1/
 #
 # Bundles CrateDB documentation resources into sets of named sections.
-# The standard sections names are: Docs, API, Examples, Optional.
+# The standard section names are: Docs, API, Examples, Optional.
 #
 # The data layout adheres to the conventions of "llms.txt" [1].
-# The attribute names follow conventions from the RSS specification [2].
+# The attribute naming follows conventions from the RSS specification [2].
 #
 # [1] https://llmstxt.org/
 # [2] https://www.rssboard.org/rss-specification
+#
 ---
 
 meta:
