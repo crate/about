@@ -78,7 +78,7 @@ dependencies = [
   "requests<3",
 ]
 optional-dependencies.all = [
-  "cratedb-about[llm]",
+  "cratedb-about[manyio,llm]",
 ]
 optional-dependencies.develop = [
   "mypy<1.16",
@@ -90,6 +90,9 @@ optional-dependencies.develop = [
 optional-dependencies.llm = [
   "claudette<0.2",
   "openai<2",
+]
+optional-dependencies.manyio = [
+  "pueblo[fileio]==0.0.11",
 ]
 optional-dependencies.release = [
   "build<2",
