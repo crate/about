@@ -8,7 +8,8 @@
   information from the knowledge base outline within Python programs
 - CLI: Zapped working tree building by establishing a new `cratedb-about build`
   subcommand
-- CI: Add GHA workflow for publishing package to PyPI
+- CI: Added GHA workflow for publishing package to PyPI
+- API: Improved data model and interface
 
 ## v0.0.2 - 2025-05-09
 - Content: Added two pieces of content from blog articles, converted to Markdown format

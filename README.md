@@ -21,11 +21,11 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## Install
 
-Install `cratedb-about` package from PyPI.
+### From PyPI
 ```shell
 uv tool install --upgrade 'cratedb-about[all]'
 ```
-Install `cratedb-about` package from repository.
+### From Repository
 ```shell
 uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/about'
 ```
@@ -51,25 +51,27 @@ from cratedb_about import CrateDbKnowledgeOutline
 # Load information from YAML file.
 outline = CrateDbKnowledgeOutline.load()
 
-# Retrieve information about resources from the "Docs" and "Examples" sections.
-doc_items = outline.get_items("Docs", as_dict=True)
-example_items = outline.get_items("Examples", as_dict=True)
-
 # List available section names.
-section_names = outline.section_names
+outline.get_section_names()
+
+# Retrieve information about resources from the "Docs" and "Examples" sections.
+outline.find_items(section_name="Docs", as_dict=True)
+outline.find_items(section_name="Examples", as_dict=True)
+
+# Convert outline into Markdown format.
+outline.to_markdown()
 ```
 
 ### llms-txt
 
 #### Build
 
-The Markdown file `outline.md` is the source file for subsequently
-expanding it into an `llms.txt` file.
+The Markdown file `outline.md` serves as the source for generating the `llms.txt` file.
 ```shell
 llms_txt2ctx --optional=true outline.md > llms-full.txt
 ```
 
-Build multiple `llms.txt` plus auxiliary files.
+Generate multiple `llms.txt` files along with any auxiliary output files.
 ```shell
 export OUTDIR=./public_html
 cratedb-about build
