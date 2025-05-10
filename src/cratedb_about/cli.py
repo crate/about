@@ -6,7 +6,7 @@ import click
 from pueblo.util.cli import boot_click
 
 from cratedb_about.build.llmstxt import LllmsTxtBuilder
-from cratedb_about.outline.model import CrateDbKnowledgeOutline
+from cratedb_about.outline import CrateDbKnowledgeOutline
 from cratedb_about.query.core import CrateDbKnowledgeConversation
 from cratedb_about.query.model import Example
 
@@ -22,15 +22,24 @@ def cli(ctx: click.Context) -> None:
 
 @cli.command()
 @click.option(
+    "--url",
+    "-u",
+    envvar="OUTLINE_URL",
+    type=str,
+    required=False,
+    default=None,
+    help="URL of the outline file. By default, the builtin outline is used.",
+)
+@click.option(
     "--format", "-f", "format_", type=click.Choice(["markdown", "yaml", "json"]), default="markdown"
 )
-def outline(format_: t.Literal["markdown", "yaml", "json"] = "markdown") -> None:
+def outline(url: str, format_: t.Literal["markdown", "yaml", "json"] = "markdown") -> None:
     """
     Display the outline of the CrateDB documentation.
 
     Available output formats: Markdown, YAML, JSON.
     """
-    cratedb_outline = CrateDbKnowledgeOutline.load()
+    cratedb_outline = CrateDbKnowledgeOutline.load(url=url)
     if format_ == "json":
         print(cratedb_outline.to_json())  # noqa: T201
     elif format_ == "yaml":
