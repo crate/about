@@ -21,7 +21,11 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## Install
 
-Install `cratedb-about` package.
+Install `cratedb-about` package from PyPI.
+```shell
+uv tool install --upgrade 'cratedb-about[all]'
+```
+Install `cratedb-about` package from repository.
 ```shell
 uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/about'
 ```
@@ -31,11 +35,9 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 ### Outline
 
 #### CLI
-Convert documentation outline from `cratedb-outline.yaml` into Markdown format,
-which is the source file for subsequently expanding it into an `llms.txt` file.
+Convert knowledge outline from `cratedb-outline.yaml` into Markdown format.
 ```shell
 cratedb-about outline --format=markdown > outline.md
-llms_txt2ctx --optional=true outline.md > llms-full.txt
 ```
 
 #### API
@@ -61,7 +63,13 @@ section_names = outline.section_names
 
 #### Build
 
-Rebuild all `llms.txt` and auxiliary files.
+The Markdown file `outline.md` is the source file for subsequently
+expanding it into an `llms.txt` file.
+```shell
+llms_txt2ctx --optional=true outline.md > llms-full.txt
+```
+
+Build multiple `llms.txt` plus auxiliary files.
 ```shell
 export OUTDIR=./public_html
 cratedb-about build
