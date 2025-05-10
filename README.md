@@ -95,10 +95,20 @@ The `cratedb-about` package provides three subsystems.
 ### Outline
 
 #### CLI
-Convert knowledge outline from builtin `cratedb-outline.yaml` into Markdown format.
+Convert knowledge outline from built-in `cratedb-outline.yaml` into Markdown format.
 ```shell
-cratedb-about outline --format=markdown > outline.md
+cratedb-about outline --format="markdown" > outline.md
 ```
+Use the `llms-txt` format to directly generate [llms-txt] compatible output.
+```shell
+cratedb-about outline --format="llms-txt" > llms.txt
+```
+Use the `--optional` flag to include the "Optional" section for
+generating the `llms-full.txt` file.
+```shell
+cratedb-about outline --format="llms-txt" --optional > llms-full.txt
+```
+
 Use a custom outline file on a local or remote filesystem.
 ```shell
 cratedb-about outline --url https://github.com/crate/about/raw/refs/heads/main/src/cratedb_about/outline/cratedb-outline.yaml
@@ -115,10 +125,10 @@ by section name. The standard section names are: Docs, API, Examples, Optional.
 ```python
 from cratedb_about import CrateDbKnowledgeOutline
 
-# Load information from builtin YAML file.
+# Load information from the built-in YAML file.
 outline = CrateDbKnowledgeOutline.load()
 
-# Load information from remote YAML file.
+# Load information from a remote YAML file.
 # outline = CrateDbKnowledgeOutline.load("http://example.org/outline.yaml")
 
 # List available section names.
@@ -130,6 +140,12 @@ outline.find_items(section_name="Examples", as_dict=True)
 
 # Convert outline into Markdown format.
 outline.to_markdown()
+
+# Convert outline into llms-txt format (medium).
+outline.to_llms_txt()
+
+# Convert outline into llms-txt format (full).
+outline.to_llms_txt(optional=True)
 ```
 
 ### llms-txt

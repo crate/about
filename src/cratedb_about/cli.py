@@ -28,16 +28,31 @@ def cli(ctx: click.Context) -> None:
     type=str,
     required=False,
     default=None,
-    help="URL of the outline file. By default, the builtin outline is used.",
+    help="URL to the outline file. By default, the built-in outline is used.",
 )
 @click.option(
-    "--format", "-f", "format_", type=click.Choice(["markdown", "yaml", "json"]), default="markdown"
+    "--format",
+    "-f",
+    "format_",
+    type=click.Choice(["llms-txt", "markdown", "yaml", "json"]),
+    default="markdown",
+    help="Output format",
 )
-def outline(url: str, format_: t.Literal["markdown", "yaml", "json"] = "markdown") -> None:
+@click.option(
+    "--optional",
+    "-o",
+    is_flag=True,
+    help='When producing llms-txt output, include the "Optional" section',
+)
+def outline(
+    url: str,
+    format_: t.Literal["llms-txt", "markdown", "yaml", "json"] = "markdown",
+    optional: bool = False,
+) -> None:
     """
     Display the outline of the CrateDB documentation.
 
-    Available output formats: Markdown, YAML, JSON.
+    Available output formats: llms-txt, Markdown, YAML, JSON.
     """
     cratedb_outline = CrateDbKnowledgeOutline.load(url=url)
     if format_ == "json":
@@ -46,6 +61,8 @@ def outline(url: str, format_: t.Literal["markdown", "yaml", "json"] = "markdown
         print(cratedb_outline.to_yaml())  # noqa: T201
     elif format_ == "markdown":
         print(cratedb_outline.to_markdown())  # noqa: T201
+    elif format_ == "llms-txt":
+        print(cratedb_outline.to_llms_txt(optional=optional))  # noqa: T201
     else:
         raise ValueError(f"Invalid output format: {format_}")
 

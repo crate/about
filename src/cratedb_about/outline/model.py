@@ -69,6 +69,24 @@ class OutlineDocument(Dumpable):
             buffer.write("\n")
         return buffer.getvalue().strip()
 
+    def to_llms_txt(self, optional: bool = False) -> str:
+        """
+        Convert this outline into the llms.txt format.
+
+        Args:
+            optional: If True, include the optional sections in the output.
+
+        Returns:
+            The string representation of the context in llms.txt format.
+        """
+
+        # Import module lazily to relax dependency surface.
+        from llms_txt import create_ctx
+
+        markdown = self.to_markdown()
+        ctx = create_ctx(markdown, optional=optional, n_workers=None)
+        return str(ctx)
+
     def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
         """
         Return all item titles across all sections.
