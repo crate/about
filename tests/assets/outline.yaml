@@ -26,3 +26,10 @@ data:
     - title: "Testing README"
       link: https://example.org/README.rst
       description: README about Testing.
+
+  - name: Optional
+    items:
+
+    - title: "iana.org » Example Domains"
+      link: https://www.iana.org/help/example-domains
+      description: IANA example domains as described in RFC 2606 and RFC 6761.

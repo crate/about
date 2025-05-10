@@ -55,12 +55,12 @@ def test_cli_build(caplog, tmp_path):
     )
     assert result.exit_code == 0, result.output
 
+    # Verify log output.
     assert "Building llms-txt" in caplog.text
-    assert "Dumping outline source file" in caplog.text
     assert "Generating llms-txt files" in caplog.text
     assert "Ready." in caplog.text
 
-    # Verify that the expected output files are created
+    # Verify that the expected output files have been created.
     assert (tmp_path / "llms.txt").exists()
     assert (tmp_path / "llms-full.txt").exists()
 

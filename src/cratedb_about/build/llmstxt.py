@@ -2,9 +2,10 @@
 import dataclasses
 import logging
 import shutil
-import subprocess
 from importlib import resources
 from pathlib import Path
+
+from cratedb_about import CrateDbKnowledgeOutline
 
 logger = logging.getLogger(__name__)
 
@@ -31,21 +32,9 @@ class LllmsTxtBuilder:
             self.outdir / "outline.yaml",
         )
 
-        logger.info("Dumping outline source file")
-        subprocess.run(
-            ["cratedb-about", "outline", "--format=markdown"],
-            stdout=open(f"{self.outdir}/outline.md", "w"),
-            check=True,
-        )
-
+        # TODO: Explore how to optimize this procedure that both steps do not need
+        #       to acquire and process data redundantly.
         logger.info("Generating llms-txt files")
-        subprocess.run(
-            ["llms_txt2ctx", "--optional=false", f"{self.outdir}/outline.md"],
-            stdout=open(f"{self.outdir}/llms.txt", "w"),
-            check=True,
-        )
-        subprocess.run(
-            ["llms_txt2ctx", "--optional=true", f"{self.outdir}/outline.md"],
-            stdout=open(f"{self.outdir}/llms-full.txt", "w"),
-            check=True,
-        )
+        outline = CrateDbKnowledgeOutline.load()
+        Path(self.outdir / "llms.txt").write_text(outline.to_llms_txt())
+        Path(self.outdir / "llms-full.txt").write_text(outline.to_llms_txt(optional=True))

@@ -4,6 +4,9 @@
 - Outline: `cratedb-about outline` now understands `--url` option to use
   any outline resource on local or remote filesystems. Alternatively, use
   the `ABOUT_OUTLINE_URL` environment variable.
+- Outline: Added `to_llms_txt` API method and CLI options `--format=llms-txt`
+  and `--optional`, to directly convert/expand the source outline file into
+  an `llms.txt` file.
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline

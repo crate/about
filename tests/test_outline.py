@@ -9,7 +9,7 @@ from cratedb_about.outline import OutlineDocument
 CRATEDB_OUTLINE_FILE = "src/cratedb_about/outline/cratedb-outline.yaml"
 CRATEDB_OUTLINE_URL = "https://github.com/crate/about/raw/refs/tags/v0.0.3/src/cratedb_about/outline/cratedb-outline.yaml"
 
-TESTING_OUTLINE_FILE = "tests/test-outline.yaml"
+TESTING_OUTLINE_FILE = "tests/assets/outline.yaml"
 
 
 @pytest.fixture
@@ -30,6 +30,68 @@ def test_outline_cli_markdown():
     assert "# CrateDB" in result.output
     assert "Things to remember when working with CrateDB" in result.output
     assert "Concept: Clustering" in result.output
+
+
+def test_outline_cli_json():
+    runner = CliRunner()
+
+    result = runner.invoke(
+        cli,
+        args=["outline", "--format", "json"],
+        catch_exceptions=False,
+    )
+    assert result.exit_code == 0, result.output
+
+    assert "Things to remember when working with CrateDB" in result.output
+    assert "Concept: Clustering" in result.output
+
+
+def test_outline_cli_yaml():
+    runner = CliRunner()
+
+    result = runner.invoke(
+        cli,
+        args=["outline", "--format", "yaml"],
+        catch_exceptions=False,
+    )
+    assert result.exit_code == 0, result.output
+
+    assert "Things to remember when working with CrateDB" in result.output
+    assert "Concept: Clustering" in result.output
+
+
+def test_outline_cli_llms_txt_default():
+    runner = CliRunner()
+
+    result = runner.invoke(
+        cli,
+        args=["outline", "--format", "llms-txt"],
+        env={"ABOUT_OUTLINE_URL": TESTING_OUTLINE_FILE},
+        catch_exceptions=False,
+    )
+    assert result.exit_code == 0, result.output
+
+    assert "Things to remember when working with Testing" in result.output
+    assert "for use in illustrative examples in documents" in result.output
+    assert "RFC 2606" not in result.output, (
+        "The text must not be included within the non-optional bundle"
+    )
+
+
+def test_outline_cli_llms_txt_optional():
+    runner = CliRunner()
+
+    result = runner.invoke(
+        cli,
+        args=["outline", "--format", "llms-txt", "--optional"],
+        env={"ABOUT_OUTLINE_URL": TESTING_OUTLINE_FILE},
+        catch_exceptions=False,
+    )
+    assert result.exit_code == 0, result.output
+
+    assert "Things to remember when working with Testing" in result.output
+    assert "for use in illustrative examples in documents" in result.output
+    assert "RFC 2606" in result.output, "The text must be included within the optional bundle"
 
 
 def test_outline_cli_url_argument():
