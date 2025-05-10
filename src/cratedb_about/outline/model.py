@@ -3,6 +3,7 @@ from io import StringIO
 
 from attr import Factory
 from attrs import define
+from llms_txt import create_ctx
 
 from cratedb_about.util import DictTools, Dumpable, Metadata
 
@@ -68,6 +69,11 @@ class OutlineDocument(Dumpable):
                 buffer.write(f"- [{item.title}]({item.link}): {item.description}\n")
             buffer.write("\n")
         return buffer.getvalue().strip()
+
+    def to_llms_txt(self, optional: bool = False) -> str:
+        markdown = self.to_markdown()
+        ctx = create_ctx(markdown, optional=optional, n_workers=None)
+        return str(ctx)
 
     def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
         """

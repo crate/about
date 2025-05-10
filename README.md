@@ -57,9 +57,17 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 #### CLI
 Convert knowledge outline from builtin `cratedb-outline.yaml` into Markdown format.
 ```shell
-cratedb-about outline --format=markdown > outline.md
+cratedb-about outline --format="markdown" > outline.md
 ```
-Address custom outline file, both on local and remote filesystems.
+Use the `llms-txt` format to directly generate llms-txt compatible output.
+```shell
+cratedb-about outline --format="llms-txt" > llms.txt
+```
+Include the "Optional" section for generating `llms-full.txt`.
+```shell
+cratedb-about outline --format="llms-txt" --optional > llms-full.txt
+```
+Address custom outline input file, both on local and remote filesystems.
 ```shell
 cratedb-about outline --url https://github.com/crate/about/raw/refs/heads/main/src/cratedb_about/outline/cratedb-outline.yaml
 ```
@@ -91,6 +99,12 @@ outline.find_items(section_name="Examples", as_dict=True)
 
 # Convert outline into Markdown format.
 outline.to_markdown()
+
+# Convert outline into llms-txt format (medium).
+outline.to_llms_txt()
+
+# Convert outline into llms-txt format (full).
+outline.to_llms_txt(optional=True)
 ```
 
 ### llms-txt
