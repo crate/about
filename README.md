@@ -147,7 +147,7 @@ GitHub]. Contributions of any kind are very much appreciated.
 [Releases]: https://github.com/crate/about/releases
 
 [badge-bluesky]: https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=Follow%20%40CrateDB
-[badge-ci]: https://github.com/crate/about/actions/workflows/main.yml/badge.svg
+[badge-ci]: https://github.com/crate/about/actions/workflows/tests.yml/badge.svg
 [badge-coverage]: https://codecov.io/gh/crate/about/branch/main/graph/badge.svg
 [badge-downloads-per-month]: https://pepy.tech/badge/cratedb-about/month
 [badge-license]: https://img.shields.io/github/license/crate/about.svg
