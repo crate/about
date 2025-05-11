@@ -89,7 +89,7 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 The `cratedb-about` package provides three subsystems.
 
 - Outline: Read and inquire outline files.
-- Build: Produce context output bundles from outline files.
+- Bundle: Produce context output bundles from outline files.
 - Query: Use context information for conversations with LLMs.
 
 ### Outline
@@ -148,21 +148,16 @@ outline.to_llms_txt()
 outline.to_llms_txt(optional=True)
 ```
 
-### llms-txt
-
-#### Build
-The Markdown file `outline.md` serves as the source for generating the `llms.txt` file.
-```shell
-llms_txt2ctx --optional=true outline.md > llms-full.txt
-```
-
-Generate multiple `llms.txt` files along with any auxiliary output files.
+### Bundle
+The Markdown file `outline.md` serves as the source for producing the
+`llms.txt` files. Generate multiple `llms.txt` files along with any
+auxiliary output files.
 ```shell
 export OUTDIR=./public_html
-cratedb-about build
+cratedb-about bundle --format=llms-txt
 ```
 
-#### Query
+### Query
 Ask questions about CrateDB from the command line.
 #### CLI
 ```shell

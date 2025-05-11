@@ -5,7 +5,7 @@ from pathlib import Path
 import click
 from pueblo.util.cli import boot_click
 
-from cratedb_about.build.llmstxt import LllmsTxtBuilder
+from cratedb_about.bundle.llmstxt import LllmsTxtBuilder
 from cratedb_about.outline import CrateDbKnowledgeOutline
 from cratedb_about.query.core import CrateDbKnowledgeConversation
 from cratedb_about.query.model import Example
@@ -67,11 +67,17 @@ def outline(
 
 
 @cli.command()
+@click.option(
+    "--format", "-f", "format_", type=str, default="llms-txt", help="Output format: Use llms-txt"
+)
 @click.option("--outdir", "-o", envvar="OUTDIR", type=Path, required=True)
-def build(outdir: Path) -> None:
+@click.pass_context
+def bundle(ctx: click.Context, format_: str, outdir: Path) -> None:
     """
-    Invoke the build. Now: Generate `llms.txt` files.
+    Invoke the bundling. For now: Generate multiple `llms.txt` files.
     """
+    if format_ != "llms-txt":
+        raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
     builder = LllmsTxtBuilder(outdir=outdir)
     builder.run()
     logger.info("Ready.")

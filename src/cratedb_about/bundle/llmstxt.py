@@ -19,12 +19,12 @@ class LllmsTxtBuilder:
     outdir: Path
 
     def run(self):
-        logger.info(f"Building llms-txt. Output directory: {self.outdir}")
+        logger.info(f"Bundling llms-txt. Output directory: {self.outdir}")
         self.outdir.mkdir(parents=True, exist_ok=True)
 
         logger.info("Copying source and documentation files")
         shutil.copy(
-            str(resources.files("cratedb_about.build") / "llmstxt-about.md"),
+            str(resources.files("cratedb_about.bundle") / "llmstxt-about.md"),
             self.outdir / "readme.md",
         )
         shutil.copy(
@@ -34,7 +34,6 @@ class LllmsTxtBuilder:
 
         # TODO: Explore how to optimize this procedure that both steps do not need
         #       to acquire and process data redundantly.
-        logger.info("Generating llms-txt files")
         outline = CrateDbKnowledgeOutline.load()
         Path(self.outdir / "llms.txt").write_text(outline.to_llms_txt())
         Path(self.outdir / "llms-full.txt").write_text(outline.to_llms_txt(optional=True))
