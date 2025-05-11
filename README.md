@@ -29,26 +29,31 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## What's inside
 
+A workbench rig for information and knowledge management,
+aiming to compress content authoring and curation processes,
+nothing big.
+
 ### Abstract
 
-- Structured documentation based on a generic [hierarchical outline].
+- **Structured documentation** based on a basic and generic [hierarchical outline].
 
-- Utility programs to parse [YAML] outline files and generate outputs
-  (e.g., [Markdown], [llms.txt]), supporting the authoring and
+- **Utility programs** to parse [YAML] outline files and generate outputs
+  (e.g., [Markdown], [llms-txt]), supporting the authoring and
   production process.
 
-- A compact Python API that offers selective access to documentation
+- **Python API** that offers selective access to documentation
   and knowledge resources by providing basic querying primitives to
-  inquire elements within the outline tree.
+  inquire elements from the outline tree.
 
 ### Applied
 
-- The `ask` subcommand uses [llms.txt] context files to answer questions
+- The `ask` subcommand uses [llms-txt] context files to answer questions
   about a topic domain that would otherwise yield incomprehensible,
   incomplete, or weak responses.
 
-- The Python API can be used by a [Model Context Protocol (MCP)] documentation
-  server to acquire information about the relevant topic domain on demand.
+- The compact Python API can be used by a [Model Context Protocol (MCP)]
+  documentation server to acquire information about the relevant topic
+  domain on demand.
 
 ### Concrete
 
@@ -186,7 +191,7 @@ recommended, especially if you use it as a library.
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [filesystem-spec]: https://filesystem-spec.readthedocs.io/
 [hierarchical outline]: https://en.wikipedia.org/wiki/Outline_(list)
-[llms.txt]: https://llmstxt.org/
+[llms-txt]: https://llmstxt.org/
 [Markdown]: https://daringfireball.net/projects/markdown/
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction
 [uv]: https://docs.astral.sh/uv/
