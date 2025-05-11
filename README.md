@@ -1,16 +1,14 @@
 # About CrateDB
 
-[![Bluesky][badge-bluesky]][project-bluesky]
-
+[![Status][badge-status]][project-pypi]
 [![CI][badge-ci]][project-ci]
 [![Coverage][badge-coverage]][project-coverage]
+[![Downloads per month][badge-downloads-per-month]][project-downloads]
+
 [![License][badge-license]][project-license]
 [![Release Notes][badge-release-notes]][project-release-notes]
-
-[![Status][badge-status]][project-pypi]
 [![PyPI Version][badge-package-version]][project-pypi]
 [![Python Versions][badge-python-versions]][project-pypi]
-[![Downloads per month][badge-downloads-per-month]][project-downloads]
 
 » [Documentation]
 | [Releases]
@@ -19,6 +17,7 @@
 | [License]
 | [CrateDB]
 | [Community Forum]
+| [Bluesky]
 
 A high-level description about [CrateDB], with cross-references
 to relevant resources in the spirit of a curated knowledge backbone.
@@ -30,16 +29,45 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ## What's inside
 
-- A few tidbits of _structured docs_.
+### Abstract
 
-- The [cratedb-outline.yaml] file indexes documents about what CrateDB is
-  and what you can do with it.
+- A few tidbits of _structured docs_ along the idea of a
+  basic and generic [hierarchical outline].
 
-- The [about/v1] folder includes [llms.txt] files generated from
-  [cratedb-outline.yaml] by expanding all links. They can be used
-  to provide better context for conversations about CrateDB.
+- Utility programs that read outline files in [YAML] format and produce
+  output files or packages by expanding all links, for example, into
+  [Markdown] or [llms.txt] formats, supporting the authoring and
+  production process.
+
+- A compact Python API that offers selective access to documentation
+  and knowledge resources by providing basic querying primitives to
+  inquire elements within the outline tree.
+  The API can be used by a [Model Context Protocol (MCP)] documentation
+  server to acquire information about the relevant topic domain on demand.
+
+### Applied
+
+- The outline file [cratedb-outline.yaml] file indexes documents about
+  what CrateDB is, what you can do with it, and how.
+
+- Output files are produced to the [about/v1] folder.
+  They can be used to provide better context for conversations about
+  CrateDB.
+
+- The `cratedb-about ask` subcommand uses those context files to answer
+  questions about CrateDB that would otherwise yield incomprehensible,
+  incomplete, or weak responses.
+
+- The documentation subsystem of the [cratedb-mcp] package uses the
+  Python API to serve and consider relevant documentation resources
+  within its data flow procedures. It selects relevant resources mostly
+  based on the value of the `description` attribute of the outline
+  data model.
 
 ## Install
+
+The authors recommend using the [uv] package manager. Alternative
+options are to use `pipx` or `pip install --user`.
 
 ### From PyPI
 ```shell
@@ -51,6 +79,12 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 ```
 
 ## Usage
+
+The program provides three subsystems.
+
+- Outline: Read and inquire outline files.
+- Build: Produce context output bundles from outline files.
+- Query: Use context information for conversations with LLMs.
 
 ### Outline
 
@@ -72,8 +106,6 @@ environment variable.
 #### API
 Use the Python API to retrieve individual sets of outline items, for example,
 by section name. The standard section names are: Docs, API, Examples, Optional.
-The API can be used to feed information to a [Model Context Protocol (MCP)]
-documentation server, for example, a subsystem of [cratedb-mcp].
 ```python
 from cratedb_about import CrateDbKnowledgeOutline
 
@@ -140,7 +172,12 @@ this project is building upon.
 
 ### Contributing
 The `cratedb-about` package is an open source project, and is [managed on
-GitHub]. Contributions of any kind are very much appreciated.
+GitHub]. Contributions of any kind are very much welcome and always
+appreciated.
+
+### Status
+The software is in the planning/pre-alpha stage. Version pinning is strongly
+recommended, especially if you use it as a library.
 
 
 [about/v1]: https://cdn.crate.io/about/v1/
@@ -148,9 +185,14 @@ GitHub]. Contributions of any kind are very much appreciated.
 [cratedb-mcp]: https://github.com/crate/cratedb-mcp
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [filesystem-spec]: https://filesystem-spec.readthedocs.io/
+[hierarchical outline]: https://en.wikipedia.org/wiki/Outline_(list)
 [llms.txt]: https://llmstxt.org/
+[Markdown]: https://daringfireball.net/projects/markdown/
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction
+[uv]: https://docs.astral.sh/uv/
+[YAML]: https://en.wikipedia.org/wiki/Yaml
 
+[Bluesky]: https://bsky.app/search?q=cratedb
 [Community Forum]: https://community.cratedb.com/
 [Documentation]: https://github.com/crate/about
 [Issues]: https://github.com/crate/about/issues
@@ -159,7 +201,6 @@ GitHub]. Contributions of any kind are very much appreciated.
 [Source code]: https://github.com/crate/about
 [Releases]: https://github.com/crate/about/releases
 
-[badge-bluesky]: https://img.shields.io/badge/Bluesky-0285FF?logo=bluesky&logoColor=fff&label=Follow%20%40CrateDB
 [badge-ci]: https://github.com/crate/about/actions/workflows/tests.yml/badge.svg
 [badge-coverage]: https://codecov.io/gh/crate/about/branch/main/graph/badge.svg
 [badge-downloads-per-month]: https://pepy.tech/badge/cratedb-about/month
@@ -168,7 +209,6 @@ GitHub]. Contributions of any kind are very much appreciated.
 [badge-python-versions]: https://img.shields.io/pypi/pyversions/cratedb-about.svg
 [badge-release-notes]: https://img.shields.io/github/release/crate/about?label=Release+Notes
 [badge-status]: https://img.shields.io/pypi/status/cratedb-about.svg
-[project-bluesky]: https://bsky.app/search?q=cratedb
 [project-ci]: https://github.com/crate/about/actions/workflows/tests.yml
 [project-coverage]: https://app.codecov.io/gh/crate/about
 [project-downloads]: https://pepy.tech/project/cratedb-about/
