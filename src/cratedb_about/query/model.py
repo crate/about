@@ -28,6 +28,10 @@ class Example:
         "Can CrateDB store and retrieve vector data for ML workloads?",
         "What is the typical architecture of a CrateDB cluster?",
         "How much is a cluster with 3 TB storage per month?",
+        '''Optimize this query: "SELECT * FROM movies WHERE release_date > '2012-12-1' AND revenue"''',  # noqa: E501
+        "Tell me about the health of the cluster.",
+        "What is the storage consumption of my tables, give it in a graph.",
+        "How can I format a timestamp column to '2019 Jan 21'?",
     ]
 
 
