@@ -216,7 +216,7 @@ data:
       source: examples
 
     - title: "Timeseries QA Assistant with CrateDB, LLMs, and Machine Manuals"
-      link: https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/chatbot/table-augmented-generation/README.md
+      link: https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/chatbot/table-augmented-generation/app/README.md
       description: A full interactive pipeline for simulating telemetry data from industrial motors, storing that data in CrateDB, and enabling natural-language querying powered by OpenAI — including RAG-style guidance from machine manuals.
       source: examples
 
