@@ -7,6 +7,7 @@
 - Outline: Added `to_llms_txt` API method and CLI options `--format=llms-txt`
   and `--optional`, to directly convert/expand the source outline file into
   an `llms.txt` file.
+- llms-txt: Renamed subcommand `build` to `bundle --format=llms-txt`
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
@@ -16,7 +17,7 @@
 - Outline: Provided `cratedb_about.CrateDbKnowledgeOutline` API for retrieving
   information from the knowledge base outline within Python programs
 - Context: Zapped working tree building by establishing the
-  `cratedb-about build` subcommand
+  `cratedb-about bundle` subcommand
 - CI: Added GHA workflow for publishing package to PyPI
 - Outline: Improved data model and interface
 - Query: Refactored LLM conversations code to `CrateDbKnowledgeConversation`

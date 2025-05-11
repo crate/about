@@ -6,10 +6,10 @@ git clone https://github.com/crate/about cratedb-about
 cd cratedb-about
 ```
 
-Rebuild all the `llms.txt` files.
+Produce all the `llms.txt` files.
 ```shell
 export OUTDIR=./public_html
-uvx --with-editable=. cratedb-about build
+uvx --with-editable=. cratedb-about bundle --format=llms-txt
 ```
 
 Ask questions about CrateDB.
