@@ -41,7 +41,11 @@ class OutlineData(DictTools):
     sections: t.List[OutlineSection] = Factory(list)
 
 
-ItemsOutputType = t.Union[t.List[OutlineItem], t.List[t.Dict[str, t.Any]]]
+class OutlineItems(list):
+    """List of `OutlineItem` elements, including additional features"""
+
+    def to_dict(self):
+        return [item.to_dict() for item in self]
 
 
 @define
@@ -137,8 +141,7 @@ class OutlineDocument(Dumpable):
         self,
         title: t.Optional[str] = None,
         section_name: t.Optional[str] = None,
-        as_dict: bool = False,
-    ) -> ItemsOutputType:
+    ) -> OutlineItems:
         """
         Find `OutlineItem` elements by their titles, per lower-cased "contains" search.
 
@@ -155,7 +158,7 @@ class OutlineDocument(Dumpable):
         for item in items_in:
             if not needle or needle in item.title.casefold():
                 items_out.append(item)
-        return self.output_items(items=items_out, as_dict=as_dict)
+        return OutlineItems(items_out)
 
     def collect_items(self, section_name: t.Optional[str] = None) -> t.List[OutlineItem]:
         """
@@ -168,13 +171,4 @@ class OutlineDocument(Dumpable):
         else:
             section_ = self.get_section_safe(name=section_name)
             items += section_.items
-        return items
-
-    @staticmethod
-    def output_items(items: t.List[OutlineItem], as_dict: bool = False) -> ItemsOutputType:
-        """
-        Return the list of `OutlineItem` elements either as objects or as dictionaries.
-        """
-        if as_dict:
-            return [item.to_dict() for item in items]
         return items
