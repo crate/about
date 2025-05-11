@@ -11,6 +11,7 @@
 - Outline: Rename `OUTLINE_URL` to `ABOUT_OUTLINE_URL`
 - Outline: Improve interface of `CrateDbKnowledgeOutline`: read() vs. load()
   => Better provide a context manager interface?
+- llms-txt: Rename subcommand `build` to `llms-txt build`
 
 ## Iteration +2
 - Any: JSON/YAML/Markdown output
