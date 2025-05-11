@@ -31,32 +31,33 @@ to relevant resources in the spirit of a curated knowledge backbone.
 
 ### Abstract
 
-- A few tidbits of _structured docs_ along the idea of a
-  basic and generic [hierarchical outline].
+- Structured documentation based on a generic [hierarchical outline].
 
-- Utility programs that read outline files in [YAML] format and produce
-  output files or packages by expanding all links, for example, into
-  [Markdown] or [llms.txt] formats, supporting the authoring and
+- Utility programs to parse [YAML] outline files and generate outputs
+  (e.g., [Markdown], [llms.txt]), supporting the authoring and
   production process.
 
 - A compact Python API that offers selective access to documentation
   and knowledge resources by providing basic querying primitives to
   inquire elements within the outline tree.
-  The API can be used by a [Model Context Protocol (MCP)] documentation
-  server to acquire information about the relevant topic domain on demand.
 
 ### Applied
+
+- The `ask` subcommand uses [llms.txt] context files to answer questions
+  about a topic domain that would otherwise yield incomprehensible,
+  incomplete, or weak responses.
+
+- The Python API can be used by a [Model Context Protocol (MCP)] documentation
+  server to acquire information about the relevant topic domain on demand.
+
+### Concrete
 
 - The outline file [cratedb-outline.yaml] file indexes documents about
   what CrateDB is, what you can do with it, and how.
 
-- Output files are produced to the [about/v1] folder.
+- Context bundle files are published to the [about/v1] folder.
   They can be used to provide better context for conversations about
-  CrateDB.
-
-- The `cratedb-about ask` subcommand uses those context files to answer
-  questions about CrateDB that would otherwise yield incomprehensible,
-  incomplete, or weak responses.
+  CrateDB, for example, by using the `cratedb-about ask` subcommand.
 
 - The documentation subsystem of the [cratedb-mcp] package uses the
   Python API to serve and consider relevant documentation resources
@@ -80,7 +81,7 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 
 ## Usage
 
-The program provides three subsystems.
+The `cratedb-about` package provides three subsystems.
 
 - Outline: Read and inquire outline files.
 - Build: Produce context output bundles from outline files.
@@ -172,11 +173,10 @@ this project is building upon.
 
 ### Contributing
 The `cratedb-about` package is an open source project, and is [managed on
-GitHub]. Contributions of any kind are very much welcome and always
-appreciated.
+GitHub]. Contributions of any kind are welcome and appreciated.
 
 ### Status
-The software is in the planning/pre-alpha stage. Version pinning is strongly
+The software is in the pre-alpha (planning) stage. Version pinning is strongly
 recommended, especially if you use it as a library.
 
 
