@@ -170,6 +170,26 @@ cratedb-about list-questions
 To configure a different context file, use the `CRATEDB_CONTEXT_URL` environment
 variable. The default value is https://cdn.crate.io/about/v1/llms-full.txt.
 
+## FAQ
+
+- Q: Seriously, how do I use this?
+
+  A: As mentioned above, this repository includes content and a few utilities
+  to manage corresponding information. Users will directly use the produced
+  [llms.txt] and [llms-full.txt] files. Developers will install the [cratedb-about]
+  package to access fundamental outline information in their own programs
+  programmatically, or to invoke fragments of the production machinery
+  on their premises, either ad hoc, or by including it in automated pipelines.
+
+- Q: It looks like the knowledge base machinery is missing important information
+  about CrateDB. I've asked it about matters of polymer sharding, and the answer
+  wasn't very insightful.
+
+  A: Well, we can understand your disappointment. To improve the situation,
+  we are constantly curating content, and you can support the process by giving
+  us hints about which fragments of information to include in the set of
+  curated information. To learn about what this means, see also [ABOUT-24].
+
 ## Project Information
 
 ### Acknowledgements
@@ -185,13 +205,17 @@ The software is in the pre-alpha (planning) stage. Version pinning is strongly
 recommended, especially if you use it as a library.
 
 
+[ABOUT-24]: https://github.com/crate/about/issues/24
 [about/v1]: https://cdn.crate.io/about/v1/
 [CrateDB]: https://cratedb.com/database
+[cratedb-about]: https://pypi.org/project/cratedb-about/
 [cratedb-mcp]: https://github.com/crate/cratedb-mcp
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [filesystem-spec]: https://filesystem-spec.readthedocs.io/
 [hierarchical outline]: https://en.wikipedia.org/wiki/Outline_(list)
 [llms-txt]: https://llmstxt.org/
+[llms.txt]: https://cdn.crate.io/about/v1/llms.txt
+[llms-full.txt]: https://cdn.crate.io/about/v1/llms-full.txt
 [Markdown]: https://daringfireball.net/projects/markdown/
 [Model Context Protocol (MCP)]: https://modelcontextprotocol.io/introduction
 [uv]: https://docs.astral.sh/uv/
