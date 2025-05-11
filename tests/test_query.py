@@ -71,3 +71,12 @@ def test_ask_claude_invalid_api_key(mocker):
     with pytest.raises(RuntimeError) as ex:
         knowledge.ask("CrateDB does not seem to provide an AUTOINCREMENT feature?")
     assert ex.match("Claude API error:.*authentication_error.*invalid x-api-key")
+
+
+def test_settings_context_url_default():
+    assert Settings.llms_txt_url == "https://cdn.crate.io/about/v1/llms-full.txt"
+
+
+def test_settings_context_url_env(mocker):
+    mocker.patch.dict("os.environ", {"ABOUT_CONTEXT_URL": "http://example.com"})
+    assert Settings.llms_txt_url == "http://example.com"

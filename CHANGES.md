@@ -11,6 +11,7 @@
 - Outline: Refactored quirky `as_dict` parameter to more fluent `.to_dict()`
   interface
 - Query: Added a few example questions specific to CrateDB
+- Outline: Renamed `CRATEDB_CONTEXT_URL` to `ABOUT_CONTEXT_URL`
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
