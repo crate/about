@@ -2,6 +2,7 @@ import os
 import sys
 
 import requests
+from jaraco.classes.properties import classproperty
 
 
 class Example:
@@ -45,13 +46,13 @@ class Settings:
         "store and analyze massive amounts of data in real-time."
     )
 
-    llms_txt_url = os.getenv(
-        "CRATEDB_CONTEXT_URL",
-        "https://cdn.crate.io/about/v1/llms-full.txt",
-    )
     instructions = "You are a helpful and concise assistant."
     llms_txt = None
     prompt = None
+
+    @classproperty
+    def llms_txt_url(cls) -> str:
+        return os.getenv("ABOUT_CONTEXT_URL", "https://cdn.crate.io/about/v1/llms-full.txt")
 
     @classmethod
     def get_prompt(cls):
