@@ -7,6 +7,10 @@
 - Outline: Revisit `notes` in `cratedb-outline.yaml`, for example about
   pulling in `ctk docs functions` and `ctk docs settings`, but also about
   other resources that have not been expanded properly yet
+- Outline: Rename `CRATEDB_CONTEXT_URL` to `ABOUT_CONTEXT_URL`
+- Outline: Rename `OUTLINE_URL` to `ABOUT_OUTLINE_URL`
+- Outline: Improve interface of `CrateDbKnowledgeOutline`: read() vs. load()
+  => Better provide a context manager interface?
 
 ## Iteration +2
 - Any: JSON/YAML/Markdown output

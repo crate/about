@@ -59,15 +59,15 @@ Convert knowledge outline from builtin `cratedb-outline.yaml` into Markdown form
 ```shell
 cratedb-about outline --format=markdown > outline.md
 ```
-Address custom outline file, both on local and remote filesystems.
+Use a custom outline file on a local or remote filesystem.
 ```shell
 cratedb-about outline --url https://github.com/crate/about/raw/refs/heads/main/src/cratedb_about/outline/cratedb-outline.yaml
 ```
-Alternatively to the `--url` option, you can use the `ABOUT_OUTLINE_URL`
-environment variable. When using it, you will need to minimally install
-the package including its `manyio` extra like `cratedb-about[manyio]`.
-Then, you can address resources on many filesystems through the excellent
-[filesystem-spec] package.
+When using this option, you will need to minimally install the package including
+its `manyio` extra like `cratedb-about[manyio]`. After opting in, you can address
+resources on many filesystems through the excellent [filesystem-spec] package.
+Alternatively to the `--url` option, you can also use the `ABOUT_OUTLINE_URL`
+environment variable.
 
 #### API
 Use the Python API to retrieve individual sets of outline items, for example,
