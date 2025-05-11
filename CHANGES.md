@@ -10,6 +10,7 @@
 - llms-txt: Renamed subcommand `build` to `bundle --format=llms-txt`
 - Outline: Refactored quirky `as_dict` parameter to more fluent `.to_dict()`
   interface
+- Query: Added a few example questions specific to CrateDB
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
