@@ -6,7 +6,7 @@ git clone https://github.com/crate/about cratedb-about
 cd cratedb-about
 ```
 
-Produce all the `llms.txt` files.
+Generate all the `llms.txt` files.
 ```shell
 export OUTDIR=./public_html
 uvx --with-editable=. cratedb-about bundle --format=llms-txt
