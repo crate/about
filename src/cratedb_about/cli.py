@@ -40,7 +40,6 @@ def cli(ctx: click.Context) -> None:
 )
 @click.option(
     "--optional",
-    "-o",
     is_flag=True,
     help='When producing llms-txt output, include the "Optional" section',
 )
