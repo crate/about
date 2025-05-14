@@ -44,193 +44,532 @@ data:
   - name: Docs
     items:
 
+    # Introduction
     - title: "CrateDB README"
       link: https://raw.githubusercontent.com/crate/crate/refs/heads/master/README.rst
       description: README about CrateDB.
-
     - title: "CrateDB database"
       link: https://cratedb.com/docs/guide/_sources/home/index.md.txt
       description: Benefits of CrateDB at a glance.
 
+    # Features
     - title: "CrateDB features"
       link: https://cratedb.com/docs/guide/_sources/feature/index.md.txt
       description: All features of CrateDB at a glance.
+      notes: This just includes the index, but no content.
+      source: docs
+      type: index
+      id: feature
+    - title: "Feature: SQL"
+      link: https://cratedb.com/docs/guide/_sources/feature/sql/index.md.txt
+      description: CrateDB’s features are available using plain SQL, and it is wire-protocol compatible to PostgreSQL.
+      parents: [ feature ]
+    - title: "Feature: Connectivity"
+      link: https://cratedb.com/docs/guide/_sources/feature/connectivity/index.md.txt
+      description: All CrateDB connectivity options at a glance.
+      parents: [ feature ]
+    - title: "Feature: Document Store"
+      link: https://cratedb.com/docs/guide/_sources/feature/document/index.md.txt
+      description: |
+        Efficiently store JSON documents or other structured data, also nested,
+        using CrateDB’s OBJECT and ARRAY container data types, and query this data with ease.
+      parents: [ feature ]
+    - title: "Feature: Relational / JOINs"
+      link: https://cratedb.com/docs/guide/_sources/feature/relational/index.md.txt
+      description: CrateDB implements distributed joins.
+      parents: [ feature ]
+    - title: "Feature: Full-text Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/fts/index.md.txt
+      description: BM25 term search based on Apache Lucene, using SQL - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: Geospatial Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/geo/index.md.txt
+      description: CrateDB supports location data for efficiently storing and querying geographic and spatial/geospatial data.
+      parents: [ feature ]
+    - title: "Feature: Vector Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/vector/index.md.txt
+      description: Vector search on machine learning embeddings - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: Hybrid Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/hybrid/index.md.txt
+      description: Combined BM25 term search and vector search based on Apache Lucene, using SQL - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: BLOB Store"
+      link: https://cratedb.com/docs/guide/_sources/feature/blob/index.md.txt
+      description: CrateDB provides a blob/object storage subsystem accessible via HTTP, similar to AWS S3.
+      parents: [ feature ]
+    - title: "Feature: Clustering"
+      link: https://cratedb.com/docs/guide/_sources/feature/cluster/index.md.txt
+      description: CrateDB provides scalability through partitioning, sharding, and replication.
+      parents: [ feature ]
+    - title: "Feature: Snapshots"
+      link: https://cratedb.com/docs/guide/_sources/feature/snapshot/index.md.txt
+      description: CrateDB provides a backup mechanism based on snapshots.
+      parents: [ feature ]
+    - title: "Feature: Cloud Native"
+      link: https://cratedb.com/docs/guide/_sources/feature/cloud/index.md.txt
+      description: CrateDB is designed to support cloud computing from the beginning.
+      parents: [ feature ]
+    - title: "Feature: Storage Layer"
+      link: https://cratedb.com/docs/guide/_sources/feature/storage/index.md.txt
+      description: |
+        The CrateDB storage layer is based on Lucene. By default, all fields are indexed,
+        nested or not, but the indexing can be turned off selectively.
+      parents: [ feature ]
+    - title: "Feature: Hybrid Index"
+      link: https://cratedb.com/docs/guide/_sources/feature/index/index.md.txt
+      description: CrateDB indexes all columns by default, for lightning-fast query responses on your fingertips.
+      parents: [ feature ]
+    - title: "Feature: Advanced Querying"
+      link: https://cratedb.com/docs/guide/_sources/feature/query/index.md.txt
+      description: |
+        About all the advanced querying features of CrateDB, unifying data types
+        and query characteristics. Mix full-text search with time series aspects,
+        and run powerful aggregations or other kinds of complex queries on your data.
+        CrateDB supports effective time series analysis with fast
+        aggregations, relational features for JOIN operations, and a rich
+        set of built-in functions.
+      parents: [ feature ]
+    - title: "Feature: Generated Columns"
+      link: https://cratedb.com/docs/guide/_sources/feature/generated/index.md.txt
+      description: |
+        CrateDB's SQL DDL statements accept defining generated columns.
+        Those columns values are computed by applying a generation expression in the context of
+        the current row. The generation expression can reference the values of other columns.
+      parents: [ feature ]
+    - title: "Feature: Server-Side Cursors"
+      link: https://cratedb.com/docs/guide/_sources/feature/cursor/index.md.txt
+      description: |
+        CrateDB implements the SQL Standard feature F431 (read-only scrollable cursor),
+        aka. server-side cursors, aka. portals.
+      parents: [ feature ]
+    - title: "Feature: Foreign Data Wrapper"
+      link: https://cratedb.com/docs/guide/_sources/feature/fdw/index.md.txt
+      description: |
+        Like the PostgreSQL FDW implementation, CrateDB offers the possibility to access database
+        tables on remote database servers as if they would be stored within CrateDB.
+      parents: [ feature ]
+    - title: "Feature: User-Defined Functions"
+      link: https://cratedb.com/docs/guide/_sources/feature/udf/index.md.txt
+      description: CrateDB supports user-defined functions (UDFs) that can be written in JavaScript.
+      parents: [ feature ]
+    - title: "Feature: Cross-Cluster Replication"
+      link: https://cratedb.com/docs/guide/_sources/feature/ccr/index.md.txt
+      description: |
+        Cross-cluster replication, also called logical replication,
+        is a method of data replication across multiple clusters.
+      parents: [ feature ]
 
+    # Reference docs
     - title: "CrateDB reference documentation"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/index.rst.txt
       description: The reference documentation of CrateDB.
-      notes: This just includes the index, but no content yet. Expand!
+      notes: |
+        - This just includes the index, but no content.
+        - A few items are slotted into the "Docs" section here,
+          a few others appear in the "API" section below.
+      source: docs
+      type: index
+      id: reference
 
-    - title: "CrateDB Cloud"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/index.md.txt
-      description: The full documentation for CrateDB Cloud.
-      notes: This also just includes the index, but no content yet. Expand!
+    # Concepts
+    - title: "Concept: Clustering"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/clustering.rst.txt
+      description: |
+        How the distributed SQL database CrateDB uses a shared nothing architecture to form
+        high-availability, resilient database clusters with minimal effort of configuration.
+      parents: [ reference ]
+    - title: "Concept: Distributed joins"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/joins.rst.txt
+      description: Make joins work on large volumes of data, stored distributed.
+      parents: [ reference ]
+    - title: "Concept: Storage and consistency"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/storage-consistency.rst.txt
+      description: |
+        How CrateDB stores and distributes state across the cluster and
+        what consistency and durability guarantees are provided.
+      parents: [ reference ]
+    - title: "Concept: Resiliency"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/resiliency.rst.txt
+      description: How CrateDB copes with network-, disk-, or machine-failures.
+      parents: [ reference ]
 
+    # Concept guidelines
     - title: "Guide: CrateDB sharding"
       link: https://cratedb.com/docs/guide/_sources/performance/sharding.rst.txt
       description: A best practice guide about sharding with CrateDB.
-
+      parents: [ guide ]
     - title: "Guide: CrateDB query optimization"
       link: https://cratedb.com/docs/guide/_sources/performance/optimization.rst.txt
       description: Essential principles for optimizing queries in CrateDB while avoiding the most common pitfalls.
-
+      parents: [ guide ]
     - title: "Guide: Design for scale"
       link: https://cratedb.com/docs/guide/_sources/performance/scaling.rst.txt
-      description: Critical design considerations to successfully scale CrateDB in large production environments to ensure performance and reliability as workloads grow.
+      description: |
+        Critical design considerations to successfully scale CrateDB in large production
+        environments to ensure performance and reliability as workloads grow.
+      parents: [ guide ]
 
+    # Data modeling
     - title: "Data modeling: Sequences"
       link: https://cratedb.com/docs/guide/_sources/performance/inserts/sequences.rst.txt
       description: About autogenerated sequences and PRIMARY KEY values in CrateDB.
+      parents: [ guide ]
+    - title: "Data modeling: Optimistic Concurrency Control"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/occ.rst.txt
+      description: |
+        Even though CrateDB does not support transactions, optimistic concurrency
+        control can be achieved by using the internal system columns
+        `_seq_no` and `_primary_term`.
+      parents: [ reference ]
+
+    # Cloud docs
+    - title: "CrateDB Cloud"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/index.md.txt
+      description: The full documentation for CrateDB Cloud.
+      notes: This just includes the index, but no content.
+      source: docs
+      type: index
+      id: cloud
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Services"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt
+      description: Services specifications and variants of CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Billing"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt
+      description: How billing works in CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: API"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt
+      description: CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Import data"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/import.md.txt
+      description: How to conveniently import data into CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Export data"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt
+      description: How to conveniently export data from CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Automatic backups"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt
+      description: How automatic backups work in CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: MongoDB CDC integration"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt
+      description: |
+        CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC),
+        providing seamless, real-time synchronization of your data.
+      parents: [ cloud ]
+
+    # Tutorials
+    - title: "Integration Tutorials I"
+      link: https://cratedb.com/docs/guide/_sources/integrate/index.md.txt
+      description: Integrating 3rd party software with CrateDB.
+      notes: This just includes the index, but no content.
+      todo: Expand!
+      source: tutorials
+    - title: "Integration Tutorials II"
+      link: https://community.cratedb.com/raw/1015/1
+      description: Overview of CrateDB integration tutorials.
+      notes: This just includes the index, but no content.
+      todo: Expand!
+      source: tutorials
 
   - name: API
     items:
 
-    - title: "CrateDB SQL syntax"
+    # Interfaces: HTTP and PostgreSQL
+    - title: "CrateDB reference: HTTP interface"
+      description: CrateDB provides a HTTP Endpoint that can be used to submit SQL queries.
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/interfaces/http.rst.txt
+      parents: [ reference ]
+    - title: "CrateDB reference: PostgreSQL interface"
+      description: CrateDB supports the PostgreSQL wire protocol v3.
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/interfaces/postgres.rst.txt
+      parents: [ reference ]
+
+    # Database metadata / cluster information
+    - title: "CrateDB reference: Information schema"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/information-schema.rst.txt
+      description: |
+        `information_schema` is a special schema that contains virtual tables which
+        are read-only and can be queried to get information about the state of the
+        cluster.
+      parents: [ reference ]
+      tags: [ sql, reflection ]
+
+    # SQL
+    - title: "CrateDB SQL reference: Syntax"
       description: You can use Structured Query Language (SQL) to query your data.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/index.rst.txt
+      todo: |
+        - Should all the individual "statements" pages be enumerated / inlined?
+      parents: [ reference ]
+      source: docs
+      type: index
+      id: sql-syntax
 
-    - title: "CrateDB SQL functions"
+    # SQL: Functions
+    - title: "CrateDB SQL reference: Scalar functions"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/scalar-functions.rst.txt
-      description: The reference documentation about all SQL functions CrateDB provides.
-      notes: Possibly use `ctk docs functions` subsystem.
+      description: Scalar functions are functions that return scalars.
+      notes: |
+        - Possibly use `ctk docs functions` subsystem.
+        - Does it need to be expanded to cover other functions than just scalars?
+      parents: [ sql-syntax ]
+      tags: [ sql, function ]
+    - title: "CrateDB SQL reference: Aggregation functions"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/aggregation.rst.txt
+      description: |
+        When selecting data from CrateDB, you can use an aggregate function
+        to calculate a single summary value for one or more columns.
+      parents: [ sql-syntax ]
+      tags: [ sql, function ]
+    - title: "CrateDB SQL reference: Table functions"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/table-functions.rst.txt
+      description: |
+        Table functions are functions that produce a set of
+        rows. They can be used in place of a relation in the `FROM` clause.
+      parents: [ sql-syntax ]
+      tags: [ sql, function ]
+    - title: "CrateDB SQL reference: Window functions"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/window-functions.rst.txt
+      description: |
+        Window functions are functions which perform a computation across a set of rows which
+        are related to the current row. This is comparable to aggregation functions, but window
+        functions do not cause multiple rows to be grouped into a single row.
+      parents: [ sql-syntax ]
+      tags: [ sql, function ]
+    - title: "CrateDB SQL reference: User-defined functions"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/user-defined-functions.rst.txt
+      description: CrateDB supports user-defined functions.
+      source: docs
+      tags: [ sql, function, udf ]
 
-    - title: "CrateDB drivers"
-      link: https://cratedb.com/docs/crate/clients-tools/en/latest/_sources/connect/index.md.txt
-      description: How to connect to a CrateDB cluster using traditional database drivers.
-      notes: This just refers to the index page, and does not include details about how to connect with individual drivers.
+    # SQL: Operators
+    - title: "CrateDB SQL reference: Arithmetic operators"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/arithmetic.rst.txt
+      description: |
+        Arithmetic operators perform mathematical operations on numeric values including timestamps.
+      parents: [ sql-syntax ]
+      tags: [ sql, operator ]
+    - title: "CrateDB SQL reference: Bit operators"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/bit-operators.rst.txt
+      description: |
+        Bit operators perform bitwise operations on numeric integral values and bit strings.
+      parents: [ sql-syntax ]
+      tags: [ sql, operator ]
+    - title: "CrateDB SQL reference: Comparison operators"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/comparison-operators.rst.txt
+      description: |
+        A comparison operator tests the relationship between two values and returns a
+        corresponding value of `true`, `false`, or `NULL`.
+      parents: [ sql-syntax ]
+      tags: [ sql, operator ]
+    - title: "CrateDB SQL reference: Array comparison operators"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/array-comparisons.rst.txt
+      description: |
+        An array comparison operator tests the relationship
+        between a value and an array and returns `true`, `false`, or `NULL`.
+      parents: [ sql-syntax ]
+      tags: [ sql, operator ]
+    - title: "CrateDB SQL reference: Subquery expressions"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/subquery-expressions.rst.txt
+      description: |
+        Some operators can be used with an uncorrelated subquery to form a *subquery expression* that
+        returns a boolean value (i.e., `true` or `false`) or `NULL`.
+      parents: [ sql-syntax ]
+      tags: [ sql, operator ]
 
+    # Engine: Settings
+    # https://cratedb.com/docs/crate/reference/en/latest/config/cluster.html
+    # https://cratedb.com/docs/crate/reference/en/latest/config/node.html
     - title: "CrateDB cluster-wide settings"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/config/cluster.rst.txt
-      description: Cluster-wide settings can be read by querying the `sys.cluster.settings` column. Most cluster settings can be changed at runtime.
+      description: |
+        Cluster-wide settings can be read by querying the `sys.cluster.settings` column.
+        Most cluster settings can be changed at runtime.
       notes: Possibly use `ctk docs settings` subsystem.
-
     - title: "CrateDB node-specific settings"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/config/node.rst.txt
       description: Node-specific settings of CrateDB.
       notes: Possibly use `ctk docs settings` subsystem.
 
+    # Toolkit Cluster API
+    # https://cratedb-toolkit.readthedocs.io/cluster/
+    - title: "Cluster API: CLI"
+      link: https://cratedb-toolkit.readthedocs.io/_sources/cluster/cli.md.txt
+      description: |
+        The `ctk cluster {start,info,stop}` subcommands provide higher level CLI
+        entrypoints to start/deploy/resume a database cluster, inquire information
+        about it, and stop/suspend it again.
+    - title: "Cluster API: Python"
+      link: https://cratedb-toolkit.readthedocs.io/_sources/cluster/python.md.txt
+      description: |
+        The `cratedb_toolkit.ManagedCluster` class provides the higher level API/SDK
+        entrypoints to start/deploy/resume a database cluster, inquire information
+        about it, and stop/suspend it again.
+    - title: "Cluster API: Tutorial"
+      link: https://cratedb-toolkit.readthedocs.io/_sources/cluster/tutorial.md.txt
+      description: |
+        This tutorial outlines end-to-end examples connecting to the CrateDB Cloud
+        API and the CrateDB database cluster. It includes examples about both the
+        CrateDB Cluster CLI and the CrateDB Cluster Python API.
+
+    # Drivers and clients
+    - title: "CrateDB drivers and clients"
+      link: https://cratedb.com/docs/crate/clients-tools/en/latest/_sources/connect/index.md.txt
+      description: How to connect to a CrateDB cluster using traditional database drivers.
+      notes: This just includes the index, but no content.
+      todo: Expand details about how to connect with individual drivers.
+      source: docs
+      type: index
+      id: drivers
+    - title: "CrateDB Python Client"
+      link: https://cratedb.com/docs/python/en/latest/_sources/index.rst.txt
+      description: |
+        The Python client library for CrateDB implements the Python Database API Specification v2.0 (PEP 249).
+        The Python driver can be used to connect to both CrateDB and CrateDB Cloud, and is verified to work on
+        Linux, macOS, and Windows. It is used by the Crash CLI, as well as other libraries and applications
+        connecting to CrateDB from the Python ecosystem. It is verified to work with CPython, but it has also
+        been tested successfully with PyPy.
+      tags: [ driver ]
+    - title: "CrateDB SQLAlchemy dialect"
+      link: https://cratedb.com/docs/sqlalchemy-cratedb/_sources/index.rst.txt
+      description: |
+        The CrateDB dialect for SQLAlchemy provides adapters for CrateDB and SQLAlchemy. The supported versions
+        are 1.3, 1.4, and 2.0. The package is available from PyPI at sqlalchemy-cratedb.
+        The connector can be used to connect to both CrateDB and CrateDB Cloud, and is verified to work on Linux,
+        macOS, and Windows. It is used by pandas, Dask, and many other libraries and applications connecting to
+        CrateDB from the Python ecosystem. It is verified to work with CPython, but it has also been tested
+        successfully with PyPy.
+      tags: [ driver ]
+    - title: "CrateDB Driver for MicroPython"
+      link: https://raw.githubusercontent.com/crate/micropython-cratedb/refs/heads/main/README.md
+      description: |
+        micropython-cratedb is a CrateDB driver for the MicroPython language.
+        It connects to CrateDB using the HTTP Endpoint.
+      tags: [ driver ]
+    - title: "Python psycopg3 driver"
+      link: https://www.psycopg.org/psycopg3/docs/_sources/basic/usage.rst.txt
+      description: |
+        Psycopg 3 is a newly designed PostgreSQL database adapter for the Python programming language.
+        Psycopg 3 presents a familiar interface for everyone who has used Psycopg 2 or any other DB-API 2.0 database
+        adapter, but allows to use more modern PostgreSQL and Python features, such as:
+        Asynchronous support, COPY support from Python objects, A redesigned connection pool, Support for static typing,
+        Server-side parameters binding, Prepared statements, Statements pipeline, Binary communication,
+        Direct access to the libpq functionalities.
+        The basic Psycopg usage is common to all the database adapters implementing the DB-API protocol.
+        Other database adapters, such as the builtin sqlite3 or psycopg2, have roughly the same pattern of interaction.
+      tags: [ driver ]
+    - title: "node-postgres driver"
+      link: https://raw.githubusercontent.com/brianc/node-postgres/refs/heads/master/docs/pages/index.mdx
+      description: |
+        node-postgres is a collection of node.js modules for interfacing with your PostgreSQL database,
+        and also provides premium support for CrateDB.
+        It has support for callbacks, promises, async/await, connection pooling, prepared statements,
+        cursors, streaming results, C/C++ bindings, rich type parsing, and more.
+      tags: [ driver ]
+    - title: "PostgreSQL JDBC Driver"
+      link: https://raw.githubusercontent.com/pgjdbc/pgjdbc/refs/heads/master/docs/content/documentation/_index.md
+      description: |
+        The PostgreSQL JDBC Driver allows Java programs to connect to a PostgreSQL and CrateDB databases
+        using standard, database independent Java code. pgJDBC is an open source JDBC driver written in
+        Pure Java (Type 4), and communicates in the PostgreSQL native network protocol. Because of this,
+        the driver is platform independent; once compiled, the driver can be used on any system.
+      tags: [ driver ]
+    - title: "PostgreSQL driver and toolkit for Go"
+      link: https://raw.githubusercontent.com/jackc/pgx/refs/heads/master/README.md
+      description: |
+        pgx is a pure Go driver and toolkit for PostgreSQL with low-level, high performance characteristics.
+        The toolkit component is a related set of packages that implement PostgreSQL functionality such as parsing
+        the wire protocol and type mapping between PostgreSQL and Go. These underlying packages can be used to
+        implement alternative drivers, proxies, load balancers, logical replication clients, etc.
+      tags: [ driver ]
+    - title: "Npgsql - .NET Access to PostgreSQL"
+      link: https://raw.githubusercontent.com/npgsql/doc/refs/heads/main/conceptual/Npgsql/index.md
+      description: |
+        Npgsql is an open source ADO.NET Data Provider for PostgreSQL, it allows programs written in C#,
+        Visual Basic, F# to access the PostgreSQL database server. It is implemented in 100% C# code,
+        is free and is open source.
+      tags: [ driver ]
+    - title: "psqlODBC - PostgreSQL ODBC driver"
+      link: https://raw.githubusercontent.com/postgresql-interfaces/psqlodbc/refs/heads/main/docs/config.html
+      description: A library to talk to the PostgreSQL DBMS using ODBC.
+      tags: [ driver ]
+    - title: "PHP PostgreSQL PDO Driver (PDO_PGSQL)"
+      link: https://raw.githubusercontent.com/php/doc-en/refs/heads/master/reference/pdo_pgsql/reference.xml
+      description: |
+        PDO_PGSQL is a driver that implements the PHP Data Objects (PDO) interface
+        to enable access from PHP to PostgreSQL databases.
+      tags: [ driver ]
+
   - name: Examples
     items:
 
+    # Curated SQL queries
     - title: "CrateDB SQL gallery"
-      link: https://github.com/crate/cratedb-toolkit/raw/refs/tags/v0.0.31/cratedb_toolkit/info/library.py
+      link: https://raw.githubusercontent.com/crate/cratedb-toolkit/refs/tags/v0.0.31/cratedb_toolkit/info/library.py
       description: A collection of SQL queries and utilities suitable for diagnostics on CrateDB.
 
+    # Example projects
     - title: "CrateDB GTFS / GTFS-RT Transit Data Demo"
-      link: https://github.com/crate/devrel-gtfs-transit/raw/refs/heads/main/README.md
+      link: https://raw.githubusercontent.com/crate/devrel-gtfs-transit/refs/heads/main/README.md
       description: Capture GTFS and GTFS-RT data for storage and analysis with CrateDB.
-
     - title: "CrateDB Offshore Wind Farms Demo Application"
-      link: https://github.com/crate/devrel-offshore-wind-farms-demo/raw/refs/heads/main/README.md
+      link: https://raw.githubusercontent.com/crate/devrel-offshore-wind-farms-demo/refs/heads/main/README.md
       description: A CrateDB demo application using data from the UK's offshore wind farms.
-
     - title: "CrateDB RAG / Hybrid Search PDF Chatbot"
-      link: https://github.com/crate/devrel-pdf-rag-chatbot/raw/refs/heads/main/README.md
+      link: https://raw.githubusercontent.com/crate/devrel-pdf-rag-chatbot/refs/heads/main/README.md
       description: A chatbot powered by CrateDB using RAG techniques and data from PDF files.
-
     - title: "CrateDB Geospatial Data Demo"
-      link: https://github.com/crate/devrel-shipping-forecast-geo-demo/raw/refs/heads/main/README.md
+      link: https://raw.githubusercontent.com/crate/devrel-shipping-forecast-geo-demo/refs/heads/main/README.md
       description: Spatial data demo application using CrateDB and the Express framework.
-
     - title: "Plane Spotting with Software Defined Radio, CrateDB and Node.js"
-      link: https://github.com/crate/devrel-plane-spotting-with-cratedb/raw/refs/heads/main/README.md
+      link: https://raw.githubusercontent.com/crate/devrel-plane-spotting-with-cratedb/refs/heads/main/README.md
       description: Code for the Plane Spotting with Software Defined Radio, CrateDB and Node.js talk.
+    - title: "MongoDB/CrateDB/Grafana CDC Demonstration"
+      link: https://raw.githubusercontent.com/crate/devrel-mongo-cdc-demo/refs/heads/main/README.md
+      description: |
+        A small Python project that demonstrates how a CrateDB database can be populated and kept
+        in sync with a collection in MongoDB using Change Data Capture (CDC).
 
   - name: Optional
     items:
 
-    - title: "Concept: Clustering"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/clustering.rst.txt
-      description: How the distributed SQL database CrateDB uses a shared nothing architecture to form high-availability, resilient database clusters with minimal effort of configuration.
-      source: docs
-
-    - title: "Concept: Distributed joins"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/joins.rst.txt
-      description: Make joins work on large volumes of data, stored distributed.
-      source: docs
-
-    - title: "Concept: Storage and consistency"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/storage-consistency.rst.txt
-      description: How CrateDB stores and distributes state across the cluster and what consistency and durability guarantees are provided.
-      source: docs
-
-    - title: "Concept: Resiliency"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/concepts/resiliency.rst.txt
-      description: How CrateDB copes with network-, disk-, or machine-failures.
-      source: docs
-
-    - title: "CrateDB Cloud: Services"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt
-      description: Services specifications and variants of CrateDB Cloud.
-      source: docs
-
-    - title: "CrateDB Cloud: Billing"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt
-      description: How billing works in CrateDB Cloud.
-      source: docs
-
-    - title: "CrateDB Cloud: API"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt
-      description: CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
-      source: docs
-
-    - title: "CrateDB Cloud: Import data"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/import.md.txt
-      description: How to conveniently import data into CrateDB Cloud.
-      source: docs
-
-    - title: "CrateDB Cloud: Export data"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt
-      description: How to conveniently export data from CrateDB Cloud.
-      source: docs
-
-    - title: "CrateDB Cloud: Automatic backups"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt
-      description: How automatic backups work in CrateDB Cloud.
-      source: docs
-
-    - title: "CrateDB Cloud: MongoDB CDC integration"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt
-      description: CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC), providing seamless, real-time synchronization of your data.
-      source: docs
-
-    - title: "Feature: User-defined functions"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/user-defined-functions.rst.txt
-      description: CrateDB supports user-defined functions.
-      source: docs
-
-    - title: "Integration Tutorials I"
-      link: https://cratedb.com/docs/guide/_sources/integrate/index.md.txt
-      description: Integrating 3rd party software with CrateDB.
-      source: tutorials
-
-    - title: "Integration Tutorials II"
-      link: https://community.cratedb.com/raw/1015/1
-      description: Overview of CrateDB integration tutorials.
-      source: tutorials
-
+    # Time series
     - title: "Time Series with CrateDB"
-      link: https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/timeseries/README.md
-      description: Examples, tutorials and runnable code on how to use CrateDB for time-series use cases. Exploratory data analysis, time-series decomposition, anomaly detection, forecasting.
-      notes: That's just the index again, and doesn't include any ingredients.
+      link: https://raw.githubusercontent.com/crate/cratedb-examples/refs/heads/main/topic/timeseries/README.md
+      description: |
+        Examples, tutorials and runnable code on how to use CrateDB for time-series use cases.
+        Exploratory data analysis, time-series decomposition, anomaly detection, forecasting.
+      todo: |
+        - That's just the index again, and doesn't include any ingredients.
+        - How to provide content from Jupyter Notebooks?
+        - What other content to feed about the timeseries topic?
       source: examples
-
     - title: "Timeseries QA Assistant with CrateDB, LLMs, and Machine Manuals"
-      link: https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/chatbot/table-augmented-generation/app/README.md
-      description: A full interactive pipeline for simulating telemetry data from industrial motors, storing that data in CrateDB, and enabling natural-language querying powered by OpenAI — including RAG-style guidance from machine manuals.
+      link: https://raw.githubusercontent.com/crate/cratedb-examples/refs/heads/main/topic/chatbot/table-augmented-generation/app/README.md
+      description: |
+        A full interactive pipeline for simulating telemetry data from industrial motors,
+        storing that data in CrateDB, and enabling natural-language querying powered by
+        OpenAI — including RAG-style guidance from machine manuals.
       source: examples
 
+    # Generative AI
     - title: "LangChain and CrateDB"
-      link: https://github.com/crate/cratedb-examples/raw/refs/heads/main/topic/machine-learning/llm-langchain/README.md
+      link: https://raw.githubusercontent.com/crate/cratedb-examples/refs/heads/main/topic/machine-learning/llm-langchain/README.md
       description: Get started with LangChain and CrateDB.
       source: examples
 
+    # Example content from blog articles
     - title: "Use case: Best database for big data analytics"
-      link: https://github.com/crate/about/raw/refs/heads/main/src/content/blog/shared-nothing-architecture-multi-model-databases-scalable-real-time-analytics.md
+      link: https://raw.githubusercontent.com/crate/about/refs/heads/main/src/content/blog/shared-nothing-architecture-multi-model-databases-scalable-real-time-analytics.md
       description: Leveraging Shared Nothing Architecture and Multi-Model Databases for Scalable Real-Time Analytics on Large Data.
       source: blog
-
     - title: "Use case: Digital Twins"
-      link: https://github.com/crate/about/raw/refs/heads/main/src/content/blog/digital-twins.md
+      link: https://raw.githubusercontent.com/crate/about/refs/heads/main/src/content/blog/digital-twins.md
       description: Digital twins are virtual representations of physical objects, processes, or systems in the digital realm. The abundance of data to be processed in digital twin setups is no problem for CrateDB.
       source: blog

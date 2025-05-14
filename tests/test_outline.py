@@ -134,7 +134,7 @@ def test_outline_get_section_names(cratedb_outline_builtin):
 def test_outline_item_titles_all(cratedb_outline_builtin):
     titles = cratedb_outline_builtin.get_item_titles()
     assert "CrateDB reference documentation" in titles
-    assert "CrateDB SQL syntax" in titles
+    assert "CrateDB SQL reference: Syntax" in titles
     assert "Concept: Resiliency" in titles
     assert len(titles) >= 30
 
@@ -142,7 +142,7 @@ def test_outline_item_titles_all(cratedb_outline_builtin):
 def test_outline_item_titles_docs(cratedb_outline_builtin):
     titles = cratedb_outline_builtin.get_item_titles(section_name="Docs")
     assert "CrateDB reference documentation" in titles
-    assert len(titles) < 15
+    assert len(titles) >= 40
 
 
 def test_outline_get_section(cratedb_outline_builtin):
