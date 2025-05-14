@@ -24,6 +24,11 @@ class OutlineItem(DictTools):
     link: str
     description: str
 
+    def __attrs_post_init__(self):
+        # FIXME: Currently, `llms_txt` does not accept newlines in description fields.
+        if isinstance(self.description, str):
+            self.description = self.description.replace("\n", " ")
+
 
 @define
 class OutlineSection(DictTools):
