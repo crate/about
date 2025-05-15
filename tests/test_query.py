@@ -17,7 +17,7 @@ def loader() -> CrateDbKnowledgeContextLoader:
     return CrateDbKnowledgeContextLoader()
 
 
-def test_model_loader(loader):
+def test_model_loader_default(loader):
     """
     Validate a few basic attributes of the context loader class.
     """
@@ -25,14 +25,24 @@ def test_model_loader(loader):
     assert "helpful" in loader.instructions
 
 
-def test_model_loader_url_env(loader, mocker):
+def test_model_loader_url_env_success(loader, mocker):
     mocker.patch.dict("os.environ", {"ABOUT_CONTEXT_URL": "http://example.com"})
     assert loader.url == "http://example.com"
 
 
+def test_model_loader_url_env_empty(loader, mocker):
+    mocker.patch.dict("os.environ", {"ABOUT_CONTEXT_URL": ""})
+    with pytest.raises(ValueError) as excinfo:
+        _ = loader.url
+    assert excinfo.match(
+        "Unable to operate without context URL. "
+        "Please check `ABOUT_CONTEXT_URL` environment variable."
+    )
+
+
 def test_model_prompt(loader):
     """
-    Validate the prompt contex payload.
+    Validate the prompt context payload.
     """
     assert "The default TCP ports of CrateDB are" in loader.get_prompt()
 
@@ -103,7 +113,8 @@ def test_model_payload_from_file(loader, tmp_path, monkeypatch):
     assert "necessary context" in result
 
 
-@pytest.mark.skip(reason="Does not work after introducing Hishel yet. Why?")
+# TODO: Fix HTTP mocking with Hishel. Current implementation fails during test execution.
+@pytest.mark.skip(reason="Test incompatible with Hishel caching implementation")
 def test_model_payload_from_http(monkeypatch):
     # Mock HTTP URL and response.
     test_url = "http://example.com/context.txt"
@@ -140,8 +151,11 @@ def test_model_payload_invalid_source(loader, monkeypatch, caplog):
 
 
 def test_model_get_prompt_exception_handling(loader, monkeypatch, mocker):
-    # Mock llms_txt_payload to raise an exception.
-    mocker.patch.object(loader, "fetch", lambda x: Exception("Test error"))
+    # Mock loader method to raise an exception.
+    def _raise(*_args, **_kwargs):
+        raise Exception("Test error")
+
+    mocker.patch.object(loader, "fetch", _raise)
 
     # Acquire prompt.
     result = loader.get_prompt()
@@ -149,3 +163,33 @@ def test_model_get_prompt_exception_handling(loader, monkeypatch, mocker):
     # Verify fallback context is used.
     assert loader.fallback_context in result
     assert "minimal context" in result
+
+
+def test_loader_valid_ttl(mocker):
+    # Set a valid cache TTL value.
+    ttl_value = "7200"  # 2 hours in seconds
+    mocker.patch.dict("os.environ", {"ABOUT_CACHE_TTL": ttl_value})
+
+    # Instantiate loader and verify TTL.
+    loader = CrateDbKnowledgeContextLoader()
+    assert loader.cache_ttl == 7200
+
+
+def test_loader_invalid_ttl_string(mocker):
+    # Use an invalid cache TTL value.
+    mocker.patch.dict("os.environ", {"ABOUT_CACHE_TTL": "foo"})
+
+    # Validate.
+    with pytest.raises(ValueError) as ex:
+        CrateDbKnowledgeContextLoader()
+    assert ex.match("Environment variable `ABOUT_CACHE_TTL` invalid: invalid literal for int")
+
+
+def test_loader_invalid_ttl_negative(mocker):
+    # Use an invalid cache TTL value.
+    mocker.patch.dict("os.environ", {"ABOUT_CACHE_TTL": "-42"})
+
+    # Validate.
+    with pytest.raises(ValueError) as ex:
+        CrateDbKnowledgeContextLoader()
+    assert ex.match("Environment variable `ABOUT_CACHE_TTL` invalid: Cache TTL must be positive")
