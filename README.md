@@ -153,9 +153,12 @@ The Markdown file `outline.md` serves as the source for producing the
 `llms.txt` files. Generate multiple `llms.txt` files along with any
 auxiliary output files.
 ```shell
-export OUTDIR=./public_html
-cratedb-about bundle --format=llms-txt
+cratedb-about bundle --format=llms-txt --outdir=./public_html
 ```
+By default, the bundler will use the built-in `cratedb-outline.yaml` as input file.
+You can select an alternative input file using the `--url` option, or the
+`ABOUT_OUTLINE_URL` environment variable. The output directory can
+also be specified using the `OUTDIR` environment variable.
 
 ### Query
 Ask questions about CrateDB from the command line.

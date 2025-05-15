@@ -1,6 +1,7 @@
 from click.testing import CliRunner
 
 from cratedb_about.cli import cli
+from tests.test_outline import TESTING_OUTLINE_FILE
 
 
 def test_cli_version():
@@ -44,14 +45,14 @@ def test_cli_list_questions():
     assert "Please tell me how CrateDB stores data." in result.output
 
 
-def test_cli_bundle(caplog, tmp_path):
+def test_cli_bundle_success(caplog, tmp_path):
     runner = CliRunner()
 
     # Invoke command.
     result = runner.invoke(
         cli,
         args=["bundle"],
-        env={"OUTDIR": str(tmp_path)},
+        env={"ABOUT_OUTLINE_URL": TESTING_OUTLINE_FILE, "OUTDIR": str(tmp_path)},
         catch_exceptions=False,
     )
     assert result.exit_code == 0, result.output

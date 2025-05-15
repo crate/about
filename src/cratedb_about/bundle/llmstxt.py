@@ -16,6 +16,7 @@ class LllmsTxtBuilder:
     Build llms.txt files for CrateDB.
     """
 
+    outline_url: str
     outdir: Path
 
     def run(self):
@@ -34,6 +35,6 @@ class LllmsTxtBuilder:
 
         # TODO: Explore how to optimize this procedure that both steps do not need
         #       to acquire and process data redundantly.
-        outline = CrateDbKnowledgeOutline.load()
+        outline = CrateDbKnowledgeOutline.load(self.outline_url)
         Path(self.outdir / "llms.txt").write_text(outline.to_llms_txt())
         Path(self.outdir / "llms-full.txt").write_text(outline.to_llms_txt(optional=True))

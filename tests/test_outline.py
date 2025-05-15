@@ -106,7 +106,7 @@ def test_outline_cli_url_argument():
 
     assert "# Testing" in result.output
     assert "Things to remember when working with Testing" in result.output
-    assert "Testing README" in result.output
+    assert "Example Domain" in result.output
 
 
 def test_outline_cli_url_envvar():
@@ -122,7 +122,7 @@ def test_outline_cli_url_envvar():
 
     assert "# Testing" in result.output
     assert "Things to remember when working with Testing" in result.output
-    assert "Testing README" in result.output
+    assert "Example Domain" in result.output
 
 
 def test_outline_get_section_names(cratedb_outline_builtin):

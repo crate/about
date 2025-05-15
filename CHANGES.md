@@ -14,6 +14,8 @@
 - Outline: Renamed `CRATEDB_CONTEXT_URL` to `ABOUT_CONTEXT_URL`
 - Outline: Fixed `llms_txt` currently does not accept newlines in description fields
 - Outline: Significantly update `cratedb-outline.yaml`
+- Bundle: Started accepting `--url`/`ABOUT_OUTLINE_URL` option to specify
+  alternative input outline file
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline

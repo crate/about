@@ -23,9 +23,9 @@ data:
   - name: Docs
     items:
 
-    - title: "Testing README"
-      link: https://example.org/README.rst
-      description: README about Testing.
+    - title: "Example Domain"
+      link: https://example.org/
+      description: Example Domain.
 
   - name: Optional
     items:
