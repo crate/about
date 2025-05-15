@@ -73,7 +73,7 @@ dependencies = [
   "cattrs<25",
   "click<9",
   "colorlog<7",
-  "jaraco-classes<4",
+  "hishel<0.2",
   "llms-txt==0.0.4",
   "pueblo==0.0.11",
   "requests<3",

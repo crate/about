@@ -9,6 +9,7 @@
 - llms-txt: Compare sizes of CrateDB's `llms.txt` against sizes
   of other vendors. Adjust when needed.
   https://github.com/crate/about/issues/20
+- Bundle: `test_cli_bundle` is heavy, and may incur timeouts
 
 ## Iteration +2
 - Any: JSON/YAML/Markdown output

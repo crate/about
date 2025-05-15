@@ -19,6 +19,7 @@
 - Bundle: Improved handling of `--format` option
 - Query: Permitted loading context file from local filesystem
   per `ABOUT_CONTEXT_URL`
+- Query: Introduced caching for context payloads on HTTP remote URLs
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline

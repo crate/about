@@ -4,6 +4,7 @@ coverage.xml
 .venv*
 *.egg-info
 *.lock
+*.sqlite
 __pycache__
 bdist.*
 dist

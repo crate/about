@@ -1,9 +1,12 @@
+import logging
 import os
-import sys
+import typing as t
+import warnings
 from pathlib import Path
 
-import requests
-from jaraco.classes.properties import classproperty
+import hishel
+
+logger = logging.getLogger(__name__)
 
 
 class Example:
@@ -41,60 +44,98 @@ class Example:
     ]
 
 
-class Settings:
+class KnowledgeContextLoader:
     """
-    Configure the language model to support conversations about CrateDB.
+    Load enhanced context (prompt payload) for improved conversations about a topic.
     """
 
-    default_context = (
-        "CrateDB is a distributed SQL database that makes it simple to"
-        "store and analyze massive amounts of data in real-time."
-    )
-
+    # Configure content for context (prompt payload).
+    context_url: t.Optional[str] = None
+    fallback_context: str = ""
     instructions = "You are a helpful and concise assistant."
-    llms_txt = None
-    prompt = None
 
-    @classproperty
-    def llms_txt_url(cls) -> str:
+    # Configure default cache lifetime to one hour.
+    default_cache_ttl: int = 3600
+
+    def __init__(self):
+        # Configure Hishel, an httpx client with caching.
+        controller = hishel.Controller(allow_stale=True)
+        storage = hishel.SQLiteStorage(ttl=self.cache_ttl)
+        self.http_client = hishel.CacheClient(controller=controller, storage=storage, timeout=10.0)
+
+    @property
+    def url(self) -> str:
         """
         Provide URL to context file.
         """
-        return os.getenv("ABOUT_CONTEXT_URL", "https://cdn.crate.io/about/v1/llms-full.txt")
+        url = os.getenv("ABOUT_CONTEXT_URL", self.context_url)
+        if not url:
+            raise ValueError(
+                "Unable to operate without context URL. "
+                "Please check `ABOUT_CONTEXT_URL` environment variable."
+            )
+        return url
 
-    @classproperty
-    def llms_txt_payload(cls) -> str:
+    @property
+    def cache_ttl(self) -> int:
+        """
+        Return configured cache lifetime in seconds.
+        """
+        try:
+            return int(os.getenv("ABOUT_CACHE_TTL", self.default_cache_ttl))
+        except ValueError as e:  # pragma: no cover
+            # If the environment variable is not a valid integer,
+            # use the default value, but warn about it.
+            warnings.warn(
+                f"Environment variable `ABOUT_CACHE_TTL` invalid: {e}. "
+                f"Using default value: {self.default_cache_ttl}.",
+                category=UserWarning,
+                stacklevel=2,
+            )
+            return self.default_cache_ttl
+
+    def fetch(self) -> str:
         """
         Retrieve payload of context file.
 
         TODO: Add third option `pueblo.to_io`, to load resources from anywhere.
               See `cratedb_about.outline.core`.
         """
-        url = cls.llms_txt_url
+        url = self.url
         path = Path(url)
         # Normalize path for cross-platform compatibility.
         path = path.expanduser().resolve()
         if path.exists():
             return path.read_text()
         if url.startswith("http"):
-            response = requests.get(url, timeout=10)
+            response = self.http_client.get(url)
             # Raise HTTPError for bad responses.
             response.raise_for_status()
             return response.text
         raise NotImplementedError(f"Unable to load context file. Source: {url}")
 
-    @classmethod
-    def get_prompt(cls):
-        if cls.llms_txt is None:
-            try:
-                cls.llms_txt = cls.llms_txt_payload
-                cls.prompt = (
-                    cls.llms_txt + "\n\nThe above is necessary context for the conversation."
-                )
-            except Exception as e:
-                print(f"Error fetching context: {e}", file=sys.stderr)  # noqa: T201
-                # Provide minimal fallback context.
-                cls.llms_txt = cls.default_context
-                cls.prompt = cls.llms_txt + "\n\nThe above is minimal context for the conversation."
+    def get_prompt(self) -> str:
+        """
+        Assemble and return prompt payload.
 
-        return cls.prompt
+        Provide minimal fallback context when topic domain knowledge can not be acquired.
+        """
+        try:
+            payload = self.fetch()
+            return payload + "\n\nThe above is necessary context for the conversation."
+        except Exception:
+            logger.exception(f"Fetching context failed. Source: {self.url}")
+            return self.fallback_context + "\n\nThe above is minimal context for the conversation."
+
+
+class CrateDbKnowledgeContextLoader(KnowledgeContextLoader):
+    """
+    Configure the language model to support conversations about CrateDB.
+    """
+
+    # Configure content for context (prompt payload).
+    context_url = "https://cdn.crate.io/about/v1/llms-full.txt"
+    fallback_context = (
+        "CrateDB is a distributed SQL database that makes it simple to"
+        "store and analyze massive amounts of data in real-time."
+    )
