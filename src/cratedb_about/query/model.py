@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 import requests
 from jaraco.classes.properties import classproperty
@@ -52,17 +53,36 @@ class Settings:
 
     @classproperty
     def llms_txt_url(cls) -> str:
+        """
+        Provide URL to context file.
+        """
         return os.getenv("ABOUT_CONTEXT_URL", "https://cdn.crate.io/about/v1/llms-full.txt")
+
+    @classproperty
+    def llms_txt_payload(cls) -> str:
+        """
+        Retrieve payload of context file.
+
+        TODO: Add third option `pueblo.to_io`, to load resources from anywhere.
+              See `cratedb_about.outline.core`.
+        """
+        url = cls.llms_txt_url
+        path = Path(url)
+        if path.exists():
+            return path.read_text()
+        if url.startswith("http"):
+            return requests.get(url, timeout=10).text
+        raise NotImplementedError(f"Unable to load context file. Source: {url}")
 
     @classmethod
     def get_prompt(cls):
         if cls.llms_txt is None:
             try:
-                cls.llms_txt = requests.get(cls.llms_txt_url, timeout=10).text
+                cls.llms_txt = cls.llms_txt_payload
                 cls.prompt = (
                     cls.llms_txt + "\n\nThe above is necessary context for the conversation."
                 )
-            except requests.RequestException as e:
+            except (requests.RequestException, OSError) as e:
                 print(f"Error fetching context: {e}", file=sys.stderr)  # noqa: T201
                 # Provide minimal fallback context.
                 cls.llms_txt = cls.default_context
