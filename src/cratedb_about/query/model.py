@@ -34,6 +34,10 @@ class Example:
         "Tell me about the health of the cluster.",
         "What is the storage consumption of my tables, give it in a graph.",
         "How can I format a timestamp column to '2019 Jan 21'?",
+        "Please tell me about integrations with CrateDB.",
+        "How do I use SQLAlchemy with CrateDB?",
+        "How do I use pandas with CrateDB?",
+        "How do I optimally synchronize data between MongoDB and CrateDB?",
     ]
 
 
