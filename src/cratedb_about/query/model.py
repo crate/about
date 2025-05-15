@@ -3,7 +3,8 @@ import os
 import typing as t
 from pathlib import Path
 
-import hishel
+from cratedb_about.settings import settings
+from cratedb_about.util import get_cache_client
 
 logger = logging.getLogger(__name__)
 
@@ -54,13 +55,10 @@ class KnowledgeContextLoader:
     instructions = "You are a helpful and concise assistant."
 
     # Configure default cache lifetime to one hour.
-    default_cache_ttl: int = 3600
+    default_cache_ttl: int = settings.http_cache_ttl
 
     def __init__(self):
-        # Configure Hishel, an httpx client with caching.
-        controller = hishel.Controller(allow_stale=True)
-        storage = hishel.SQLiteStorage(ttl=self.cache_ttl)
-        self.http_client = hishel.CacheClient(controller=controller, storage=storage, timeout=10.0)
+        self.http_client = get_cache_client(ttl=self.cache_ttl)
 
     @property
     def url(self) -> str:

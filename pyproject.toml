@@ -75,6 +75,7 @@ dependencies = [
   "colorlog<7",
   "hishel<0.2",
   "llms-txt==0.0.4",
+  "platformdirs<5",
   "pueblo==0.0.11",
   "requests<3",
 ]
