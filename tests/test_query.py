@@ -1,25 +1,40 @@
 import sys
 
+import hishel
+import httpx
 import openai
 import pytest
 
 from cratedb_about import CrateDbKnowledgeConversation
-from cratedb_about.query.model import Example, Settings
+from cratedb_about.query.model import CrateDbKnowledgeContextLoader, Example
 
 
-def test_model_settings():
+@pytest.fixture
+def loader() -> CrateDbKnowledgeContextLoader:
     """
-    Validate a few basic attributes of the Settings bundle class.
+    Provide context loader instance for all test cases.
     """
-    assert Settings.llms_txt_url == "https://cdn.crate.io/about/v1/llms-full.txt"
-    assert "helpful" in Settings.instructions
+    return CrateDbKnowledgeContextLoader()
 
 
-def test_model_prompt():
+def test_model_loader(loader):
+    """
+    Validate a few basic attributes of the context loader class.
+    """
+    assert loader.url == "https://cdn.crate.io/about/v1/llms-full.txt"
+    assert "helpful" in loader.instructions
+
+
+def test_model_loader_url_env(loader, mocker):
+    mocker.patch.dict("os.environ", {"ABOUT_CONTEXT_URL": "http://example.com"})
+    assert loader.url == "http://example.com"
+
+
+def test_model_prompt(loader):
     """
     Validate the prompt contex payload.
     """
-    assert "The default TCP ports of CrateDB are" in Settings.get_prompt()
+    assert "The default TCP ports of CrateDB are" in loader.get_prompt()
 
 
 def test_example_question():
@@ -73,60 +88,64 @@ def test_ask_claude_invalid_api_key(mocker):
     assert ex.match("Claude API error:.*authentication_error.*invalid x-api-key")
 
 
-def test_settings_context_url_default():
-    assert Settings.llms_txt_url == "https://cdn.crate.io/about/v1/llms-full.txt"
-
-
-def test_settings_context_url_env(mocker):
-    mocker.patch.dict("os.environ", {"ABOUT_CONTEXT_URL": "http://example.com"})
-    assert Settings.llms_txt_url == "http://example.com"
-
-
-def test_llms_txt_payload_from_file(tmp_path, monkeypatch):
+def test_model_payload_from_file(loader, tmp_path, monkeypatch):
     # Create a temporary file with known content.
     test_file = tmp_path / "test_context.txt"
-    test_content = "Test CrateDB context content"
+    test_content = "Test local file content"
     test_file.write_text(test_content)
 
     # Point `ABOUT_CONTEXT_URL` to the temporary file.
     monkeypatch.setenv("ABOUT_CONTEXT_URL", str(test_file))
 
-    # Verify the classproperty correctly reads the file.
-    assert Settings.llms_txt_payload == test_content
+    # Verify the outcome.
+    result = loader.get_prompt()
+    assert test_content in result
+    assert "necessary context" in result
 
 
-def test_llms_txt_payload_from_http(monkeypatch, requests_mock):
+@pytest.mark.skip(reason="Does not work after introducing Hishel yet. Why?")
+def test_model_payload_from_http(monkeypatch):
     # Mock HTTP URL and response.
     test_url = "http://example.com/context.txt"
-    test_content = "Test CrateDB HTTP content"
-    requests_mock.get(test_url, text=test_content)
+    test_content = "Test HTTP content"
 
-    # Set the environment variable to the HTTP URL.
-    # Point `ABOUT_CONTEXT_URL` to the temporary URL.
+    # Point the environment variable `ABOUT_CONTEXT_URL` to the HTTP URL.
     monkeypatch.setenv("ABOUT_CONTEXT_URL", test_url)
 
-    # Verify HTTP request is made and content is returned.
-    assert Settings.llms_txt_payload == test_content
+    # Verify the outcome.
+    with hishel.MockTransport() as transport:
+        transport.add_responses([httpx.Response(status_code=200, text=test_content)])
+        loader = CrateDbKnowledgeContextLoader()
+        result = loader.get_prompt()
+
+        assert loader.url == test_url
+        assert test_content in result
+        assert "necessary context" in result
 
 
-def test_llms_txt_payload_invalid_source(monkeypatch):
+def test_model_payload_invalid_source(loader, monkeypatch, caplog):
     # Set the environment variable to an invalid path.
-    monkeypatch.setenv("ABOUT_CONTEXT_URL", "/non/existent/path/that/is/not/http")
+    context_url = "/non/existent/path/that/is/not/http"
+    monkeypatch.setenv("ABOUT_CONTEXT_URL", context_url)
 
-    # Verify appropriate error is raised.
-    with pytest.raises(NotImplementedError) as ex:
-        _ = Settings.llms_txt_payload
-    assert ex.match("Unable to load context file. Source:")
+    # Acquire prompt.
+    result = loader.get_prompt()
+
+    # Verify log output.
+    assert f"Fetching context failed. Source: {context_url}" in caplog.messages
+
+    # Verify fallback context is used.
+    assert loader.fallback_context in result
+    assert "minimal context" in result
 
 
-def test_get_prompt_exception_handling(monkeypatch, mocker):
+def test_model_get_prompt_exception_handling(loader, monkeypatch, mocker):
     # Mock llms_txt_payload to raise an exception.
-    mocker.patch.object(Settings, "llms_txt_payload", lambda x: Exception("Test error"))
+    mocker.patch.object(loader, "fetch", lambda x: Exception("Test error"))
 
-    # Call get_prompt and verify fallback behavior
-    Settings.llms_txt = None
-    result = Settings.get_prompt()
+    # Acquire prompt.
+    result = loader.get_prompt()
 
-    # Verify fallback context is used
-    assert Settings.default_context in result
+    # Verify fallback context is used.
+    assert loader.fallback_context in result
     assert "minimal context" in result

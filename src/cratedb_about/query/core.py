@@ -4,7 +4,7 @@ import os
 import sys
 import typing as t
 
-from cratedb_about.query.model import Settings
+from cratedb_about.query.model import CrateDbKnowledgeContextLoader, KnowledgeContextLoader
 
 # Import backends conditionally to avoid errors if dependencies are missing
 CLAUDE_AVAILABLE = False
@@ -40,6 +40,9 @@ class CrateDbKnowledgeConversation:
 
     backend: t.Literal["claude", "openai"] = "openai"
     use_knowledge: bool = True
+    context: KnowledgeContextLoader = dataclasses.field(
+        default_factory=CrateDbKnowledgeContextLoader
+    )
 
     def __post_init__(self):
         """Validate configuration."""
@@ -80,10 +83,10 @@ class CrateDbKnowledgeConversation:
     def ask_claude(self, question: str) -> str:
         # FIXME: API does not provide lookup by name.
         model = models[1]  # Sonnet 3.5
-        chat = Chat(model, sp=Settings.instructions)
+        chat = Chat(model, sp=self.context.instructions)
         if self.use_knowledge:
             try:
-                chat(Settings.get_prompt())
+                chat(self.context.get_prompt())
             except Exception as e:
                 print(f"Warning: Failed to load knowledge context: {e}", file=sys.stderr)  # noqa: T201
         try:
@@ -110,21 +113,23 @@ class CrateDbKnowledgeConversation:
         client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
         input_messages: t.List[Message] = []
+
+        # Optionally add topic domain knowledge.
         if self.use_knowledge:
             try:
-                prompt = Settings.get_prompt()
-                if prompt:
-                    input_messages.append(
-                        Message(
-                            content=[ResponseInputTextParam(text=prompt, type="input_text")],
-                            role="developer",
-                            status="completed",
-                            type="message",
-                        )
+                prompt = self.context.get_prompt()
+                input_messages.append(
+                    Message(
+                        content=[ResponseInputTextParam(text=prompt, type="input_text")],
+                        role="developer",
+                        status="completed",
+                        type="message",
                     )
+                )
             except Exception as e:
                 print(f"Warning: Failed to load knowledge context: {e}", file=sys.stderr)  # noqa: T201
-        # Always add the user question
+
+        # Always add the user question.
         input_messages.append(
             Message(
                 content=[ResponseInputTextParam(text=question, type="input_text")],
@@ -149,7 +154,7 @@ class CrateDbKnowledgeConversation:
         response = client.responses.create(
             model=model,
             reasoning=reasoning,
-            instructions=Settings.instructions,
+            instructions=self.context.instructions,
             input=input_messages,  # type: ignore[arg-type]
         )
         return response.output_text

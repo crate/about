@@ -167,6 +167,10 @@ Ask questions about CrateDB from the command line.
 export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 cratedb-about ask "CrateDB does not seem to provide an AUTOINCREMENT feature?"
 ```
+If you are running out of questions, get inspired by the standard library.
+```shell
+cratedb-about list-questions
+```
 #### API
 Use the Python API to ask questions about CrateDB.
 ```python
@@ -175,15 +179,13 @@ from cratedb_about import CrateDbKnowledgeConversation
 knowledge = CrateDbKnowledgeConversation()
 knowledge.ask("CrateDB does not seem to provide an AUTOINCREMENT feature?")
 ```
-
-If you are running out of questions, get inspired by the standard library.
-```shell
-cratedb-about list-questions
-```
-
-To configure a different context file, use the `ABOUT_CONTEXT_URL` environment
-variable. It can be a remote URL or a path on the local filesystem.
-The default value is <https://cdn.crate.io/about/v1/llms-full.txt>.
+#### Notes
+- To configure a different context file, use the `ABOUT_CONTEXT_URL`
+  environment variable. It can be a remote URL or a path on the local filesystem.
+  The default value is <https://cdn.crate.io/about/v1/llms-full.txt>.
+- Remote resources will be cached for one hour (3600 seconds) to strike the
+  balance between freshness and resource saving. Use the `ABOUT_CACHE_TTL`
+  environment variable to reconfigure that value in seconds.
 
 ## FAQ
 
