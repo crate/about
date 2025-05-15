@@ -300,6 +300,34 @@ data:
       parents: [ reference ]
       tags: [ sql, reflection ]
 
+    # Admin: User management, roles, privileges, multi-tenancy.
+    - title: "CrateDB reference: Users and roles management"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/admin/user-management.rst.txt
+      description: |
+        Users and roles account information is stored in the cluster metadata of CrateDB and supports
+        standard SQL statements to create, alter and drop users and roles.
+      parents: [reference]
+      source: docs
+    - title: "CrateDB reference: Privileges"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/admin/privileges.rst.txt
+      description: |
+        To execute statements, a user needs to have the required privileges.
+        CrateDB has a built-in superuser account (`crate`) which has the privilege to do anything.
+        The privileges of other users and roles have to be managed using the `GRANT`, `DENY` or `REVOKE` statements.
+        The privileges that can be granted, denied or revoked are: `DQL`, `DML`, `DDL`, `AL`.
+        The privileges can be granted on different classes: `CLUSTER`, `SCHEMA`, `TABLE`, `VIEW`.
+      parents: [reference]
+      source: docs
+    - title: "CrateDB tutorial: Multi-tenancy with CrateDB"
+      link: https://community.cratedb.com/raw/1153/1
+      description: |
+        Multi-tenancy is an architecture in which different tenants share a single software instance.
+        CrateDB does not support the creation of multiple databases and catalogs as some other solutions
+        (e.g., PostgreSQL). However, there are several ways to implement multi-tenancy in CrateDB, and,
+        as is often the case, which one works the best depends on a variety of options and trade-offs.
+        The article illustrates two methods for sharing a single CrateDB instance between multiple tenants.
+      source: tutorials
+
     # SQL
     - title: "CrateDB SQL reference: Syntax"
       description: You can use Structured Query Language (SQL) to query your data.
