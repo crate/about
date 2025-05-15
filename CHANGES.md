@@ -13,7 +13,7 @@
 - Query: Added a few example questions specific to CrateDB
 - Outline: Renamed `CRATEDB_CONTEXT_URL` to `ABOUT_CONTEXT_URL`
 - Outline: Fixed `llms_txt` currently does not accept newlines in description fields
-- Outline: Significantly update `cratedb-outline.yaml`
+- Inventory: Significantly update `cratedb-outline.yaml`
 - Bundle: Started accepting `--url`/`ABOUT_OUTLINE_URL` option to specify
   alternative input outline file
 - Bundle: Improved handling of `--format` option
@@ -21,6 +21,8 @@
   per `ABOUT_CONTEXT_URL`
 - Query: Introduced caching for context payloads on HTTP remote URLs
 - llms-txt: Introduced caching for expanding outline into Markdown file
+- Inventory: Added information about user and role management, privilege assignment,
+  and multi-tenancy implementation suggestions
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
