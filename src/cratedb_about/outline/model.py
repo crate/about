@@ -1,6 +1,8 @@
 import typing as t
 from io import StringIO
+from unittest import mock
 
+import hishel
 from attr import Factory
 from attrs import define
 
@@ -89,12 +91,21 @@ class OutlineDocument(Dumpable):
             The string representation of the context in llms.txt format.
         """
 
-        # Import module lazily to relax dependency surface.
-        from llms_txt import create_ctx
+        # Patch `llms_txt` package to use caching per Hishel.
+        # https://hishel.com/
+        controller = hishel.Controller(allow_stale=True)
+        storage = hishel.SQLiteStorage(ttl=3600)
+        with hishel.CacheClient(controller=controller, storage=storage, timeout=10.0) as client:
+            # Patch the client object.
+            mock.patch("llms_txt.core.httpx", client).start()
 
-        markdown = self.to_markdown()
-        ctx = create_ctx(markdown, optional=optional, n_workers=None)
-        return str(ctx)
+            # Import module lazily to relax dependency surface.
+            from llms_txt import create_ctx
+
+            # Expand links and output in Markdown format.
+            markdown = self.to_markdown()
+            ctx = create_ctx(markdown, optional=optional, n_workers=None)
+            return str(ctx)
 
     def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
         """
