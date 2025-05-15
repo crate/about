@@ -103,6 +103,7 @@ optional-dependencies.test = [
   "pytest<9",
   "pytest-cov<7",
   "pytest-mock<4",
+  "requests-mock<2",
 ]
 urls.Changelog = "https://github.com/crate/about/blob/main/CHANGES.md"
 urls.Issues = "https://github.com/crate/about/issues"
