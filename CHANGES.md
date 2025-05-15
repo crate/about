@@ -23,6 +23,7 @@
 - llms-txt: Introduced caching for expanding outline into Markdown file
 - Inventory: Added information about user and role management, privilege assignment,
   and multi-tenancy implementation suggestions
+- Bundle: Provided README in HTML format per `readme.html`
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline

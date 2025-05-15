@@ -1,4 +1,6 @@
+import datetime as dt
 import logging
+import platform
 import sqlite3
 import typing as t
 from collections import OrderedDict
@@ -80,3 +82,12 @@ def get_cache_client(ttl: t.Optional[t.Union[int, float]] = settings.http_cache_
         )
         logger.exception(msg)
         raise e.__class__(msg) from e
+
+
+def get_hostname() -> str:
+    # https://stackoverflow.com/a/49840324
+    return platform.node().split(".", 1)[0]
+
+
+def get_now() -> str:
+    return dt.datetime.now(tz=dt.timezone.utc).replace(microsecond=0).isoformat()

@@ -88,12 +88,14 @@ def outline(
 @click.pass_context
 def bundle(ctx: click.Context, url: str, format_: str, outdir: Path) -> None:
     """
-    Invoke the bundling. For now: Generate multiple `llms.txt` files.
+    Produce a context bundle from an outline file.
+
+    1. Generate multiple `llms.txt` files.
+       https://llmstxt.org/
     """
     if format_ != "llm":
         raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
-    builder = LllmsTxtBuilder(outline_url=url, outdir=outdir)
-    builder.run()
+    LllmsTxtBuilder(outline_url=url, outdir=outdir).run()
     logger.info("Ready.")
 
 
