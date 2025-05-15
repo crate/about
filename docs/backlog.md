@@ -6,6 +6,9 @@
   https://github.com/crate/about/issues/24
 - Outline: Explore using refined content representations by
   pulling in `ctk docs functions` and `ctk docs settings`
+- llms-txt: Compare sizes of CrateDB's `llms.txt` against sizes
+  of other vendors. Adjust when needed.
+  https://github.com/crate/about/issues/20
 
 ## Iteration +2
 - Any: JSON/YAML/Markdown output
