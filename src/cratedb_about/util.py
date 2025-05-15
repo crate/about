@@ -1,10 +1,17 @@
+import logging
+import sqlite3
 import typing as t
 from collections import OrderedDict
 
 import attr
+import hishel
 from attrs import define
 from cattrs.preconf.json import make_converter as make_json_converter
 from cattrs.preconf.pyyaml import make_converter as make_yaml_converter
+
+from cratedb_about.settings import settings
+
+logger = logging.getLogger()
 
 
 @define
@@ -48,3 +55,28 @@ class Dumpable(DictTools):
     def from_yaml(cls, yaml_str: str):
         converter = make_yaml_converter(dict_factory=OrderedDict)
         return converter.loads(yaml_str, cls)
+
+
+def get_cache_client(ttl: t.Optional[t.Union[int, float]] = settings.http_cache_ttl):
+    """
+    Return the configured cache client.
+    https://hishel.com/
+    """
+    # Configure Hishel, a httpx client with caching.
+    logger.info(f"Configuring cache. ttl={ttl}, path={settings.http_cache_path}")
+    try:
+        controller = hishel.Controller(allow_stale=True)
+        storage = hishel.SQLiteStorage(
+            connection=sqlite3.connect(settings.http_cache_path, check_same_thread=False),
+            ttl=ttl,
+        )
+        return hishel.CacheClient(
+            controller=controller, storage=storage, timeout=settings.http_timeout
+        )
+    except Exception as e:
+        msg = (
+            f"Failed to configure Hishel cache with SQLite. "
+            f"ttl={ttl}, path={settings.http_cache_path}. Reason: {e}"
+        )
+        logger.exception(msg)
+        raise e.__class__(msg) from e

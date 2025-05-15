@@ -2,11 +2,10 @@ import typing as t
 from io import StringIO
 from unittest import mock
 
-import hishel
 from attr import Factory
 from attrs import define
 
-from cratedb_about.util import DictTools, Dumpable, Metadata
+from cratedb_about.util import DictTools, Dumpable, Metadata, get_cache_client
 
 
 @define
@@ -91,21 +90,19 @@ class OutlineDocument(Dumpable):
             The string representation of the context in llms.txt format.
         """
 
-        # Patch `llms_txt` package to use caching per Hishel.
+        # Patch `llms_txt` package to use caching via Hishel.
         # https://hishel.com/
-        controller = hishel.Controller(allow_stale=True)
-        storage = hishel.SQLiteStorage(ttl=3600)
-        with hishel.CacheClient(controller=controller, storage=storage, timeout=10.0) as client:
+        http_client = get_cache_client()
+        with http_client as client:
             # Patch the client object.
-            mock.patch("llms_txt.core.httpx", client).start()
+            with mock.patch("llms_txt.core.httpx", client):
+                # Import module lazily to relax dependency surface.
+                from llms_txt import create_ctx
 
-            # Import module lazily to relax dependency surface.
-            from llms_txt import create_ctx
-
-            # Expand links and output in Markdown format.
-            markdown = self.to_markdown()
-            ctx = create_ctx(markdown, optional=optional, n_workers=None)
-            return str(ctx)
+                # Expand links and output in Markdown format.
+                markdown = self.to_markdown()
+                ctx = create_ctx(markdown, optional=optional, n_workers=None)
+                return str(ctx)
 
     def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
         """
