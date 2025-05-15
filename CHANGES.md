@@ -20,6 +20,7 @@
 - Query: Permitted loading context file from local filesystem
   per `ABOUT_CONTEXT_URL`
 - Query: Introduced caching for context payloads on HTTP remote URLs
+- llms-txt: Introduced caching for expanding outline into Markdown file
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
