@@ -20,7 +20,12 @@ outline_url_option = click.option(
     type=str,
     required=False,
     default=None,
-    help="URL to the outline file. By default, the built-in outline is used.",
+    metavar="URL|FILE",
+    help="Outline source. Provide either an HTTP(S) URL or a local file path. "
+    "If omitted, the built-in outline is used.",
+    callback=lambda _, __, v: v
+    if not v or v.startswith(("http://", "https://"))
+    else Path(v).expanduser().resolve(),
 )
 
 
