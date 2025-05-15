@@ -17,6 +17,8 @@
 - Bundle: Started accepting `--url`/`ABOUT_OUTLINE_URL` option to specify
   alternative input outline file
 - Bundle: Improved handling of `--format` option
+- Query: Permitted loading context file from local filesystem
+  per `ABOUT_CONTEXT_URL`
 
 ## v0.0.3 - 2025-05-10
 - Outline: Refactored the source of truth for the documentation outline
