@@ -72,10 +72,15 @@ class Settings:
         """
         url = cls.llms_txt_url
         path = Path(url)
+        # Normalize path for cross-platform compatibility.
+        path = path.expanduser().resolve()
         if path.exists():
             return path.read_text()
         if url.startswith("http"):
-            return requests.get(url, timeout=10).text
+            response = requests.get(url, timeout=10)
+            # Raise HTTPError for bad responses.
+            response.raise_for_status()
+            return response.text
         raise NotImplementedError(f"Unable to load context file. Source: {url}")
 
     @classmethod
@@ -86,7 +91,7 @@ class Settings:
                 cls.prompt = (
                     cls.llms_txt + "\n\nThe above is necessary context for the conversation."
                 )
-            except (requests.RequestException, OSError) as e:
+            except Exception as e:
                 print(f"Error fetching context: {e}", file=sys.stderr)  # noqa: T201
                 # Provide minimal fallback context.
                 cls.llms_txt = cls.default_context
