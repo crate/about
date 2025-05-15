@@ -72,7 +72,12 @@ def outline(
 @cli.command()
 @outline_url_option
 @click.option(
-    "--format", "-f", "format_", type=str, default="llms-txt", help="Output format: Use llms-txt"
+    "--format",
+    "-f",
+    "format_",
+    type=click.Choice(["llm"]),
+    required=True,
+    help="Bundle output format",
 )
 @click.option("--outdir", "-o", envvar="OUTDIR", type=Path, required=True)
 @click.pass_context
@@ -80,7 +85,7 @@ def bundle(ctx: click.Context, url: str, format_: str, outdir: Path) -> None:
     """
     Invoke the bundling. For now: Generate multiple `llms.txt` files.
     """
-    if format_ != "llms-txt":
+    if format_ != "llm":
         raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
     builder = LllmsTxtBuilder(outline_url=url, outdir=outdir)
     builder.run()

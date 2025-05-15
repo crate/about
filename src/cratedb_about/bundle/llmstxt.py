@@ -20,7 +20,7 @@ class LllmsTxtBuilder:
     outdir: Path
 
     def run(self):
-        logger.info(f"Bundling llms-txt. Output directory: {self.outdir}")
+        logger.info(f"Creating bundle. Format: llms-txt. Output directory: {self.outdir}")
         self.outdir.mkdir(parents=True, exist_ok=True)
 
         logger.info("Copying source and documentation files")

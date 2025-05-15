@@ -51,14 +51,14 @@ def test_cli_bundle_success(caplog, tmp_path):
     # Invoke command.
     result = runner.invoke(
         cli,
-        args=["bundle"],
+        args=["bundle", "--format", "llm"],
         env={"ABOUT_OUTLINE_URL": TESTING_OUTLINE_FILE, "OUTDIR": str(tmp_path)},
         catch_exceptions=False,
     )
     assert result.exit_code == 0, result.output
 
     # Verify log output.
-    assert "Bundling llms-txt" in caplog.text
+    assert "Creating bundle. Format: llms-txt" in caplog.text
     assert "Ready." in caplog.text
 
     # Verify that the expected output files have been created.
@@ -72,7 +72,7 @@ def test_cli_bundle_without_outdir():
     # Invoke command without OUTDIR environment variable.
     result = runner.invoke(
         cli,
-        args=["bundle"],
+        args=["bundle", "--format", "llm"],
         env={},  # No OUTDIR set
         catch_exceptions=False,
     )
@@ -80,6 +80,22 @@ def test_cli_bundle_without_outdir():
     # Verify appropriate error handling.
     assert result.exit_code != 0, result.output
     assert "Error: Missing option '--outdir' / '-o'" in result.output
+
+
+def test_cli_bundle_without_format(tmp_path):
+    runner = CliRunner()
+
+    # Invoke command.
+    result = runner.invoke(
+        cli,
+        args=["bundle"],
+        env={"OUTDIR": str(tmp_path)},
+        catch_exceptions=False,
+    )
+
+    # Verify appropriate error handling.
+    assert result.exit_code != 0, result.output
+    assert "Error: Missing option '--format' / '-f'" in result.output
 
 
 def test_cli_bundle_invalid_format(tmp_path):
@@ -95,4 +111,4 @@ def test_cli_bundle_invalid_format(tmp_path):
 
     # Verify appropriate error handling.
     assert result.exit_code != 0, result.output
-    assert "Error: Invalid output format: foobar" in result.output
+    assert "Error: Invalid value for '--format' / '-f': 'foobar' is not 'llm'" in result.output
