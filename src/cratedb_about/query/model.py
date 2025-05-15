@@ -1,7 +1,6 @@
 import logging
 import os
 import typing as t
-import warnings
 from pathlib import Path
 
 import hishel
@@ -82,17 +81,12 @@ class KnowledgeContextLoader:
         Return configured cache lifetime in seconds.
         """
         try:
-            return int(os.getenv("ABOUT_CACHE_TTL", self.default_cache_ttl))
-        except ValueError as e:  # pragma: no cover
-            # If the environment variable is not a valid integer,
-            # use the default value, but warn about it.
-            warnings.warn(
-                f"Environment variable `ABOUT_CACHE_TTL` invalid: {e}. "
-                f"Using default value: {self.default_cache_ttl}.",
-                category=UserWarning,
-                stacklevel=2,
-            )
-            return self.default_cache_ttl
+            ttl = int(os.getenv("ABOUT_CACHE_TTL", self.default_cache_ttl))
+            if ttl <= 0:
+                raise ValueError("Cache TTL must be positive")
+            return ttl
+        except ValueError as e:
+            raise ValueError(f"Environment variable `ABOUT_CACHE_TTL` invalid: {e}") from e
 
     def fetch(self) -> str:
         """
@@ -105,7 +99,7 @@ class KnowledgeContextLoader:
         path = Path(url)
         # Normalize path for cross-platform compatibility.
         path = path.expanduser().resolve()
-        if path.exists():
+        if path.exists() and path.is_file():
             return path.read_text()
         if url.startswith("http"):
             response = self.http_client.get(url)
