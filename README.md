@@ -183,7 +183,7 @@ cratedb-about list-questions
 
 To configure a different context file, use the `ABOUT_CONTEXT_URL` environment
 variable. It can be a remote URL or a path on the local filesystem.
-The default value is https://cdn.crate.io/about/v1/llms-full.txt.
+The default value is <https://cdn.crate.io/about/v1/llms-full.txt>.
 
 ## FAQ
 
