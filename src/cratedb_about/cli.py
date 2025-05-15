@@ -13,15 +13,7 @@ from cratedb_about.query.model import Example
 logger = logging.getLogger(__name__)
 
 
-@click.group()
-@click.version_option()
-@click.pass_context
-def cli(ctx: click.Context) -> None:
-    boot_click(ctx=ctx)
-
-
-@cli.command()
-@click.option(
+outline_url_option = click.option(
     "--url",
     "-u",
     envvar="ABOUT_OUTLINE_URL",
@@ -30,6 +22,17 @@ def cli(ctx: click.Context) -> None:
     default=None,
     help="URL to the outline file. By default, the built-in outline is used.",
 )
+
+
+@click.group()
+@click.version_option()
+@click.pass_context
+def cli(ctx: click.Context) -> None:
+    boot_click(ctx=ctx)
+
+
+@cli.command()
+@outline_url_option
 @click.option(
     "--format",
     "-f",
@@ -67,18 +70,19 @@ def outline(
 
 
 @cli.command()
+@outline_url_option
 @click.option(
     "--format", "-f", "format_", type=str, default="llms-txt", help="Output format: Use llms-txt"
 )
 @click.option("--outdir", "-o", envvar="OUTDIR", type=Path, required=True)
 @click.pass_context
-def bundle(ctx: click.Context, format_: str, outdir: Path) -> None:
+def bundle(ctx: click.Context, url: str, format_: str, outdir: Path) -> None:
     """
     Invoke the bundling. For now: Generate multiple `llms.txt` files.
     """
     if format_ != "llms-txt":
         raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
-    builder = LllmsTxtBuilder(outdir=outdir)
+    builder = LllmsTxtBuilder(outline_url=url, outdir=outdir)
     builder.run()
     logger.info("Ready.")
 
