@@ -70,7 +70,7 @@ dynamic = [
   "version",
 ]
 dependencies = [
-  "cattrs<25",
+  "cattrs[pyyaml]<25",
   "click<9",
   "colorlog<7",
   "hishel<0.2",
