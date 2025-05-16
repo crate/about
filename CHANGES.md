@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.4 - 2025-05-16
 - Outline: `cratedb-about outline` now understands `--url` option to use
   any outline resource on local or remote filesystems. Alternatively, use
   the `ABOUT_OUTLINE_URL` environment variable.
