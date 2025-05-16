@@ -89,7 +89,7 @@ uv tool install --upgrade 'cratedb-about[all] @ git+https://github.com/crate/abo
 The `cratedb-about` package provides three subsystems.
 
 - Outline: Read and inquire outline files.
-- Bundle: Produce context output bundles from outline files.
+- Bundle: Produce a context bundle from an outline file.
 - Query: Use context information for conversations with LLMs.
 
 ### Outline
