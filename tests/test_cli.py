@@ -64,6 +64,8 @@ def test_cli_bundle_success(caplog, tmp_path):
     # Verify that the expected output files have been created.
     assert (tmp_path / "readme.md").exists()
     assert (tmp_path / "readme.html").exists()
+    assert (tmp_path / "outline.yaml").exists()
+    assert (tmp_path / "outline.md").exists()
     assert (tmp_path / "llms.txt").exists()
     assert (tmp_path / "llms-full.txt").exists()
 
