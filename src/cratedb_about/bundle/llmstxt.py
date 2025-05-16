@@ -29,9 +29,10 @@ class LllmsTxtBuilder:
         self.copy_readme()
         self.copy_sources()
 
+        outline = CrateDbKnowledgeOutline.load(self.outline_url)
+        Path(self.outdir / "outline.md").write_text(outline.to_markdown())
         # TODO: Explore how to optimize this procedure that both steps do not need
         #       to acquire and process data redundantly.
-        outline = CrateDbKnowledgeOutline.load(self.outline_url)
         Path(self.outdir / "llms.txt").write_text(outline.to_llms_txt())
         Path(self.outdir / "llms-full.txt").write_text(outline.to_llms_txt(optional=True))
 

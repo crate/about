@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Bundle: Added outline in Markdown format, which got lost previously
 
 ## v0.0.4 - 2025-05-16
 - Outline: `cratedb-about outline` now understands `--url` option to use
