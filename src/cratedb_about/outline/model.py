@@ -4,6 +4,7 @@ from unittest import mock
 
 from attr import Factory
 from attrs import define
+from markdown import markdown
 
 from cratedb_about.util import DictTools, Dumpable, Metadata, get_cache_client
 
@@ -78,6 +79,9 @@ class OutlineDocument(Dumpable):
                 buffer.write(f"- [{item.title}]({item.link}): {item.description}\n")
             buffer.write("\n")
         return buffer.getvalue().strip()
+
+    def to_html(self) -> str:
+        return markdown(self.to_markdown())
 
     def to_llms_txt(self, optional: bool = False) -> str:
         """

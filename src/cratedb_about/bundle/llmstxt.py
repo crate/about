@@ -1,7 +1,9 @@
 import dataclasses
 import logging
 import shutil
+import typing as t
 from importlib import resources
+from importlib.abc import Traversable
 from pathlib import Path
 
 from markdown import markdown
@@ -20,6 +22,9 @@ class LllmsTxtBuilder:
 
     outline_url: str
     outdir: Path
+    outline: t.Any = dataclasses.field(init=False)
+    readme_md: Traversable = dataclasses.field(init=False)
+    outline_yaml: Traversable = dataclasses.field(init=False)
 
     def run(self):
         logger.info(f"Creating bundle. Format: llms-txt. Output directory: {self.outdir}")
@@ -29,19 +34,25 @@ class LllmsTxtBuilder:
         self.copy_readme()
         self.copy_sources()
 
-        outline = CrateDbKnowledgeOutline.load(self.outline_url)
-        Path(self.outdir / "outline.md").write_text(outline.to_markdown())
-        # TODO: Explore how to optimize this procedure that both steps do not need
-        #       to acquire and process data redundantly.
-        Path(self.outdir / "llms.txt").write_text(outline.to_llms_txt())
-        Path(self.outdir / "llms-full.txt").write_text(outline.to_llms_txt(optional=True))
+        # Generate llms-txt resources.
+        # See also https://github.com/crate/about/issues/39
+        #
+        # - The `llms.txt` is just a Markdown file, unexpanded. It is essentially a sitemap,
+        #   listing all the pages in the documentation.
+        # - The `llms-full.txt` contains the entire documentation, expanded from the `llms.txt`
+        #   file. Note this may exceed the context window of your LLM.
+        Path(self.outdir / "llms.txt").write_text(self.outline.to_markdown())
+        Path(self.outdir / "llms-full.txt").write_text(self.outline.to_llms_txt(optional=True))
 
         return self
 
     def copy_readme(self):
+        """
+        Provide README / "About" information to the bundle, in Markdown and HTML formats.
+        """
         readme_md = self.outdir / "readme.md"
         shutil.copy(
-            str(resources.files("cratedb_about.bundle") / "readme.md"),
+            str(self.readme_md),
             readme_md,
         )
         try:
@@ -52,7 +63,24 @@ class LllmsTxtBuilder:
             logger.warning(f"Failed to generate HTML readme: {e}")
 
     def copy_sources(self):
+        """
+        Provide the source document in the original YAML format, but also converted to HTML.
+        The intermediary Markdown format is already covered by the `llms.txt` file itself.
+        """
         shutil.copy(
-            str(resources.files("cratedb_about.outline") / "cratedb-outline.yaml"),
+            str(self.outline_yaml),
             self.outdir / "outline.yaml",
         )
+
+
+@dataclasses.dataclass
+class CrateDbLllmsTxtBuilder(LllmsTxtBuilder):
+    """
+    Build llms.txt files for CrateDB.
+    """
+
+    readme_md: Traversable = resources.files("cratedb_about.bundle") / "readme.md"
+    outline_yaml: Traversable = resources.files("cratedb_about.outline") / "cratedb-outline.yaml"
+
+    def __post_init__(self):
+        self.outline = CrateDbKnowledgeOutline.load(self.outline_url)

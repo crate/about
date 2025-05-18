@@ -5,7 +5,7 @@ from pathlib import Path
 import click
 from pueblo.util.cli import boot_click
 
-from cratedb_about.bundle.llmstxt import LllmsTxtBuilder
+from cratedb_about.bundle.llmstxt import CrateDbLllmsTxtBuilder
 from cratedb_about.outline import CrateDbKnowledgeOutline
 from cratedb_about.query.core import CrateDbKnowledgeConversation
 from cratedb_about.query.model import Example
@@ -95,7 +95,7 @@ def bundle(ctx: click.Context, url: str, format_: str, outdir: Path) -> None:
     """
     if format_ != "llm":
         raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
-    LllmsTxtBuilder(outline_url=url, outdir=outdir).run()
+    CrateDbLllmsTxtBuilder(outline_url=url, outdir=outdir).run()
     logger.info("Ready.")
 
 

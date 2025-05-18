@@ -7,6 +7,9 @@
   `{CREATE,ALTER} [FOREIGN] TABLE [AS]` and `COPY {FROM,TO}` commands.
 - Inventory: Added information about SQL data types and about how to import
   example datasets using CrateDB Toolkit.
+- Bundle: Fixed semantics of `llms.txt` vs. `llms-full.txt`, see [ABOUT-39].
+
+[ABOUT-39]: https://github.com/crate/about/issues/39
 
 ## v0.0.4 - 2025-05-16
 - Outline: `cratedb-about outline` now understands `--url` option to use
