@@ -1,7 +1,6 @@
 import dataclasses
 import logging
 import shutil
-import typing as t
 from importlib import resources
 from importlib.abc import Traversable
 from pathlib import Path
@@ -9,6 +8,7 @@ from pathlib import Path
 from markdown import markdown
 
 from cratedb_about import CrateDbKnowledgeOutline
+from cratedb_about.outline import OutlineDocument
 from cratedb_about.util import get_hostname, get_now
 
 logger = logging.getLogger(__name__)
@@ -17,12 +17,15 @@ logger = logging.getLogger(__name__)
 @dataclasses.dataclass
 class LllmsTxtBuilder:
     """
-    Build llms.txt files for CrateDB.
+    Generate llms.txt files.
+
+    This is a base class intended to be subclassed. The non-init fields
+    (outline, readme_md, outline_yaml) should be initialized by subclasses.
     """
 
     outline_url: str
     outdir: Path
-    outline: t.Any = dataclasses.field(init=False)
+    outline: OutlineDocument = dataclasses.field(init=False)
     readme_md: Traversable = dataclasses.field(init=False)
     outline_yaml: Traversable = dataclasses.field(init=False)
 
@@ -71,13 +74,16 @@ class LllmsTxtBuilder:
             str(self.outline_yaml),
             self.outdir / "outline.yaml",
         )
-        Path(self.outdir / "outline.html").write_text(self.outline.to_html())
+        try:
+            Path(self.outdir / "outline.html").write_text(self.outline.to_html())
+        except Exception as e:
+            logger.warning(f"Failed to generate HTML outline: {e}")
 
 
 @dataclasses.dataclass
 class CrateDbLllmsTxtBuilder(LllmsTxtBuilder):
     """
-    Build llms.txt files for CrateDB.
+    Generate llms.txt files for CrateDB.
     """
 
     readme_md: Traversable = resources.files("cratedb_about.bundle") / "readme.md"
