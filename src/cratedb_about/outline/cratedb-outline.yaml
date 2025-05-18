@@ -423,6 +423,18 @@ data:
       parents: [ sql-syntax ]
       tags: [ sql ]
 
+    # SQL: Data types
+    - title: "CrateDB SQL reference: Data types"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/data-types.rst.txt
+      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/data-types.html
+      description: |
+        Data can be stored in different formats. CrateDB has different types that can be specified if
+        a table is created using the CREATE TABLE statement.
+        Data types play a central role as they limit what kind of data can be inserted and how it is stored.
+        They also influence the behaviour when the records are queried.
+      parents: [ sql-syntax ]
+      tags: [ sql ]
+
     # SQL: Functions
     - title: "CrateDB SQL reference: Scalar functions"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/builtins/scalar-functions.rst.txt
@@ -625,6 +637,17 @@ data:
     - title: "CrateDB SQL gallery"
       link: https://raw.githubusercontent.com/crate/cratedb-toolkit/refs/tags/v0.0.31/cratedb_toolkit/info/library.py
       description: A collection of SQL queries and utilities suitable for diagnostics on CrateDB.
+
+    # Toolkit Example Datasets
+    # https://cratedb-toolkit.readthedocs.io/cluster/
+    - title: "CrateDB Toolkit: Import example datasets"
+      link: https://cratedb-toolkit.readthedocs.io/_sources/datasets.md.txt
+      html: https://cratedb-toolkit.readthedocs.io/datasets.html
+      description: |
+        CrateDB Toolkit's `cratedb_toolkit.datasets.load_dataset` API primitive can be used to
+        load curated datasets from <https://github.com/crate/cratedb-datasets> into your database
+        programmatically, using a few lines of Python. The API is suitable to be used for exploring
+        CrateDB in Python programs and scientific notebooks.
 
     # Example projects
     - title: "CrateDB GTFS / GTFS-RT Transit Data Demo"

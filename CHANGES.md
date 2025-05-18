@@ -5,6 +5,8 @@
 - Inventory: Added general information about partitioned tables, storage,
   replication, and views, and more specific information about the
   `{CREATE,ALTER} [FOREIGN] TABLE` and `COPY {FROM,TO}` commands.
+- Inventory: Added information about SQL data types and about how to import
+  example datasets using CrateDB Toolkit.
 
 ## v0.0.4 - 2025-05-16
 - Outline: `cratedb-about outline` now understands `--url` option to use
