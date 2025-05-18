@@ -8,6 +8,7 @@
 - Inventory: Added information about SQL data types and about how to import
   example datasets using CrateDB Toolkit.
 - Bundle: Fixed semantics of `llms.txt` vs. `llms-full.txt`, see [ABOUT-39].
+- Bundle: Generated `outline.html` for improved inspection by humans
 
 [ABOUT-39]: https://github.com/crate/about/issues/39
 

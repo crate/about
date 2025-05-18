@@ -71,6 +71,7 @@ class LllmsTxtBuilder:
             str(self.outline_yaml),
             self.outdir / "outline.yaml",
         )
+        Path(self.outdir / "outline.html").write_text(self.outline.to_html())
 
 
 @dataclasses.dataclass
