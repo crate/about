@@ -388,6 +388,13 @@ data:
         extended by exposing loads of options through its `WITH` modifier.
       parents: [ sql-syntax ]
       tags: [ sql ]
+    - title: "CrateDB SQL reference: CREATE TABLE AS"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-table-as.rst.txt
+      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-table-as.html
+      description: |
+        `CREATE TABLE AS` will create a new table and insert rows based on the specified query.
+      parents: [ sql-syntax ]
+      tags: [ sql ]
     - title: "CrateDB SQL reference: ALTER TABLE"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/alter-table.rst.txt
       html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/alter-table.html

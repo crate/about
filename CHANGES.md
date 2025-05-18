@@ -4,7 +4,7 @@
 - Bundle: Added outline in Markdown format, which got lost previously
 - Inventory: Added general information about partitioned tables, storage,
   replication, and views, and more specific information about the
-  `{CREATE,ALTER} [FOREIGN] TABLE` and `COPY {FROM,TO}` commands.
+  `{CREATE,ALTER} [FOREIGN] TABLE [AS]` and `COPY {FROM,TO}` commands.
 - Inventory: Added information about SQL data types and about how to import
   example datasets using CrateDB Toolkit.
 
