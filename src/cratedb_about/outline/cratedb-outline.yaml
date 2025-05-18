@@ -209,7 +209,7 @@ data:
       description: |
         Data storage options can be tuned for each column similar to how indexing is defined.
         Using the Column Store limits the values of TEXT columns to a maximal length of 32766 bytes.
-        Turning off the Column Store in conjunction of turning off indexing will remove the length limitation.
+        Turning off the Column Store in conjunction with turning off indexing will remove the length limitation.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/storage.rst.txt
       html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/storage.html
       parents: [ reference ]
@@ -395,6 +395,14 @@ data:
         `CREATE TABLE AS` will create a new table and insert rows based on the specified query.
       parents: [ sql-syntax ]
       tags: [ sql ]
+    - title: "CrateDB SQL reference: CREATE FOREIGN TABLE"
+      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-foreign-table.rst.txt
+      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-foreign-table.html
+      description: |
+        `CREATE FOREIGN TABLE` is a DDL statement that creates a new foreign table.
+        A foreign table is a view onto data in a foreign system.
+      parents: [ sql-syntax ]
+      tags: [ sql ]
     - title: "CrateDB SQL reference: ALTER TABLE"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/alter-table.rst.txt
       html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/alter-table.html
@@ -419,14 +427,6 @@ data:
       description: |
         The `COPY TO` command exports the contents of a table to one or more files
         into a given directory with unique filenames.
-      parents: [ sql-syntax ]
-      tags: [ sql ]
-    - title: "CrateDB SQL reference: CREATE FOREIGN TABLE"
-      link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-foreign-table.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-foreign-table.html
-      description: |
-        `CREATE FOREIGN TABLE` is a DDL statement that creates a new foreign table.
-        A foreign table is a view onto data in a foreign system.
       parents: [ sql-syntax ]
       tags: [ sql ]
 
@@ -646,7 +646,6 @@ data:
       description: A collection of SQL queries and utilities suitable for diagnostics on CrateDB.
 
     # Toolkit Example Datasets
-    # https://cratedb-toolkit.readthedocs.io/cluster/
     - title: "CrateDB Toolkit: Import example datasets"
       link: https://cratedb-toolkit.readthedocs.io/_sources/datasets.md.txt
       html: https://cratedb-toolkit.readthedocs.io/datasets.html
