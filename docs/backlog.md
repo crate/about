@@ -40,3 +40,5 @@
 - Inventory: Revisit `notes` in `cratedb-outline.yaml` about
   other resources that have not been expanded properly yet
   https://github.com/crate/about/issues/24
+- Inventory: Information about ddl/views, etc., `COPY FROM ...`,
+  and `ctk load table`, specifically about how to load data and import demo data

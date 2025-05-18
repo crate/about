@@ -2,6 +2,9 @@
 
 ## Unreleased
 - Bundle: Added outline in Markdown format, which got lost previously
+- Inventory: Added general information about partitioned tables, storage,
+  replication, and views, and more specific information about the
+  `{CREATE,ALTER} [FOREIGN] TABLE` and `COPY {FROM,TO}` commands.
 
 ## v0.0.4 - 2025-05-16
 - Outline: `cratedb-about outline` now understands `--url` option to use
