@@ -81,6 +81,9 @@ class OutlineDocument(Dumpable):
         return buffer.getvalue().strip()
 
     def to_html(self) -> str:
+        """
+        Convert outline into HTML format using Markdown as an intermediate step.
+        """
         return markdown(self.to_markdown())
 
     def to_llms_txt(self, optional: bool = False) -> str:
