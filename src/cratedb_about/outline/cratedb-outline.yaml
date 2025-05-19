@@ -203,7 +203,7 @@ data:
         When a record with a new distinct combination of values for the configured partition
         columns is inserted, a new partition is created, and the document is inserted into this new partition.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/partitioned-tables.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/partitioned-tables.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/partitioned-tables.html
       parents: [ reference ]
     - title: "CrateDB reference: Storage"
       description: |
@@ -211,7 +211,7 @@ data:
         Using the Column Store limits the values of TEXT columns to a maximal length of 32766 bytes.
         Turning off the Column Store in conjunction with turning off indexing will remove the length limitation.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/storage.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/storage.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/storage.html
       parents: [ reference ]
     - title: "CrateDB reference: Replication"
       description: |
@@ -219,7 +219,7 @@ data:
         try to ensure that every table shard has one or more copies available at all times.
         This ensures data resiliency when individual cluster nodes go offline for maintenance.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/replication.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/replication.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/replication.html
       parents: [ reference ]
     - title: "CrateDB reference: Views"
       description: |
@@ -227,7 +227,7 @@ data:
         They’re resolved at runtime and can be used to simplify common queries.
         Database views have special privilege properties.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/views.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/views.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/views.html
       parents: [ reference ]
 
     # Data modeling
@@ -381,7 +381,7 @@ data:
     # SQL: Commands
     - title: "CrateDB SQL reference: CREATE TABLE"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-table.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-table.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-table.html
       description: |
         The `CREATE TABLE` command creates a new, initially empty table. The command accepts many important
         parameters for commandeering CrateDB's special features, mostly `CLUSTERED` and `PARTITIONED BY`,
@@ -390,14 +390,14 @@ data:
       tags: [ sql ]
     - title: "CrateDB SQL reference: CREATE TABLE AS"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-table-as.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-table-as.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-table-as.html
       description: |
         `CREATE TABLE AS` will create a new table and insert rows based on the specified query.
       parents: [ sql-syntax ]
       tags: [ sql ]
     - title: "CrateDB SQL reference: CREATE FOREIGN TABLE"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/create-foreign-table.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-foreign-table.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/create-foreign-table.html
       description: |
         `CREATE FOREIGN TABLE` is a DDL statement that creates a new foreign table.
         A foreign table is a view onto data in a foreign system.
@@ -405,7 +405,7 @@ data:
       tags: [ sql ]
     - title: "CrateDB SQL reference: ALTER TABLE"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/alter-table.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/alter-table.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/alter-table.html
       description: |
         The `ALTER TABLE` command can be used to modify an existing table definition. It provides options
         to add columns, modify constraints, enabling or disabling table parameters and allows to execute
@@ -417,13 +417,13 @@ data:
       tags: [ sql ]
     - title: "CrateDB SQL reference: COPY FROM"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/copy-from.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/copy-from.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/copy-from.html
       description: The `COPY FROM` command copies data from a URI to the specified table.
       parents: [ sql-syntax ]
       tags: [ sql ]
     - title: "CrateDB SQL reference: COPY TO"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/sql/statements/copy-to.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/copy-to.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/sql/statements/copy-to.html
       description: |
         The `COPY TO` command exports the contents of a table to one or more files
         into a given directory with unique filenames.
@@ -433,7 +433,7 @@ data:
     # SQL: Data types
     - title: "CrateDB SQL reference: Data types"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/data-types.rst.txt
-      html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/data-types.html
+      href: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/data-types.html
       description: |
         Data can be stored in different formats. CrateDB has different types that can be specified if
         a table is created using the CREATE TABLE statement.
@@ -648,7 +648,7 @@ data:
     # Toolkit Example Datasets
     - title: "CrateDB Toolkit: Import example datasets"
       link: https://cratedb-toolkit.readthedocs.io/_sources/datasets.md.txt
-      html: https://cratedb-toolkit.readthedocs.io/datasets.html
+      href: https://cratedb-toolkit.readthedocs.io/datasets.html
       description: |
         CrateDB Toolkit's `cratedb_toolkit.datasets.load_dataset` API primitive can be used to
         load curated datasets from <https://github.com/crate/cratedb-datasets> into your database
