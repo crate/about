@@ -9,6 +9,8 @@
   example datasets using CrateDB Toolkit.
 - Bundle: Fixed semantics of `llms.txt` vs. `llms-full.txt`, see [ABOUT-39].
 - Bundle: Generated `outline.html` for improved inspection by humans
+- Inventory: Prioritized technical content because context windows are limited.
+  Most LLM implementations will truncate input in some way or another.
 
 [ABOUT-39]: https://github.com/crate/about/issues/39
 
