@@ -201,7 +201,7 @@ data:
         A partition is similar to a regular single table and consists of one or more shards.
         A table becomes a partitioned table by defining partition columns.
         When a record with a new distinct combination of values for the configured partition
-        columns is inserted, a new partition is created and the document will be inserted into this partition.
+        columns is inserted, a new partition is created, and the document is inserted into this new partition.
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/general/ddl/partitioned-tables.rst.txt
       html: https://cratedb.com/docs/crate/reference/en/latest/general/ddl/partitioned-tables.html
       parents: [ reference ]
