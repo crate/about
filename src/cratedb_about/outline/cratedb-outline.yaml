@@ -52,114 +52,6 @@ data:
       link: https://cratedb.com/docs/guide/_sources/home/index.md.txt
       description: Benefits of CrateDB at a glance.
 
-    # Features
-    - title: "CrateDB features"
-      link: https://cratedb.com/docs/guide/_sources/feature/index.md.txt
-      description: All features of CrateDB at a glance.
-      notes: This just includes the index, but no content.
-      source: docs
-      type: index
-      id: feature
-    - title: "Feature: SQL"
-      link: https://cratedb.com/docs/guide/_sources/feature/sql/index.md.txt
-      description: CrateDB’s features are available using plain SQL, and it is wire-protocol compatible to PostgreSQL.
-      parents: [ feature ]
-    - title: "Feature: Connectivity"
-      link: https://cratedb.com/docs/guide/_sources/feature/connectivity/index.md.txt
-      description: All CrateDB connectivity options at a glance.
-      parents: [ feature ]
-    - title: "Feature: Document Store"
-      link: https://cratedb.com/docs/guide/_sources/feature/document/index.md.txt
-      description: |
-        Efficiently store JSON documents or other structured data, also nested,
-        using CrateDB’s OBJECT and ARRAY container data types, and query this data with ease.
-      parents: [ feature ]
-    - title: "Feature: Relational / JOINs"
-      link: https://cratedb.com/docs/guide/_sources/feature/relational/index.md.txt
-      description: CrateDB implements distributed joins.
-      parents: [ feature ]
-    - title: "Feature: Full-text Search"
-      link: https://cratedb.com/docs/guide/_sources/feature/search/fts/index.md.txt
-      description: BM25 term search based on Apache Lucene, using SQL - CrateDB is all you need.
-      parents: [ feature ]
-    - title: "Feature: Geospatial Search"
-      link: https://cratedb.com/docs/guide/_sources/feature/search/geo/index.md.txt
-      description: CrateDB supports location data for efficiently storing and querying geographic and spatial/geospatial data.
-      parents: [ feature ]
-    - title: "Feature: Vector Search"
-      link: https://cratedb.com/docs/guide/_sources/feature/search/vector/index.md.txt
-      description: Vector search on machine learning embeddings - CrateDB is all you need.
-      parents: [ feature ]
-    - title: "Feature: Hybrid Search"
-      link: https://cratedb.com/docs/guide/_sources/feature/search/hybrid/index.md.txt
-      description: Combined BM25 term search and vector search based on Apache Lucene, using SQL - CrateDB is all you need.
-      parents: [ feature ]
-    - title: "Feature: BLOB Store"
-      link: https://cratedb.com/docs/guide/_sources/feature/blob/index.md.txt
-      description: CrateDB provides a blob/object storage subsystem accessible via HTTP, similar to AWS S3.
-      parents: [ feature ]
-    - title: "Feature: Clustering"
-      link: https://cratedb.com/docs/guide/_sources/feature/cluster/index.md.txt
-      description: CrateDB provides scalability through partitioning, sharding, and replication.
-      parents: [ feature ]
-    - title: "Feature: Snapshots"
-      link: https://cratedb.com/docs/guide/_sources/feature/snapshot/index.md.txt
-      description: CrateDB provides a backup mechanism based on snapshots.
-      parents: [ feature ]
-    - title: "Feature: Cloud Native"
-      link: https://cratedb.com/docs/guide/_sources/feature/cloud/index.md.txt
-      description: CrateDB is designed to support cloud computing from the beginning.
-      parents: [ feature ]
-    - title: "Feature: Storage Layer"
-      link: https://cratedb.com/docs/guide/_sources/feature/storage/index.md.txt
-      description: |
-        The CrateDB storage layer is based on Lucene. By default, all fields are indexed,
-        nested or not, but the indexing can be turned off selectively.
-      parents: [ feature ]
-    - title: "Feature: Hybrid Index"
-      link: https://cratedb.com/docs/guide/_sources/feature/index/index.md.txt
-      description: CrateDB indexes all columns by default, for lightning-fast query responses on your fingertips.
-      parents: [ feature ]
-    - title: "Feature: Advanced Querying"
-      link: https://cratedb.com/docs/guide/_sources/feature/query/index.md.txt
-      description: |
-        About all the advanced querying features of CrateDB, unifying data types
-        and query characteristics. Mix full-text search with time series aspects,
-        and run powerful aggregations or other kinds of complex queries on your data.
-        CrateDB supports effective time series analysis with fast
-        aggregations, relational features for JOIN operations, and a rich
-        set of built-in functions.
-      parents: [ feature ]
-    - title: "Feature: Generated Columns"
-      link: https://cratedb.com/docs/guide/_sources/feature/generated/index.md.txt
-      description: |
-        CrateDB's SQL DDL statements accept defining generated columns.
-        Those columns values are computed by applying a generation expression in the context of
-        the current row. The generation expression can reference the values of other columns.
-      parents: [ feature ]
-    - title: "Feature: Server-Side Cursors"
-      link: https://cratedb.com/docs/guide/_sources/feature/cursor/index.md.txt
-      description: |
-        CrateDB implements the SQL Standard feature F431 (read-only scrollable cursor),
-        aka. server-side cursors, aka. portals.
-      parents: [ feature ]
-    - title: "Feature: Foreign Data Wrapper"
-      link: https://cratedb.com/docs/guide/_sources/feature/fdw/index.md.txt
-      description: |
-        Like the PostgreSQL FDW implementation, CrateDB offers the possibility to access database
-        tables on remote database servers as if they would be stored within CrateDB.
-      parents: [ feature ]
-    - title: "Feature: User-Defined Functions"
-      link: https://cratedb.com/docs/guide/_sources/feature/udf/index.md.txt
-      description: CrateDB supports user-defined functions (UDFs) that can be written in JavaScript.
-      parents: [ feature ]
-    - title: "Feature: Cross-Cluster Replication"
-      link: https://cratedb.com/docs/guide/_sources/feature/ccr/index.md.txt
-      description: |
-        Cross-cluster replication, also called logical replication,
-        is a method of data replication across multiple clusters.
-      parents: [ feature ]
-
     # Reference docs
     - title: "CrateDB reference documentation"
       link: https://cratedb.com/docs/crate/reference/en/latest/_sources/index.rst.txt
@@ -258,46 +150,6 @@ data:
         Critical design considerations to successfully scale CrateDB in large production
         environments to ensure performance and reliability as workloads grow.
       parents: [ guide ]
-
-    # Cloud docs
-    - title: "CrateDB Cloud"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/index.md.txt
-      description: The full documentation for CrateDB Cloud.
-      notes: This just includes the index, but no content.
-      source: docs
-      type: index
-      id: cloud
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: Services"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt
-      description: Services specifications and variants of CrateDB Cloud.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: Billing"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt
-      description: How billing works in CrateDB Cloud.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: API"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt
-      description: CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: Import data"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/import.md.txt
-      description: How to conveniently import data into CrateDB Cloud.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: Export data"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt
-      description: How to conveniently export data from CrateDB Cloud.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: Automatic backups"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt
-      description: How automatic backups work in CrateDB Cloud.
-      parents: [ cloud ]
-    - title: "CrateDB Cloud: MongoDB CDC integration"
-      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt
-      description: |
-        CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC),
-        providing seamless, real-time synchronization of your data.
-      parents: [ cloud ]
 
     # Tutorials
     - title: "Integration Tutorials I"
@@ -679,6 +531,154 @@ data:
 
   - name: Optional
     items:
+
+    # Cloud docs
+    - title: "CrateDB Cloud"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/index.md.txt
+      description: The full documentation for CrateDB Cloud.
+      notes: This just includes the index, but no content.
+      source: docs
+      type: index
+      id: cloud
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Services"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt
+      description: Services specifications and variants of CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Billing"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt
+      description: How billing works in CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: API"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt
+      description: CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Import data"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/import.md.txt
+      description: How to conveniently import data into CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Export data"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt
+      description: How to conveniently export data from CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: Automatic backups"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt
+      description: How automatic backups work in CrateDB Cloud.
+      parents: [ cloud ]
+    - title: "CrateDB Cloud: MongoDB CDC integration"
+      link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt
+      description: |
+        CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC),
+        providing seamless, real-time synchronization of your data.
+      parents: [ cloud ]
+
+    # Features
+    - title: "CrateDB features"
+      link: https://cratedb.com/docs/guide/_sources/feature/index.md.txt
+      description: All features of CrateDB at a glance.
+      notes: This just includes the index, but no content.
+      source: docs
+      type: index
+      id: feature
+    - title: "Feature: SQL"
+      link: https://cratedb.com/docs/guide/_sources/feature/sql/index.md.txt
+      description: CrateDB’s features are available using plain SQL, and it is wire-protocol compatible to PostgreSQL.
+      parents: [ feature ]
+    - title: "Feature: Connectivity"
+      link: https://cratedb.com/docs/guide/_sources/feature/connectivity/index.md.txt
+      description: All CrateDB connectivity options at a glance.
+      parents: [ feature ]
+    - title: "Feature: Document Store"
+      link: https://cratedb.com/docs/guide/_sources/feature/document/index.md.txt
+      description: |
+        Efficiently store JSON documents or other structured data, also nested,
+        using CrateDB’s OBJECT and ARRAY container data types, and query this data with ease.
+      parents: [ feature ]
+    - title: "Feature: Relational / JOINs"
+      link: https://cratedb.com/docs/guide/_sources/feature/relational/index.md.txt
+      description: CrateDB implements distributed joins.
+      parents: [ feature ]
+    - title: "Feature: Full-text Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/fts/index.md.txt
+      description: BM25 term search based on Apache Lucene, using SQL - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: Geospatial Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/geo/index.md.txt
+      description: CrateDB supports location data for efficiently storing and querying geographic and spatial/geospatial data.
+      parents: [ feature ]
+    - title: "Feature: Vector Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/vector/index.md.txt
+      description: Vector search on machine learning embeddings - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: Hybrid Search"
+      link: https://cratedb.com/docs/guide/_sources/feature/search/hybrid/index.md.txt
+      description: Combined BM25 term search and vector search based on Apache Lucene, using SQL - CrateDB is all you need.
+      parents: [ feature ]
+    - title: "Feature: BLOB Store"
+      link: https://cratedb.com/docs/guide/_sources/feature/blob/index.md.txt
+      description: CrateDB provides a blob/object storage subsystem accessible via HTTP, similar to AWS S3.
+      parents: [ feature ]
+    - title: "Feature: Clustering"
+      link: https://cratedb.com/docs/guide/_sources/feature/cluster/index.md.txt
+      description: CrateDB provides scalability through partitioning, sharding, and replication.
+      parents: [ feature ]
+    - title: "Feature: Snapshots"
+      link: https://cratedb.com/docs/guide/_sources/feature/snapshot/index.md.txt
+      description: CrateDB provides a backup mechanism based on snapshots.
+      parents: [ feature ]
+    - title: "Feature: Cloud Native"
+      link: https://cratedb.com/docs/guide/_sources/feature/cloud/index.md.txt
+      description: CrateDB is designed to support cloud computing from the beginning.
+      parents: [ feature ]
+    - title: "Feature: Storage Layer"
+      link: https://cratedb.com/docs/guide/_sources/feature/storage/index.md.txt
+      description: |
+        The CrateDB storage layer is based on Lucene. By default, all fields are indexed,
+        nested or not, but the indexing can be turned off selectively.
+      parents: [ feature ]
+    - title: "Feature: Hybrid Index"
+      link: https://cratedb.com/docs/guide/_sources/feature/index/index.md.txt
+      description: CrateDB indexes all columns by default, for lightning-fast query responses on your fingertips.
+      parents: [ feature ]
+    - title: "Feature: Advanced Querying"
+      link: https://cratedb.com/docs/guide/_sources/feature/query/index.md.txt
+      description: |
+        About all the advanced querying features of CrateDB, unifying data types
+        and query characteristics. Mix full-text search with time series aspects,
+        and run powerful aggregations or other kinds of complex queries on your data.
+        CrateDB supports effective time series analysis with fast
+        aggregations, relational features for JOIN operations, and a rich
+        set of built-in functions.
+      parents: [ feature ]
+    - title: "Feature: Generated Columns"
+      link: https://cratedb.com/docs/guide/_sources/feature/generated/index.md.txt
+      description: |
+        CrateDB's SQL DDL statements accept defining generated columns.
+        Those columns values are computed by applying a generation expression in the context of
+        the current row. The generation expression can reference the values of other columns.
+      parents: [ feature ]
+    - title: "Feature: Server-Side Cursors"
+      link: https://cratedb.com/docs/guide/_sources/feature/cursor/index.md.txt
+      description: |
+        CrateDB implements the SQL Standard feature F431 (read-only scrollable cursor),
+        aka. server-side cursors, aka. portals.
+      parents: [ feature ]
+    - title: "Feature: Foreign Data Wrapper"
+      link: https://cratedb.com/docs/guide/_sources/feature/fdw/index.md.txt
+      description: |
+        Like the PostgreSQL FDW implementation, CrateDB offers the possibility to access database
+        tables on remote database servers as if they would be stored within CrateDB.
+      parents: [ feature ]
+    - title: "Feature: User-Defined Functions"
+      link: https://cratedb.com/docs/guide/_sources/feature/udf/index.md.txt
+      description: CrateDB supports user-defined functions (UDFs) that can be written in JavaScript.
+      parents: [ feature ]
+    - title: "Feature: Cross-Cluster Replication"
+      link: https://cratedb.com/docs/guide/_sources/feature/ccr/index.md.txt
+      description: |
+        Cross-cluster replication, also called logical replication,
+        is a method of data replication across multiple clusters.
+      parents: [ feature ]
 
     # Time series
     - title: "Time Series with CrateDB"
