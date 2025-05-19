@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.5 - 2025-05-19
 - Bundle: Added outline in Markdown format, which got lost previously
 - Inventory: Added general information about partitioned tables, storage,
   replication, and views, and more specific information about the
