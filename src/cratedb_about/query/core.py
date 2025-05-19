@@ -50,10 +50,6 @@ class CrateDbKnowledgeConversation:
             raise ImportError("The 'openai' package is required when using the OpenAI backend")
         if self.backend == "claude" and not CLAUDE_AVAILABLE:
             raise ImportError("The 'claudette' package is required when using the Claude backend")
-        if self.backend == "openai" and not os.environ.get("OPENAI_API_KEY"):
-            raise ValueError(
-                "OPENAI_API_KEY environment variable is required when using 'openai' backend"
-            )
         if self.backend == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
             raise ValueError(
                 "ANTHROPIC_API_KEY environment variable is required when using 'claude' backend"
@@ -110,7 +106,7 @@ class CrateDbKnowledgeConversation:
         - https://community.openai.com/t/how-is-developer-message-better-than-system-prompt/1062784
         """
 
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        client = OpenAI(api_key="n/a", base_url="http://localhost:4000")
 
         input_messages: t.List[Message] = []
 
@@ -140,9 +136,13 @@ class CrateDbKnowledgeConversation:
         )
 
         # model = "gpt-4o"  # noqa: ERA001
-        model = "gpt-4.1"  # noqa: ERA001
+        # model = "gpt-4.1"  # noqa: ERA001
         # model = "o4-mini"  # noqa: ERA001
         # model = "o3"  # noqa: ERA001
+        model = "llama3.2"  # noqa: ERA001
+        # model = "gemma3:1b"  # noqa: ERA001
+        # model = "qwen3:0.6b"  # noqa: ERA001
+        # model = "deepseek-r1:7b"  # noqa: ERA001
         reasoning = None
         if model == "o4-mini":
             reasoning = Reasoning(
