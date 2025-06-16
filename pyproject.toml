@@ -91,7 +91,7 @@ optional-dependencies.develop = [
   "validate-pyproject<1",
 ]
 optional-dependencies.llm = [
-  "claudette<0.2",
+  "claudette<0.3",
   "openai<2",
 ]
 optional-dependencies.manyio = [
