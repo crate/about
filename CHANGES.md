@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Prompt: Added instructions about working with CrateDB to be used for
+  LLM system prompts. Thanks, @hammerhead and @WalBeh.
 
 ## v0.0.5 - 2025-05-19
 - Bundle: Added outline in Markdown format, which got lost previously
