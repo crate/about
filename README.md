@@ -60,6 +60,10 @@ nothing big.
 - The outline file [cratedb-outline.yaml] file indexes documents about
   what CrateDB is, what you can do with it, and how.
 
+- The Markdown file [cratedb-instructions.md] includes instructions and
+  directives about how to use CrateDB. They can be used by humans as a
+  cheat sheet, or to improve prompts for LLMs and similar technologies.
+
 - Context bundle files are published to the [about/v1] folder.
   They can be used to provide better context for conversations about
   CrateDB, for example, by using the `cratedb-about ask` subcommand.
@@ -226,6 +230,7 @@ recommended, especially if you use it as a library.
 [about/v1]: https://cdn.crate.io/about/v1/
 [CrateDB]: https://cratedb.com/database
 [cratedb-about]: https://pypi.org/project/cratedb-about/
+[cratedb-instructions.md]: https://github.com/crate/about/blob/main/src/cratedb_about/instruction/cratedb-instructions.md
 [cratedb-mcp]: https://github.com/crate/cratedb-mcp
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [filesystem-spec]: https://filesystem-spec.readthedocs.io/
