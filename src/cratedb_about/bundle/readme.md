@@ -14,6 +14,7 @@ Target: <https://cdn.crate.io/about/v1/>
 - `outline.md`: The Markdown source file for generating the `llms.txt` file(s).
 - `llms.txt`: Output file `llms.txt` (standard).
 - `llms-full.txt`: Output file `llms.txt` (full), including the "Optional" section.
+- `instructions.md`: Instructions to be used within system prompts to LLMs.
 
 ## Details
 

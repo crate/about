@@ -12,9 +12,7 @@ class GeneralInstructions:
     """  # noqa: E501
 
     def __init__(self):
-        instructions_file = (
-            importlib.resources.files("cratedb_about.instruction") / "cratedb-instructions.md"
-        )
+        instructions_file = importlib.resources.files("cratedb_about.prompt") / "instructions.md"
         self.instructions_text = instructions_file.read_text()
 
     def render(self) -> str:
