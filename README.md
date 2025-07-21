@@ -66,7 +66,8 @@ nothing big.
 
 - Context bundle files are published to the [about/v1] folder.
   They can be used to provide better context for conversations about
-  CrateDB, for example, by using the `cratedb-about ask` subcommand.
+  CrateDB, for example, by using the `cratedb-about ask` subcommand,
+  or by using generic applications like [`llm`].
 
 - The documentation subsystem of the [cratedb-mcp] package uses the
   Python API to serve and consider relevant documentation resources
@@ -167,21 +168,42 @@ also be specified using the `OUTDIR` environment variable.
 ### Query
 Ask questions about CrateDB from the command line.
 #### CLI
+Execute a prompt using the built-in Python implementation.
 ```shell
 export OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
 cratedb-about ask "CrateDB does not seem to provide an AUTOINCREMENT feature?"
+```
+Hold an ongoing chat with a model using the versatile [`llm`] application.
+```shell
+uvx llm chat --model gpt-4.1 --option temperature 0.5 \
+  --fragment https://cdn.crate.io/about/v1/llms-full.txt \
+  --system-fragment https://cdn.crate.io/about/v1/instructions-general.md
+}
 ```
 If you are running out of questions, get inspired by the standard library.
 ```shell
 cratedb-about list-questions
 ```
 #### API
-Use the Python API to ask questions about CrateDB.
+Use the built-in Python API to ask questions about CrateDB.
 ```python
 from cratedb_about import CrateDbKnowledgeConversation
 
 knowledge = CrateDbKnowledgeConversation()
 knowledge.ask("CrateDB does not seem to provide an AUTOINCREMENT feature?")
+```
+Use the Python API of the `llm` package to ask questions about CrateDB.
+```python
+import llm
+
+model = llm.get_model("gpt-4.1")
+response = model.prompt(
+    "CrateDB does not seem to provide an AUTOINCREMENT feature?",
+    fragments=["https://cdn.crate.io/about/v1/llms-full.txt"],
+    system_fragments=["https://cdn.crate.io/about/v1/instructions-general.md"],
+    temperature=0.5,
+)
+print(response.text())
 ```
 #### Notes
 - To configure a different context file, use the `ABOUT_CONTEXT_URL`
@@ -235,6 +257,7 @@ recommended, especially if you use it as a library.
 [cratedb-outline.yaml]: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml
 [filesystem-spec]: https://filesystem-spec.readthedocs.io/
 [hierarchical outline]: https://en.wikipedia.org/wiki/Outline_(list)
+[`llm`]: https://llm.datasette.io/
 [llms-txt]: https://llmstxt.org/
 [llms.txt]: https://cdn.crate.io/about/v1/llms.txt
 [llms-full.txt]: https://cdn.crate.io/about/v1/llms-full.txt
