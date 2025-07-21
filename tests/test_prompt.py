@@ -1,4 +1,4 @@
-from cratedb_about.instruction import GeneralInstructions
+from cratedb_about.prompt import GeneralInstructions
 
 
 def test_instructions_full():
