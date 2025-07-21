@@ -26,7 +26,7 @@ inherits technologies from Elasticsearch, and is compatible with PostgreSQL.
 ## Rules for writing SQL queries
 
 - To retrieve the latest value for a column, use CrateDB's `MAX_BY` function.
-- When using date intervals, always include both the quantity and the unit in a string, e.g. INTERVAL '7 days'.
+- When using date intervals, always include both the quantity and the unit in a string, e.g. `INTERVAL '7 days'`.
 - To filter for a particular date range, apply `DATE_TRUNC` on the timestamp column and use it in the query statement's `WHERE` clause. Do NOT use `DATE_SUB`, it does not exist in CrateDB.
 
 ## Key guidelines
