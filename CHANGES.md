@@ -2,6 +2,9 @@
 
 ## Unreleased
 - Prompt: Added `instructions-general.md` file when generating bundle
+- CLI: Added guidelines how to use the `llm` application and Python API
+  with `instructions-general.md` and `llms-full.txt` files for executing
+  prompts and holding conversations with LLMs.
 
 ## v0.0.6 - 2025-07-21
 - Prompt: Added instructions about working with CrateDB to be used for
