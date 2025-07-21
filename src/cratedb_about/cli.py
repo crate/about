@@ -7,6 +7,7 @@ from pueblo.util.cli import boot_click
 
 from cratedb_about.bundle.llmstxt import CrateDbLllmsTxtBuilder
 from cratedb_about.outline import CrateDbKnowledgeOutline
+from cratedb_about.prompt import GeneralInstructions
 from cratedb_about.query.core import CrateDbKnowledgeConversation
 from cratedb_about.query.model import Example
 
@@ -88,14 +89,18 @@ def outline(
 @click.pass_context
 def bundle(ctx: click.Context, url: str, format_: str, outdir: Path) -> None:
     """
-    Produce a context bundle from an outline file.
+    Produce files suitable to work with CrateDB and LLMs.
 
-    1. Generate multiple `llms.txt` files.
+    1. Produce a llms.txt context bundle file from an outline file.
+       Generate multiple `llms.txt` files.
        https://llmstxt.org/
+
+    2. Add `instructions-general.md` file.
     """
     if format_ != "llm":
         raise click.BadOptionUsage("format", f"Invalid output format: {format_}", ctx=ctx)
     CrateDbLllmsTxtBuilder(outline_url=url, outdir=outdir).run()
+    (outdir / "instructions-general.md").write_text(GeneralInstructions().render())
     logger.info("Ready.")
 
 
