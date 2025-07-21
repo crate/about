@@ -1,19 +1,21 @@
 import importlib.resources
 
-instructions_file = (
-    importlib.resources.files("cratedb_about.instruction") / "cratedb-instructions.md"
-)
-instructions_text = instructions_file.read_text()
 
-
-class Instructions:
+class GeneralInstructions:
     """
-    Bundle a few general instructions how to work with CrateDB.
+    Bundle a few general instructions about how to work with CrateDB.
 
-    - Introduction: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml#L27-L40
-    - General notes about writing principles: https://github.com/jlowin/fastmcp/blob/main/docs/.cursor/rules/mintlify.mdc#L10-L34
-    """
+    - Things to remember when working with CrateDB: https://github.com/crate/about/blob/main/src/cratedb_about/outline/cratedb-outline.yaml#L27-L40
+    - Impersonation, Rules for writing SQL queries: https://github.com/crate/cratedb-examples/blob/7f1bc0f94/topic/chatbot/table-augmented-generation/aws/cratedb_tag_inline_agent.ipynb?short_path=00988ad#L777-L794
+    - Key guidelines: Thanks, @WalBeh.
+    - Core writing principles: https://github.com/jlowin/fastmcp/blob/main/docs/.cursor/rules/mintlify.mdc#L10-L34. Thanks, @jlowin.
+    """  # noqa: E501
 
-    @classmethod
-    def full(cls) -> str:
-        return instructions_text
+    def __init__(self):
+        instructions_file = (
+            importlib.resources.files("cratedb_about.instruction") / "cratedb-instructions.md"
+        )
+        self.instructions_text = instructions_file.read_text()
+
+    def render(self) -> str:
+        return self.instructions_text
