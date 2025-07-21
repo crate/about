@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.6 - 2025-07-21
 - Prompt: Added instructions about working with CrateDB to be used for
   LLM system prompts. Thanks, @hammerhead and @WalBeh.
 
