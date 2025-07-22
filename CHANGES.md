@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.7 - 2025-07-22
 - Prompt: Added `instructions-general.md` file when generating bundle
 - CLI: Added guidelines how to use the `llm` application and Python API
   with `instructions-general.md` and `llms-full.txt` files for executing
