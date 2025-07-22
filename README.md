@@ -178,7 +178,6 @@ Hold an ongoing chat with a model using the versatile [`llm`] application.
 uvx llm chat --model gpt-4.1 --option temperature 0.5 \
   --fragment https://cdn.crate.io/about/v1/llms-full.txt \
   --system-fragment https://cdn.crate.io/about/v1/instructions-general.md
-}
 ```
 If you are running out of questions, get inspired by the standard library.
 ```shell
