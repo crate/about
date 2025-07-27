@@ -122,8 +122,8 @@ def ask(question: str, backend: t.Literal["claude", "openai"]) -> None:
     if not question:
         # Use the AUTOINCREMENT question or fall back to the first question if not found
         default_question = next(
-            (q for q in Example.questions if "AUTOINCREMENT" in q),
-            Example.questions[0] if Example.questions else "What is CrateDB?",
+            (q for q in Example.knowledgebase if "AUTOINCREMENT" in q),
+            Example.knowledgebase[0] if Example.knowledgebase else "What is CrateDB?",
         )
         question = default_question
     click.echo(f"Question: {question}\nAnswer:\n")
@@ -135,4 +135,21 @@ def list_questions() -> None:
     """
     List a few example questions about CrateDB.
     """
-    click.echo("\n".join(Example.questions))
+
+    output = f"""
+# Questions
+
+## Knowledgebase
+
+{Example.render(Example.knowledgebase)}
+
+## Text-to-SQL
+
+### time_series_data
+{Example.render(Example.text_to_sql["time_series_data"])}
+
+### summits
+{Example.render(Example.text_to_sql["summits"])}
+    """.strip()
+
+    print(output)  # noqa: T201
