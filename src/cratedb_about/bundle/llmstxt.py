@@ -8,6 +8,7 @@ from pathlib import Path
 from markdown import markdown
 
 from cratedb_about import CrateDbKnowledgeOutline
+from cratedb_about.bundle.util import count_tokens
 from cratedb_about.outline import OutlineDocument
 from cratedb_about.util import get_hostname, get_now
 
@@ -49,6 +50,8 @@ class LllmsTxtBuilder:
 
         llms_txt.write_text(self.outline.to_markdown())
         llms_txt_full.write_text(self.outline.to_llms_txt(optional=False))
+
+        count_tokens(llms_txt_full)
 
         return self
 
