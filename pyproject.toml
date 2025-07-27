@@ -79,6 +79,7 @@ dependencies = [
   "platformdirs<5",
   "pueblo==0.0.11",
   "requests<3",
+  "tiktoken<0.10",
 ]
 optional-dependencies.all = [
   "cratedb-about[manyio,llm]",
@@ -91,7 +92,8 @@ optional-dependencies.develop = [
   "validate-pyproject<1",
 ]
 optional-dependencies.llm = [
-  "claudette<0.4",
+  "anthropic<0.60",
+  "claudette<0.3",
   "openai<2",
 ]
 optional-dependencies.manyio = [
