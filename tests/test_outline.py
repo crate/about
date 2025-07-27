@@ -156,8 +156,8 @@ def test_outline_section_not_found(cratedb_outline_builtin):
     assert section_not_found is None
 
 
-def test_outline_section_items_dict(cratedb_outline_builtin):
-    items = cratedb_outline_builtin.find_items(section_name="Docs").to_dict()
+def test_outline_section_items_list(cratedb_outline_builtin):
+    items = cratedb_outline_builtin.find_items(section_name="Docs").to_list()
     assert items[0]["title"] == "CrateDB README"
 
 
@@ -177,8 +177,8 @@ def test_outline_section_all_items(cratedb_outline_builtin):
     assert len(items) >= 30
 
 
-def test_outline_find_items_dict(cratedb_outline_builtin):
-    items = cratedb_outline_builtin.find_items(title="gtfs").to_dict()
+def test_outline_find_items_list(cratedb_outline_builtin):
+    items = cratedb_outline_builtin.find_items(title="gtfs").to_list()
     assert "Capture GTFS and GTFS-RT data" in items[0]["description"]
 
 

@@ -52,7 +52,7 @@ class OutlineData(DictTools):
 class OutlineItems(list):
     """List of `OutlineItem` elements, including additional features"""
 
-    def to_dict(self):
+    def to_list(self):
         return [item.to_dict() for item in self]
 
 
