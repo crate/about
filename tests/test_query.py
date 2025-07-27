@@ -51,7 +51,7 @@ def test_example_question():
     """
     Validate the example question bundle class.
     """
-    assert "How to enumerate active jobs?" in Example.questions
+    assert "How to enumerate active jobs?" in Example.knowledgebase
 
 
 def test_ask_openai_no_api_key():

@@ -2,6 +2,7 @@ import logging
 import os
 import typing as t
 from pathlib import Path
+from textwrap import dedent
 
 from cratedb_about.settings import settings
 from cratedb_about.util import get_cache_client
@@ -9,12 +10,16 @@ from cratedb_about.util import get_cache_client
 logger = logging.getLogger(__name__)
 
 
+def cleanse(q: str) -> str:
+    return dedent(q).strip().replace("\n", " ")
+
+
 class Example:
     """
     A few example questions to ask about CrateDB.
     """
 
-    questions = [
+    knowledgebase = [
         "What are the benefits of CrateDB?",
         "Tell me about why CrateDB is different.",
         "Tell me about CrateDB Cloud.",
@@ -42,6 +47,32 @@ class Example:
         "How do I use pandas with CrateDB?",
         "How do I optimally synchronize data between MongoDB and CrateDB?",
     ]
+
+    text_to_sql = {
+        "time_series_data": [
+            "What is the average value for sensor 1?",
+            "What’s the name of the sensors table? Does it use any special cluster settings?",
+            "How many sensor measurements have been recorded?",
+            "When was the most recent measurement taken?",
+            "Do you see any irregularities in the recorded measurement values?",
+            cleanse("""
+            Can you plot the measurement values over time to visualize any trends or anomalies
+            by providing a Python code example and executing it?
+            Please highlight or annotate the outliers in the plot."""),
+            cleanse("""
+            Create several visualizations in Jupyter using matplotlib and seaborn based on data
+            in CrateDB’s `time_series_data` table, highlighting irregularities, and display them.
+            If you need to, please install required dependencies automatically."""),
+        ],
+        "summits": [
+            "What’s the highest mountains in Switzerland (CH) in the summits table?",
+            "Can you provide a list of the highest mountains by country from the dataset?",
+        ],
+    }
+
+    @classmethod
+    def render(cls, thing):
+        return "\n".join([f"- {item}" for item in thing])
 
 
 class KnowledgeContextLoader:
