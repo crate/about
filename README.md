@@ -140,8 +140,8 @@ outline = CrateDbKnowledgeOutline.load()
 outline.get_section_names()
 
 # Retrieve information about resources from the "Docs" and "Examples" sections.
-outline.find_items(section_name="Docs").to_dict()
-outline.find_items(section_name="Examples").to_dict()
+outline.find_items(section_name="Docs").to_list()
+outline.find_items(section_name="Examples").to_list()
 
 # Convert outline into Markdown format.
 outline.to_markdown()

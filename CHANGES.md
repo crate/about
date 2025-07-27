@@ -5,6 +5,7 @@
 - Bundle: Added "count-tokens" procedure to inform about the size
   of the outcome. Sonnet and Opus are limited to 200_000 input tokens.
 - Query: Added a few more example questions specific to CrateDB
+- Naming things: Renamed `OutlineItems.to_dict` to `OutlineItems.to_list`
 
 ## v0.0.7 - 2025-07-22
 - Prompt: Added `instructions-general.md` file when generating bundle
