@@ -44,8 +44,11 @@ class LllmsTxtBuilder:
         #   listing all the pages in the documentation.
         # - The `llms-full.txt` contains the entire documentation, expanded from the `llms.txt`
         #   file. Note this may exceed the context window of your LLM.
-        Path(self.outdir / "llms.txt").write_text(self.outline.to_markdown())
-        Path(self.outdir / "llms-full.txt").write_text(self.outline.to_llms_txt(optional=True))
+        llms_txt = Path(self.outdir / "llms.txt")
+        llms_txt_full = Path(self.outdir / "llms-full.txt")
+
+        llms_txt.write_text(self.outline.to_markdown())
+        llms_txt_full.write_text(self.outline.to_llms_txt(optional=False))
 
         return self
 
