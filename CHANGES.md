@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Outline: Shrank llms-txt output to <200_000 input tokens
 
 ## v0.0.7 - 2025-07-22
 - Prompt: Added `instructions-general.md` file when generating bundle

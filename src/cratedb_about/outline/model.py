@@ -25,6 +25,7 @@ class OutlineItem(DictTools):
     title: str
     link: str
     description: str
+    markdown_enabled: bool = True
 
     def __attrs_post_init__(self):
         # FIXME: Currently, `llms_txt` does not accept newlines in description fields.
@@ -76,6 +77,8 @@ class OutlineDocument(Dumpable):
         for section in self.data.sections:
             buffer.write(f"## {section.name}\n\n")
             for item in section.items:
+                if not item.markdown_enabled:
+                    continue
                 buffer.write(f"- [{item.title}]({item.link}): {item.description}\n")
             buffer.write("\n")
         return buffer.getvalue().strip()

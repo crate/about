@@ -293,6 +293,8 @@ data:
         They also influence the behaviour when the records are queried.
       parents: [ sql-syntax ]
       tags: [ sql ]
+      # FIXME: This needs about 40_000 input tokens. Maybe a stripped-down variant could help?
+      markdown_enabled: false
 
     # SQL: Functions
     - title: "CrateDB SQL reference: Scalar functions"
@@ -388,18 +390,21 @@ data:
         The `ctk cluster {start,info,stop}` subcommands provide higher level CLI
         entrypoints to start/deploy/resume a database cluster, inquire information
         about it, and stop/suspend it again.
+      markdown_enabled: false
     - title: "Cluster API: Python"
       link: https://cratedb-toolkit.readthedocs.io/_sources/cluster/python.md.txt
       description: |
         The `cratedb_toolkit.ManagedCluster` class provides the higher level API/SDK
         entrypoints to start/deploy/resume a database cluster, inquire information
         about it, and stop/suspend it again.
+      markdown_enabled: false
     - title: "Cluster API: Tutorial"
       link: https://cratedb-toolkit.readthedocs.io/_sources/cluster/tutorial.md.txt
       description: |
         This tutorial outlines end-to-end examples connecting to the CrateDB Cloud
         API and the CrateDB database cluster. It includes examples about both the
         CrateDB Cluster CLI and the CrateDB Cluster Python API.
+      markdown_enabled: false
 
     # Drivers and clients
     - title: "CrateDB drivers and clients"
@@ -410,6 +415,7 @@ data:
       source: docs
       type: index
       id: drivers
+      markdown_enabled: false
     - title: "CrateDB Python Client"
       link: https://cratedb.com/docs/python/en/latest/_sources/index.rst.txt
       description: |
@@ -419,6 +425,7 @@ data:
         connecting to CrateDB from the Python ecosystem. It is verified to work with CPython, but it has also
         been tested successfully with PyPy.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "CrateDB SQLAlchemy dialect"
       link: https://cratedb.com/docs/sqlalchemy-cratedb/_sources/index.rst.txt
       description: |
@@ -429,12 +436,14 @@ data:
         CrateDB from the Python ecosystem. It is verified to work with CPython, but it has also been tested
         successfully with PyPy.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "CrateDB Driver for MicroPython"
       link: https://raw.githubusercontent.com/crate/micropython-cratedb/refs/heads/main/README.md
       description: |
         micropython-cratedb is a CrateDB driver for the MicroPython language.
         It connects to CrateDB using the HTTP Endpoint.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "Python psycopg3 driver"
       link: https://www.psycopg.org/psycopg3/docs/_sources/basic/usage.rst.txt
       description: |
@@ -447,6 +456,7 @@ data:
         The basic Psycopg usage is common to all the database adapters implementing the DB-API protocol.
         Other database adapters, such as the builtin sqlite3 or psycopg2, have roughly the same pattern of interaction.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "node-postgres driver"
       link: https://raw.githubusercontent.com/brianc/node-postgres/refs/heads/master/docs/pages/index.mdx
       description: |
@@ -455,6 +465,7 @@ data:
         It has support for callbacks, promises, async/await, connection pooling, prepared statements,
         cursors, streaming results, C/C++ bindings, rich type parsing, and more.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "PostgreSQL JDBC Driver"
       link: https://raw.githubusercontent.com/pgjdbc/pgjdbc/refs/heads/master/docs/content/documentation/_index.md
       description: |
@@ -463,6 +474,7 @@ data:
         Pure Java (Type 4), and communicates in the PostgreSQL native network protocol. Because of this,
         the driver is platform independent; once compiled, the driver can be used on any system.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "PostgreSQL driver and toolkit for Go"
       link: https://raw.githubusercontent.com/jackc/pgx/refs/heads/master/README.md
       description: |
@@ -471,6 +483,7 @@ data:
         the wire protocol and type mapping between PostgreSQL and Go. These underlying packages can be used to
         implement alternative drivers, proxies, load balancers, logical replication clients, etc.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "Npgsql - .NET Access to PostgreSQL"
       link: https://raw.githubusercontent.com/npgsql/doc/refs/heads/main/conceptual/Npgsql/index.md
       description: |
@@ -478,16 +491,19 @@ data:
         Visual Basic, F# to access the PostgreSQL database server. It is implemented in 100% C# code,
         is free and is open source.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "psqlODBC - PostgreSQL ODBC driver"
       link: https://raw.githubusercontent.com/postgresql-interfaces/psqlodbc/refs/heads/main/docs/config.html
       description: A library to talk to the PostgreSQL DBMS using ODBC.
       tags: [ driver ]
+      markdown_enabled: false
     - title: "PHP PostgreSQL PDO Driver (PDO_PGSQL)"
       link: https://raw.githubusercontent.com/php/doc-en/refs/heads/master/reference/pdo_pgsql/reference.xml
       description: |
         PDO_PGSQL is a driver that implements the PHP Data Objects (PDO) interface
         to enable access from PHP to PostgreSQL databases.
       tags: [ driver ]
+      markdown_enabled: false
 
   - name: Examples
     items:
@@ -511,23 +527,29 @@ data:
     - title: "CrateDB GTFS / GTFS-RT Transit Data Demo"
       link: https://raw.githubusercontent.com/crate/devrel-gtfs-transit/refs/heads/main/README.md
       description: Capture GTFS and GTFS-RT data for storage and analysis with CrateDB.
+      markdown_enabled: false
     - title: "CrateDB Offshore Wind Farms Demo Application"
       link: https://raw.githubusercontent.com/crate/devrel-offshore-wind-farms-demo/refs/heads/main/README.md
       description: A CrateDB demo application using data from the UK's offshore wind farms.
+      markdown_enabled: false
     - title: "CrateDB RAG / Hybrid Search PDF Chatbot"
       link: https://raw.githubusercontent.com/crate/devrel-pdf-rag-chatbot/refs/heads/main/README.md
       description: A chatbot powered by CrateDB using RAG techniques and data from PDF files.
+      markdown_enabled: false
     - title: "CrateDB Geospatial Data Demo"
       link: https://raw.githubusercontent.com/crate/devrel-shipping-forecast-geo-demo/refs/heads/main/README.md
       description: Spatial data demo application using CrateDB and the Express framework.
+      markdown_enabled: false
     - title: "Plane Spotting with Software Defined Radio, CrateDB and Node.js"
       link: https://raw.githubusercontent.com/crate/devrel-plane-spotting-with-cratedb/refs/heads/main/README.md
       description: Code for the Plane Spotting with Software Defined Radio, CrateDB and Node.js talk.
+      markdown_enabled: false
     - title: "MongoDB/CrateDB/Grafana CDC Demonstration"
       link: https://raw.githubusercontent.com/crate/devrel-mongo-cdc-demo/refs/heads/main/README.md
       description: |
         A small Python project that demonstrates how a CrateDB database can be populated and kept
         in sync with a collection in MongoDB using Change Data Capture (CDC).
+      markdown_enabled: false
 
   - name: Optional
     items:
@@ -541,36 +563,44 @@ data:
       type: index
       id: cloud
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: Services"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/reference/services.md.txt
       description: Services specifications and variants of CrateDB Cloud.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: Billing"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/billing.md.txt
       description: How billing works in CrateDB Cloud.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: API"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/organization/api.md.txt
       description: CrateDB Cloud provides an HTTP API for programmatic cluster and resource management.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: Import data"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/import.md.txt
       description: How to conveniently import data into CrateDB Cloud.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: Export data"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/export.md.txt
       description: How to conveniently export data from CrateDB Cloud.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: Automatic backups"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/backups.md.txt
       description: How automatic backups work in CrateDB Cloud.
       parents: [ cloud ]
+      markdown_enabled: false
     - title: "CrateDB Cloud: MongoDB CDC integration"
       link: https://cratedb.com/docs/cloud/en/latest/_sources/cluster/integrations/mongo-cdc.md.txt
       description: |
         CrateDB Cloud enables continuous data ingestion from MongoDB using Change Data Capture (CDC),
         providing seamless, real-time synchronization of your data.
       parents: [ cloud ]
+      markdown_enabled: false
 
     # Features
     - title: "CrateDB features"
@@ -691,6 +721,7 @@ data:
         - How to provide content from Jupyter Notebooks?
         - What other content to feed about the timeseries topic?
       source: examples
+      markdown_enabled: false
     - title: "Timeseries QA Assistant with CrateDB, LLMs, and Machine Manuals"
       link: https://raw.githubusercontent.com/crate/cratedb-examples/refs/heads/main/topic/chatbot/table-augmented-generation/app/README.md
       description: |
@@ -698,6 +729,7 @@ data:
         storing that data in CrateDB, and enabling natural-language querying powered by
         OpenAI — including RAG-style guidance from machine manuals.
       source: examples
+      markdown_enabled: false
 
     # Generative AI
     - title: "LangChain and CrateDB"
@@ -710,7 +742,9 @@ data:
       link: https://raw.githubusercontent.com/crate/about/refs/heads/main/src/content/blog/shared-nothing-architecture-multi-model-databases-scalable-real-time-analytics.md
       description: Leveraging Shared Nothing Architecture and Multi-Model Databases for Scalable Real-Time Analytics on Large Data.
       source: blog
+      markdown_enabled: false
     - title: "Use case: Digital Twins"
       link: https://raw.githubusercontent.com/crate/about/refs/heads/main/src/content/blog/digital-twins.md
       description: Digital twins are virtual representations of physical objects, processes, or systems in the digital realm. The abundance of data to be processed in digital twin setups is no problem for CrateDB.
       source: blog
+      markdown_enabled: false
