@@ -20,6 +20,7 @@ inherits technologies from Elasticsearch, and is compatible with PostgreSQL.
 - CrateDB targets interactive analytics on large data sets, similar in spirit to systems such as Teradata, BigQuery, and Snowflake.
 - Clients can connect to CrateDB using HTTP or the PostgreSQL wire protocol.
 - The default TCP ports of CrateDB are 4200 for the HTTP interface and 5432 for the PostgreSQL interface.
+- CrateDB’s SQLAlchemy dialect uses the `crate://` protocol identifier and the HTTP interface, thus port 4200 is applicable.
 - The language of choice after connecting to CrateDB is to use SQL, compatible with PostgreSQL's SQL dialect.
 - Storage concepts of CrateDB include partitioning and sharding to manage data larger than fitting on a single machine.
 - The data storage layer is based on Lucene, the data distribution layer was inspired by Elasticsearch.
