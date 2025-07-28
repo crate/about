@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.8 - 2025-07-28
 - Outline: Shrank llms-txt output to <200_000 input tokens
 - Bundle: Added "count-tokens" procedure to inform about the size
   of the outcome. Sonnet and Opus are limited to 200_000 input tokens.
