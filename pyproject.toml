@@ -92,7 +92,7 @@ optional-dependencies.develop = [
   "validate-pyproject<1",
 ]
 optional-dependencies.llm = [
-  "anthropic<0.68",
+  "anthropic<0.69",
   "claudette<0.4",
   "openai<2",
 ]
