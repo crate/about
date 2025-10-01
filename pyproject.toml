@@ -94,7 +94,7 @@ optional-dependencies.develop = [
 optional-dependencies.llm = [
   "anthropic<0.70",
   "claudette<0.4",
-  "openai<2",
+  "openai<3",
 ]
 optional-dependencies.manyio = [
   "pueblo[fileio]==0.0.11",
