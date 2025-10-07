@@ -79,7 +79,7 @@ dependencies = [
   "platformdirs<5",
   "pueblo==0.0.11",
   "requests<3",
-  "tiktoken<0.12",
+  "tiktoken<0.13",
 ]
 optional-dependencies.all = [
   "cratedb-about[manyio,llm]",
