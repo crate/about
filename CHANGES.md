@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Dependencies: Updated to Hishel 1.1
 
 ## v0.0.10 - 2025-12-16
 - Dependencies: Relaxed to `pueblo<0.1`, for less version bumping noise
