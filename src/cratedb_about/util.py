@@ -6,7 +6,7 @@ import typing as t
 from collections import OrderedDict
 
 import attr
-import hishel
+import hishel.httpx
 from attrs import define
 from cattrs.preconf.json import make_converter as make_json_converter
 from cattrs.preconf.pyyaml import make_converter as make_yaml_converter
@@ -64,16 +64,16 @@ def get_cache_client(ttl: t.Optional[t.Union[int, float]] = settings.http_cache_
     Return the configured cache client.
     https://hishel.com/
     """
-    # Configure Hishel, a httpx client with caching.
+    # Configure Hishel, an httpx client with caching.
     logger.info(f"Configuring cache. ttl={ttl}, path={settings.http_cache_path}")
     try:
-        controller = hishel.Controller(allow_stale=True)
-        storage = hishel.SQLiteStorage(
+        storage = hishel.SyncSqliteStorage(
             connection=sqlite3.connect(settings.http_cache_path, check_same_thread=False),
-            ttl=ttl,
+            default_ttl=ttl,
         )
-        return hishel.CacheClient(
-            controller=controller, storage=storage, timeout=settings.http_timeout
+        return hishel.httpx.SyncCacheClient(
+            storage=storage,
+            timeout=settings.http_timeout,
         )
     except Exception as e:
         msg = (
