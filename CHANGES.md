@@ -4,6 +4,7 @@
 - Outline: Improved `llms-txt`'s `get_doc_content` to fail on
   resources with HTTP != 200
 - Outline: Fixed broken links to documentation
+- CI: Started running software tests each night to catch regressions
 
 ## v0.0.8 - 2025-07-28
 - Outline: Shrank llms-txt output to <200_000 input tokens
