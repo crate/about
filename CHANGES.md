@@ -1,7 +1,6 @@
 # About CrateDB changelog
 
 ## Unreleased
-- Dependencies: Updated to Hishel 1.x
 
 ## v0.0.8 - 2025-07-28
 - Outline: Shrank llms-txt output to <200_000 input tokens
