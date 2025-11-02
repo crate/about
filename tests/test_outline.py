@@ -72,7 +72,7 @@ def test_outline_cli_llms_txt_default():
     assert result.exit_code == 0, result.output
 
     assert "Things to remember when working with Testing" in result.output
-    assert "for use in illustrative examples in documents" in result.output
+    assert "for use in documentation examples" in result.output
     assert "RFC 2606" not in result.output, (
         "The text must not be included within the non-optional bundle"
     )
@@ -90,7 +90,7 @@ def test_outline_cli_llms_txt_optional():
     assert result.exit_code == 0, result.output
 
     assert "Things to remember when working with Testing" in result.output
-    assert "for use in illustrative examples in documents" in result.output
+    assert "for use in documentation examples" in result.output
     assert "RFC 2606" in result.output, "The text must be included within the optional bundle"
 
 
