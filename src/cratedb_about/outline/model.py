@@ -100,6 +100,28 @@ class OutlineDocument(Dumpable):
             The string representation of the context in llms.txt format.
         """
 
+        def get_doc_content(url):
+            """
+            Fetch content from local file if in nbdev repo.
+
+            Source: https://github.com/AnswerDotAI/llms-txt/blob/0.0.4/llms_txt/core.py#L74-L80
+            Patched to invoke `raise_for_status()`.
+            :return:
+            """
+            from urllib.parse import urlparse
+
+            import httpx
+            from llms_txt.core import _get_config, _local_docs_pth
+
+            if (cfg := _get_config()) and url.startswith(cfg.doc_host):
+                relative_path = urlparse(url).path.lstrip("/")
+                local_path = _local_docs_pth(cfg) / relative_path
+                if local_path.exists():
+                    return local_path.read_text()
+            response = httpx.get(url, follow_redirects=True)
+            response.raise_for_status()
+            return response.text
+
         # Patch `llms_txt` package to use caching via Hishel.
         # https://hishel.com/
         http_client = get_cache_client()
@@ -107,11 +129,13 @@ class OutlineDocument(Dumpable):
             # Patch the client object.
             with mock.patch("llms_txt.core.httpx", client):
                 # Import module lazily to relax dependency surface.
-                from llms_txt import create_ctx
+                import llms_txt
+
+                llms_txt.core.get_doc_content = get_doc_content
 
                 # Expand links and output in Markdown format.
                 markdown = self.to_markdown()
-                ctx = create_ctx(markdown, optional=optional, n_workers=None)
+                ctx = llms_txt.create_ctx(markdown, optional=optional, n_workers=None)
                 return str(ctx)
 
     def get_item_titles(self, section_name: t.Optional[str] = None) -> t.List[str]:
