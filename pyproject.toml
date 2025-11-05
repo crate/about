@@ -78,7 +78,7 @@ dependencies = [
   "llms-txt==0.0.4",
   "markdown<4",
   "platformdirs<5",
-  "pueblo==0.0.11",
+  "pueblo==0.0.12",
   "requests<3",
   "tiktoken<0.13",
 ]
