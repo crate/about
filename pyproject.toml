@@ -98,7 +98,7 @@ optional-dependencies.llm = [
   "openai<3",
 ]
 optional-dependencies.manyio = [
-  "pueblo[fileio]==0.0.11",
+  "pueblo[fileio]",
 ]
 optional-dependencies.release = [
   "build<2",
