@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Dependencies: Updated to Hishel 1.x
 
 ## v0.0.9 - 2025-11-03
 - Outline: Improved `llms-txt`'s `get_doc_content` to fail on
