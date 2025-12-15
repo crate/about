@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.10 - 2025-12-16
 - Dependencies: Relaxed to `pueblo<0.1`, for less version bumping noise
 
 ## v0.0.9 - 2025-11-03
