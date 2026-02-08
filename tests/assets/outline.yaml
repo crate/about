@@ -9,7 +9,7 @@ data:
 
   header:
     title: Testing
-    link: https://example.org/
+    link: https://httpbin.org/uuid
     description: |
       > Just for testing purposes.
 
@@ -23,9 +23,9 @@ data:
   - name: Docs
     items:
 
-    - title: "Example Domain"
-      link: https://example.org/
-      description: Example Domain.
+    - title: "Example Page"
+      link: https://httpbin.org/ip
+      description: Example Page.
 
   - name: Optional
     items:
