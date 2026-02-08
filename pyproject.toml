@@ -83,7 +83,7 @@ dependencies = [
   "tiktoken<0.13",
 ]
 optional-dependencies.all = [
-  "cratedb-about[manyio,llm]",
+  "cratedb-about[llm,manyio]",
 ]
 optional-dependencies.develop = [
   "mypy<1.20",
@@ -113,86 +113,76 @@ optional-dependencies.test = [
 urls.Changelog = "https://github.com/crate/about/blob/main/CHANGES.md"
 urls.Issues = "https://github.com/crate/about/issues"
 urls.Repository = "https://github.com/crate/about"
-
 scripts.cratedb-about = "cratedb_about.cli:cli"
 
-[tool.setuptools.package-data]
-cratedb_about = [
+[tool.setuptools]
+package-data.cratedb_about = [
   "**/*.md",
   "**/*.yaml",
 ]
 
 [tool.ruff]
 line-length = 100
-
-extend-exclude = [
-]
-
+extend-exclude = [  ]
 lint.select = [
-  # Builtins
-  "A",
+  # Bandit
+  "S",
   # Bugbear
   "B",
+  # Builtins
+  "A",
   # comprehensions
   "C4",
-  # Pycodestyle
-  "E",
   # eradicate
   "ERA",
-  # Pyflakes
-  "F",
+  # flake8-2020
+  "YTT",
   # isort
   "I",
   # pandas-vet
   "PD",
-  # return
-  "RET",
-  # Bandit
-  "S",
   # print
   "T20",
+  # Pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # return
+  "RET",
   "W",
-  # flake8-2020
-  "YTT",
 ]
-
 lint.per-file-ignores."tests/*" = [
   "S101", # Allow use of `assert`.
 ]
 
-[tool.pytest.ini_options]
-addopts = """
+[tool.pytest]
+ini_options.addopts = """
   -rfEXs -p pytester --strict-markers --verbosity=3
   --cov --cov-report=term-missing --cov-report=xml
   """
-minversion = "2.0"
-log_level = "DEBUG"
-log_cli_level = "DEBUG"
-log_format = "%(asctime)-15s [%(name)-36s] %(levelname)-8s: %(message)s"
-pythonpath = [
+ini_options.minversion = "2.0"
+ini_options.log_level = "DEBUG"
+ini_options.log_cli_level = "DEBUG"
+ini_options.log_format = "%(asctime)-15s [%(name)-36s] %(levelname)-8s: %(message)s"
+ini_options.pythonpath = [
   "src",
 ]
-xfail_strict = true
-markers = [
-]
+ini_options.xfail_strict = true
+ini_options.markers = [  ]
 
-[tool.coverage.paths]
-source = [
+[tool.coverage]
+paths.source = [
   "src/",
 ]
-
-[tool.coverage.run]
-branch = false
-omit = [
-  "tests/*",
-]
-
-[tool.coverage.report]
-fail_under = 0
-show_missing = true
-exclude_lines = [
+report.fail_under = 0
+report.show_missing = true
+report.exclude_lines = [
   "# pragma: no cover",
   "raise NotImplemented",
+]
+run.branch = false
+run.omit = [
+  "tests/*",
 ]
 
 [tool.mypy]
@@ -206,40 +196,34 @@ implicit_optional = true
 install_types = true
 non_interactive = true
 
-[tool.versioningit.vcs]
-method = "git-archive"
-default-tag = "v0.0.0"
-describe-subst = "$Format:%(describe:tags,match=v*)$"
-
 # ===================
 # Tasks configuration
 # ===================
-
-[tool.poe.tasks]
-
-check = [
+[tool.poe]
+tasks.check = [
   "lint",
   "test",
 ]
-
-format = [
+tasks.format = [
   { cmd = "ruff format ." },
   # Configure Ruff not to auto-fix (remove!):
   # unused imports (F401), unused variables (F841), `print` statements (T201), and commented-out code (ERA001).
   { cmd = "ruff check --fix --ignore=ERA --ignore=F401 --ignore=F841 --ignore=T20 --ignore=ERA001 ." },
   { cmd = "pyproject-fmt --keep-full-version pyproject.toml" },
 ]
-
-lint = [
+tasks.lint = [
   { cmd = "ruff format --check ." },
   { cmd = "ruff check ." },
   { cmd = "validate-pyproject pyproject.toml" },
   { cmd = "mypy" },
 ]
-
-release = [
+tasks.release = [
   { cmd = "python -m build" },
   { cmd = "twine upload --skip-existing dist/*" },
 ]
+tasks.test = { cmd = "pytest" }
 
-test = { cmd = "pytest" }
+[tool.versioningit]
+vcs.method = "git-archive"
+vcs.default-tag = "v0.0.0"
+vcs.describe-subst = "$Format:%(describe:tags,match=v*)$"
