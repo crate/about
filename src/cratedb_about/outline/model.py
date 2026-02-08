@@ -118,7 +118,7 @@ class OutlineDocument(Dumpable):
                 local_path = _local_docs_pth(cfg) / relative_path
                 if local_path.exists():
                     return local_path.read_text()
-            response = httpx.get(url, follow_redirects=True)
+            response = httpx.get(url, follow_redirects=True, headers={"User-Agent": "llms-txt"})
             response.raise_for_status()
             return response.text
 
