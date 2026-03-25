@@ -41,5 +41,5 @@
   other resources that have not been expanded properly yet
   https://github.com/crate/about/issues/24
 - Inventory: Information about ddl/views, SQL data types, etc., `COPY FROM ...`,
-  and `ctk load table`, specifically about how to load data and import example
+  and `ctk load`, specifically about how to load data and import example
   datasets using the CrateDB Toolkit
