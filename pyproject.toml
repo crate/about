@@ -75,7 +75,7 @@ dependencies = [
   "click<9",
   "colorlog<7",
   "hishel[httpx]>=1,<1.2",
-  "llms-txt==0.0.4",
+  "llms-txt==0.0.6",
   "markdown<4",
   "platformdirs<5",
   "pueblo<0.1",
