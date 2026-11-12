@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.12 - 2026-11-12
 - Dependencies: Permitted pueblo 0.1
 - Instructions: Removed the documentation style guide, which does not help with querying CrateDB
 
