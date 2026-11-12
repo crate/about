@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.11 - 2026-11-12
 - Dependencies: Updated to Hishel 1.1
 - Outline: Moved documentation links to docs.cratedb.com
 
