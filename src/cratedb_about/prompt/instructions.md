@@ -48,29 +48,3 @@ inherits technologies from Elasticsearch, and is compatible with PostgreSQL.
   FROM my_table
   WHERE DATE_TRUNC('day', ts) BETWEEN '2025-07-01' AND '2025-07-31';
   ```
-
-## Core writing principles
-
-### Language and style requirements
-- Use clear, direct language appropriate for technical audiences
-- Write in second person ("you") for instructions and procedures
-- Use active voice over passive voice
-- Employ present tense for current states, future tense for outcomes
-- Maintain consistent terminology throughout all documentation
-- Keep sentences concise while providing necessary context
-- Use parallel structure in lists, headings, and procedures
-
-### Content organization standards
-- Lead with the most important information (inverted pyramid structure)
-- Use progressive disclosure: basic concepts before advanced ones
-- Break complex procedures into numbered steps
-- Include prerequisites and context before instructions
-- Provide expected outcomes for each major step
-- End sections with next steps or related information
-- Use descriptive, keyword-rich headings for excellent guidance
-
-### User-centered approach
-- Focus on user goals and outcomes rather than system features
-- Anticipate common questions and address them proactively
-- Include troubleshooting for likely failure points
-- Provide multiple pathways when appropriate (beginner vs advanced), but offer an opinionated path for people to follow to avoid overwhelming with options

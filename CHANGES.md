@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Dependencies: Permitted pueblo 0.1
+- Instructions: Removed the documentation style guide, which does not help with querying CrateDB
 
 ## v0.0.11 - 2026-11-12
 - Dependencies: Updated to Hishel 1.1
