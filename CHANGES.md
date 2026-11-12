@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.12 - 2026-11-12
 - Dropped support for Python 3.9
 - Dependencies: Permitted pueblo 0.1
 
