@@ -1,6 +1,8 @@
 # About CrateDB changelog
 
 ## Unreleased
+
+## v0.0.12 - 2026-11-12
 - Dependencies: Permitted pueblo 0.1
 
 ## v0.0.11 - 2026-11-12
