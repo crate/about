@@ -24,9 +24,11 @@ jobs:
       matrix:
         os: ['ubuntu-latest']
         python-version: [
-          '3.9',
           '3.14',
         ]
+        include:
+          - os: 'ubuntu-24.04'
+            python-version: '3.9'
 
     env:
       OS: ${{ matrix.os }}
