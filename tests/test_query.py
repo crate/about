@@ -1,5 +1,3 @@
-import sys
-
 import hishel
 import httpx
 import openai
@@ -74,7 +72,6 @@ def test_ask_openai_invalid_api_key(mocker):
     assert ex.match("Incorrect API key provided: foo")
 
 
-@pytest.mark.skipif(sys.version_info < (3, 10), reason="requires Python 3.10 or higher")
 def test_ask_claude_no_api_key():
     """
     Validate inquiry with Anthropic Claude, failing without an API key.
@@ -86,7 +83,6 @@ def test_ask_claude_no_api_key():
     )
 
 
-@pytest.mark.skipif(sys.version_info < (3, 10), reason="requires Python 3.10 or higher")
 def test_ask_claude_invalid_api_key(mocker):
     """
     Validate inquiry with Anthropic Claude, failing when using an invalid API key.

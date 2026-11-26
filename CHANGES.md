@@ -1,6 +1,7 @@
 # About CrateDB changelog
 
 ## Unreleased
+- Dropped support for Python 3.9
 
 ## v0.0.11 - 2026-11-12
 - Dependencies: Updated to Hishel 1.1
